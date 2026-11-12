@@ -1,0 +1,1179 @@
+{
+  "executed_utc": "2026-11-12T06:23:47.058352+00:00",
+  "tests": 86,
+  "passed": 86,
+  "failed": 0,
+  "errors": 0,
+  "suites": [
+    {
+      "suite": "test_demo",
+      "tests": 40,
+      "passed": 40,
+      "failed": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "id": "test_demo.IntegrationCases.test_I01_create_query_details",
+          "description": "I01 | integración | crear y consultar por mercado/período/texto",
+          "status": "passed",
+          "seconds": 0.172761,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I02_update_audit",
+          "description": "I02 | integración | modificar con auditoría transaccional antes/después",
+          "status": "passed",
+          "seconds": 0.163246,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I03_inactivate",
+          "description": "I03 | integración | baja lógica conserva registro y bitácora",
+          "status": "passed",
+          "seconds": 0.164296,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I04_duplicate_no_partial_audit",
+          "description": "I04 | integración | índice único rechaza duplicado sin cambio parcial",
+          "status": "passed",
+          "seconds": 0.15986,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I05_concurrency",
+          "description": "I05 | integración | versión optimista evita sobrescritura de edición obsoleta",
+          "status": "passed",
+          "seconds": 0.195308,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I06_valid_bulk_idempotent",
+          "description": "I06 | integración | carga válida, confirmación y reintento idempotente",
+          "status": "passed",
+          "seconds": 0.271096,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I07_invalid_bulk_atomic",
+          "description": "I07 | integración | lote con duplicado y período inválido no guarda ninguna fila",
+          "status": "passed",
+          "seconds": 0.191292,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I08_bulk_concurrent_conflict_rollback",
+          "description": "I08 | integración | duplicado posterior a preview revierte todo el lote",
+          "status": "passed",
+          "seconds": 0.169434,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I09_factor_bulk",
+          "description": "I09 | integración | CSV de factores sin inventar montos",
+          "status": "passed",
+          "seconds": 0.168457,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I10_private_persistence_hash_json",
+          "description": "I10 | integración | CSV y JSON privados persistidos con hash/metadatos y descarga autorizada",
+          "status": "passed",
+          "seconds": 0.175971,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I11_foreign_keys",
+          "description": "I11 | integración | SQLite rechaza referencia de corredor inexistente",
+          "status": "passed",
+          "seconds": 0.156519,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_I12_documental_persistence_query",
+          "description": "I12 | integración | motor TinyDB persiste reporte y consulta SQL/documento funcional",
+          "status": "passed",
+          "seconds": 0.192731,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_P01_twenty_clients_query",
+          "description": "P01 | rendimiento | 20 clientes concurrentes, P95 de consulta <=3 s y sin 5xx",
+          "status": "passed",
+          "seconds": 3.634917,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_P02_thousand_rows_memory",
+          "description": "P02 | rendimiento | prevalidar/confirmar 1000 filas <=120 s con memoria medida",
+          "status": "passed",
+          "seconds": 0.989481,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S01_unauthenticated",
+          "description": "S01 | seguridad | API no expone registros sin sesión",
+          "status": "passed",
+          "seconds": 0.230947,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S02_csrf_nomutation",
+          "description": "S02 | seguridad | token CSRF ausente/incorrecto impide escrituras",
+          "status": "passed",
+          "seconds": 0.162118,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S03_broker_object_boundaries",
+          "description": "S03 | seguridad | corredor ajeno no se lista ni se accede mediante identificador",
+          "status": "passed",
+          "seconds": 0.18505,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S04_role_segregation",
+          "description": "S04 | seguridad | administrador sin acceso tributario y operador sin administración",
+          "status": "passed",
+          "seconds": 0.354094,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S05_sql_injection",
+          "description": "S05 | seguridad | consultas parametrizadas resisten payload de inyección",
+          "status": "passed",
+          "seconds": 0.196174,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S06_xss_no_execution_inputs",
+          "description": "S06 | seguridad | validación rechaza script y CSP prohíbe scripts externos/inline",
+          "status": "passed",
+          "seconds": 0.154192,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S07_upload_restrictions",
+          "description": "S07 | seguridad | archivos de extensión no permitida y binarios rechazados",
+          "status": "passed",
+          "seconds": 0.161978,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S08_private_files_cross_broker_hash",
+          "description": "S08 | seguridad | archivo privado rechaza corredor ajeno y modificación de contenido",
+          "status": "passed",
+          "seconds": 0.32389,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S09_audit_appendonly",
+          "description": "S09 | seguridad | triggers rechazan edición/borrado y cadena HMAC es válida",
+          "status": "passed",
+          "seconds": 0.160655,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S10_profile_revocation_audit_scope",
+          "description": "S10 | seguridad | revocar corredor retira consulta y auditoría del ámbito anterior",
+          "status": "passed",
+          "seconds": 0.313636,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S11_malformed_json",
+          "description": "S11 | seguridad | JSON no objeto devuelve error controlado, no 500",
+          "status": "passed",
+          "seconds": 0.163995,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S12_expiry_logout_cookie",
+          "description": "S12 | seguridad | sesión expirada, cierre y cookie HttpOnly/SameSite",
+          "status": "passed",
+          "seconds": 0.304184,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S13_login_rate_limit",
+          "description": "S13 | seguridad | bloqueo temporal luego de cinco fallos de acceso",
+          "status": "passed",
+          "seconds": 0.993351,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S14_supervisor_assigned_brokers",
+          "description": "S14 | seguridad | supervisor consulta solamente corredores asignados",
+          "status": "passed",
+          "seconds": 0.317263,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S15_documental_authorization",
+          "description": "S15 | seguridad | documento TinyDB exige corredor y perfil; repositorio no es público",
+          "status": "passed",
+          "seconds": 0.634992,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.IntegrationCases.test_S16_documental_hash_corruption",
+          "description": "S16 | seguridad | reporte modificado devuelve 409 y repositorio corrupto devuelve 503 controlado",
+          "status": "passed",
+          "seconds": 0.223359,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U01_decimal_conversion",
+          "description": "U01 | unitario | conversión Decimal exacta y HALF_UP",
+          "status": "passed",
+          "seconds": 0.000154,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U02_zero_base",
+          "description": "U02 | unitario | impedir división por cero",
+          "status": "passed",
+          "seconds": 0.000133,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U03_negative_nonfinite_limit",
+          "description": "U03 | unitario | rechazar negativos, NaN, infinito y exceso de precisión",
+          "status": "passed",
+          "seconds": 0.000205,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U04_factor_range",
+          "description": "U04 | unitario | factor directo fuera de rango y monto mayor que base",
+          "status": "passed",
+          "seconds": 0.000269,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U05_required_period_instrument",
+          "description": "U05 | unitario | obligatorios, mes inválido y caracteres no permitidos",
+          "status": "passed",
+          "seconds": 0.000179,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U06_provisional_key",
+          "description": "U06 | unitario | llave provisional compuesta y normalización de instrumento",
+          "status": "passed",
+          "seconds": 0.000165,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U07_csv_header",
+          "description": "U07 | unitario | encabezado exacto CSV",
+          "status": "passed",
+          "seconds": 0.000139,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U08_csv_binary_encoding",
+          "description": "U08 | unitario | contenido binario, UTF-8 incorrecto y tamaño excesivo",
+          "status": "passed",
+          "seconds": 0.000246,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U09_csv_limit_columns",
+          "description": "U09 | unitario | máximo de filas y cantidad de columnas",
+          "status": "passed",
+          "seconds": 0.003536,
+          "detail": {}
+        },
+        {
+          "id": "test_demo.UnitCases.test_U10_non_registered",
+          "description": "U10 | unitario | instrumentos no inscritos",
+          "status": "passed",
+          "seconds": 0.000186,
+          "detail": {}
+        }
+      ],
+      "metrics": {
+        "P01": {
+          "clients": 20,
+          "requests": 20,
+          "p95_seconds": 0.040579,
+          "max_seconds": 0.041992,
+          "http_statuses": [
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200,
+            200
+          ],
+          "scope": "Flask test_client local; no red ni entorno NUAM"
+        },
+        "P02": {
+          "rows": 1000,
+          "elapsed_seconds": 0.822057,
+          "peak_python_bytes": 3551892,
+          "current_python_bytes": 725329,
+          "inserted": 1000,
+          "scope": "Flask test_client + SQLite + filesystem privado local; memoria Python, no RAM total ni nube NUAM"
+        }
+      }
+    },
+    {
+      "suite": "test_ui_revision",
+      "tests": 8,
+      "passed": 8,
+      "failed": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI01_consistent_visible_action_and_explanation",
+          "description": "UI01: acción Desactivar y explicación explícita de baja lógica.",
+          "status": "passed",
+          "seconds": 0.164411,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI02_dialog_accessible_name_description_and_safe_default",
+          "description": "UI02: nombre y descripción enlazados; Cancelar primero y autofocus.",
+          "status": "passed",
+          "seconds": 0.161775,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI03_confirmation_identifies_record_and_preserves_safe_text_rendering",
+          "description": "UI03: cuatro identificadores con textContent y foco seguro explícito.",
+          "status": "passed",
+          "seconds": 0.171652,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI04_soft_delete_retains_data_and_audit",
+          "description": "UI04: desactivar oculta activos, conserva fila/datos y antes/después.",
+          "status": "passed",
+          "seconds": 0.202362,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI05_other_corridor_cannot_deactivate",
+          "description": "UI05: el cambio de rótulo no altera autorización por corredor.",
+          "status": "passed",
+          "seconds": 0.36406,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI06_obsolete_version_does_not_deactivate",
+          "description": "UI06: una confirmación obsoleta conserva el registro activo.",
+          "status": "passed",
+          "seconds": 0.201247,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI07_cancel_and_confirmation_have_distinct_scoped_styles",
+          "description": "UI07: Cancelar verde sólido; confirmación blanca/roja y bordes de 2 px.",
+          "status": "passed",
+          "seconds": 0.218045,
+          "detail": {}
+        },
+        {
+          "id": "test_ui_revision.UiRevisionCases.test_UI08_confirmed_batch_replaces_pending_state_only_after_success",
+          "description": "UI08: estado confirmado tras API exitosa; conserva una previsualización nueva.",
+          "status": "passed",
+          "seconds": 0.166308,
+          "detail": {}
+        }
+      ],
+      "metrics": {}
+    },
+    {
+      "suite": "test_complementarias",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP01_twenty_concurrent_saves",
+          "description": "PLAN-R01: veinte guardados concurrentes, P95 y persistencia/auditoría.",
+          "status": "passed",
+          "seconds": 3.709064,
+          "detail": {
+            "clients": 20,
+            "requests": 20,
+            "p95_seconds": 0.147909,
+            "max_seconds": 0.207345,
+            "status_codes": [
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201,
+              201
+            ],
+            "persisted_rows": 20,
+            "business_events": 20,
+            "measurements": [
+              {
+                "index": 0,
+                "seconds": 0.037295,
+                "status": 201
+              },
+              {
+                "index": 1,
+                "seconds": 0.03249,
+                "status": 201
+              },
+              {
+                "index": 2,
+                "seconds": 0.04489,
+                "status": 201
+              },
+              {
+                "index": 3,
+                "seconds": 0.027556,
+                "status": 201
+              },
+              {
+                "index": 4,
+                "seconds": 0.071295,
+                "status": 201
+              },
+              {
+                "index": 5,
+                "seconds": 0.049,
+                "status": 201
+              },
+              {
+                "index": 6,
+                "seconds": 0.054405,
+                "status": 201
+              },
+              {
+                "index": 7,
+                "seconds": 0.055678,
+                "status": 201
+              },
+              {
+                "index": 8,
+                "seconds": 0.10432,
+                "status": 201
+              },
+              {
+                "index": 9,
+                "seconds": 0.032034,
+                "status": 201
+              },
+              {
+                "index": 10,
+                "seconds": 0.041253,
+                "status": 201
+              },
+              {
+                "index": 11,
+                "seconds": 0.039077,
+                "status": 201
+              },
+              {
+                "index": 12,
+                "seconds": 0.071591,
+                "status": 201
+              },
+              {
+                "index": 13,
+                "seconds": 0.043522,
+                "status": 201
+              },
+              {
+                "index": 14,
+                "seconds": 0.147909,
+                "status": 201
+              },
+              {
+                "index": 15,
+                "seconds": 0.023185,
+                "status": 201
+              },
+              {
+                "index": 16,
+                "seconds": 0.207345,
+                "status": 201
+              },
+              {
+                "index": 17,
+                "seconds": 0.124925,
+                "status": 201
+              },
+              {
+                "index": 18,
+                "seconds": 0.027377,
+                "status": 201
+              },
+              {
+                "index": 19,
+                "seconds": 0.057952,
+                "status": 201
+              }
+            ],
+            "scope": "Flask test_client + SQLite local, sin navegador, autenticación medida ni red NUAM"
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP02_preview_file_failure_cleans_every_created_file",
+          "description": "PLAN-I02: falla después del segundo archivo, sin SQL/documento/archivos huérfanos.",
+          "status": "passed",
+          "seconds": 0.249727,
+          "detail": {
+            "http_status": 503,
+            "response_is_json": true,
+            "sql_unchanged": true,
+            "business_audit_unchanged": true,
+            "remaining_private_files": [],
+            "document_count": 0
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP03_preview_document_failure_rolls_back_all_stores",
+          "description": "PLAN-I02: falla TinyDB tras escribir; revierte SQL, archivos y documento derivado.",
+          "status": "passed",
+          "seconds": 0.173298,
+          "detail": {
+            "http_status": 503,
+            "sql_unchanged": true,
+            "files_remaining": 0,
+            "document_count": 0,
+            "retry_status": 200
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP04_confirmation_failure_after_first_insert_is_atomic",
+          "description": "PLAN-I02: falla en segunda fila al confirmar, sin calificación/evento parcial; reintento.",
+          "status": "passed",
+          "seconds": 0.189066,
+          "detail": {
+            "http_status": 503,
+            "sql_unchanged": true,
+            "audit_unchanged": true,
+            "retry": {
+              "status": 200,
+              "inserted": 2
+            }
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP05_postcommit_document_failure_is_recoverable_without_duplicate",
+          "description": "PLAN-I02: falla documental posterior a commit conserva verdad SQL; reintento idempotente.",
+          "status": "passed",
+          "seconds": 0.215162,
+          "detail": {
+            "initial_status": 503,
+            "sql_state": "confirmada",
+            "api_document_state": "confirmada",
+            "retry_status": 200,
+            "idempotent": true,
+            "reconciled_document_state": "confirmada",
+            "persisted_rows": 2,
+            "confirmation_events": 1
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP06_crud_audit_failure_rolls_back_insert_update_and_soft_delete",
+          "description": "PLAN-I03: falla de auditoría después de INSERT/UPDATE/baja revierte operación.",
+          "status": "passed",
+          "seconds": 0.262394,
+          "detail": {
+            "operations": [
+              {
+                "method": "POST",
+                "status": 503,
+                "unchanged": true,
+                "json": true
+              },
+              {
+                "method": "PUT",
+                "status": 503,
+                "unchanged": true,
+                "json": true
+              },
+              {
+                "method": "DELETE",
+                "status": 503,
+                "unchanged": true,
+                "json": true
+              }
+            ],
+            "fault": "Errores deliberados de almacenamiento; 500/503 se espera durante inyección, no en operación válida"
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP07_required_and_calculation_failure_have_no_business_mutation",
+          "description": "PLAN-F02/PLAN-I03: obligatorio vacío y cálculo inválido señalan error sin escritura.",
+          "status": "passed",
+          "seconds": 0.185922,
+          "detail": {
+            "cases": [
+              {
+                "field": "rating",
+                "status": 422,
+                "message": "Calificación: completar con texto válido; no se admiten valores nulos."
+              },
+              {
+                "field": "base",
+                "status": 422,
+                "message": "Base: debe ser mayor que cero y mayor o igual al monto."
+              },
+              {
+                "field": "amount",
+                "status": 422,
+                "message": "Monto: usar un número no negativo, punto decimal y hasta 6 decimales."
+              }
+            ],
+            "valid_write": {
+              "amount": "250",
+              "factor": "0.250000",
+              "rule_id": 1,
+              "rule_version": "DEMO-1",
+              "audit_matches": true
+            }
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP08_csrf_all_mutations_missing_invalid_valid_and_audit_fields",
+          "description": "PLAN-S06/PLAN-F05: nueve familias CSRF y eventos de operaciones con todos sus campos.",
+          "status": "passed",
+          "seconds": 0.748267,
+          "detail": {
+            "routes": [
+              {
+                "method": "POST",
+                "path": "/api/login",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "POST",
+                "path": "/api/ratings",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 201
+              },
+              {
+                "method": "PUT",
+                "path": "/api/ratings/4",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "DELETE",
+                "path": "/api/ratings/4",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "POST",
+                "path": "/api/factor/preview",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "POST",
+                "path": "/api/batches/preview",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "POST",
+                "path": "/api/batches/1/confirm",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "PUT",
+                "path": "/api/users/2",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              },
+              {
+                "method": "POST",
+                "path": "/api/logout",
+                "absent": 403,
+                "invalid": 403,
+                "valid": 200
+              }
+            ],
+            "snapshots_unchanged_for_rejected": true,
+            "validated_event_actions": [
+              "cambiar_perfil",
+              "confirmar",
+              "crear",
+              "inactivar",
+              "modificar",
+              "prevalidar"
+            ],
+            "profile_event_broker": "No aplica a evento de perfil; el cambio incluye asignaciones en después"
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP09_login_privacy_logout_and_old_cookie_replay",
+          "description": "PLAN-S02: error uniforme y bitácora privada; cookie previa al logout no reutilizable.",
+          "status": "passed",
+          "seconds": 0.876349,
+          "detail": {
+            "login_statuses": [
+              401,
+              401
+            ],
+            "same_error_message": true,
+            "audit_excludes_credentials": true,
+            "logout_status": 200,
+            "current_cookie_status": 401,
+            "old_cookie_replay_status": 401,
+            "old_cookie_after_restart_status": 401,
+            "new_authenticated_session_status": 200,
+            "same_persistent_secret": true
+          }
+        },
+        {
+          "id": "test_complementarias.ComplementaryCases.test_CP10_five_supplied_csv_examples",
+          "description": "PLAN-F03: cinco archivos de ejemplo por API, errores explicados y rechazo completo.",
+          "status": "passed",
+          "seconds": 0.328314,
+          "detail": {
+            "examples": [
+              {
+                "file": "01_montos_valido.csv",
+                "preview_status": 200,
+                "total": 2,
+                "invalid": 0,
+                "confirm_status": 200
+              },
+              {
+                "file": "02_encabezado_invalido.csv",
+                "preview_status": 422,
+                "message": "Encabezado incorrecto. Usar exactamente: market,period,instrument,rating,mode,amount,base,factor,registered"
+              },
+              {
+                "file": "03_campos_incompletos.csv",
+                "preview_status": 200,
+                "total": 1,
+                "invalid": 1,
+                "confirm_status": 409,
+                "errors": [
+                  [
+                    "Período: completar con texto válido; no se admiten valores nulos."
+                  ]
+                ]
+              },
+              {
+                "file": "04_duplicados.csv",
+                "preview_status": 200,
+                "total": 2,
+                "invalid": 1,
+                "confirm_status": 409,
+                "errors": [
+                  [
+                    "Duplicado dentro del archivo según llave provisional."
+                  ]
+                ]
+              },
+              {
+                "file": "05_factores_valido.csv",
+                "preview_status": 200,
+                "total": 1,
+                "invalid": 0,
+                "confirm_status": 200
+              }
+            ]
+          }
+        }
+      ],
+      "metrics": {}
+    },
+    {
+      "suite": "test_v11",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "id": "test_v11.Version11Cases.test_V01_instrument_pattern_valid_and_equivalent",
+          "description": "V01 | regresión D3 | pattern con guion escapado y misma aceptación que el servidor",
+          "status": "passed",
+          "seconds": 0.998575,
+          "detail": {
+            "pattern": "[A-Za-z0-9][A-Za-z0-9._\\-]{0,39}",
+            "samples": [
+              "DEMO-ALFA",
+              "demo.beta_1",
+              "A",
+              "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "-DEMO",
+              "DEMO@1",
+              "DEMO 1",
+              "DEMO/1",
+              "Ñandú"
+            ],
+            "mismatches": []
+          }
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V02_favicon_declared_without_extra_request",
+          "description": "V02 | regresión | ícono embebido evita la solicitud 404 a /favicon.ico",
+          "status": "passed",
+          "seconds": 1.068203,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V03_operation_log_metadata_only",
+          "description": "V03 | registro operativo | líneas JSON con método, ruta, estado, duración y perfil",
+          "status": "passed",
+          "seconds": 1.078602,
+          "detail": {
+            "lines": 6,
+            "sample": {
+              "estado": 200,
+              "fecha": "2026-11-12T06:23:17.597+00:00",
+              "metodo": "GET",
+              "ms": 0.8,
+              "rol": "operador",
+              "ruta": "/api/ratings"
+            }
+          }
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V04_rejected_requests_are_logged",
+          "description": "V04 | registro operativo | CSRF rechazado y ruta inexistente quedan registrados",
+          "status": "passed",
+          "seconds": 1.062964,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V05_factor_roles_from_environment",
+          "description": "V05 | configuración | NUAM_ROLES_FACTOR_MANUAL respeta la matriz y rechaza perfiles ajenos",
+          "status": "passed",
+          "seconds": 0.852526,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V06_factor_restricted_profile_denied_and_audited",
+          "description": "V06 | permisos | perfil sin autorización no ingresa factores; monto sigue disponible",
+          "status": "passed",
+          "seconds": 1.089596,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V07_factor_batch_denied_for_restricted_profile",
+          "description": "V07 | permisos | carga factores-DEMO rechazada antes de crear lote o archivos",
+          "status": "passed",
+          "seconds": 1.024897,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V08_wsgi_entrypoint_uses_data_dir",
+          "description": "V08 | entorno | wsgi.py expone la aplicación y respeta NUAM_DATA_DIR",
+          "status": "passed",
+          "seconds": 1.586192,
+          "detail": {}
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V09_operation_log_rotation_keeps_three_backups",
+          "description": "V09 | registro operativo | rotación por tamaño con tres archivos anteriores como máximo",
+          "status": "passed",
+          "seconds": 0.805237,
+          "detail": {
+            "files": [
+              "operacion.log",
+              "operacion.log.1",
+              "operacion.log.2",
+              "operacion.log.3"
+            ]
+          }
+        },
+        {
+          "id": "test_v11.Version11Cases.test_V10_sqlite_wal_enabled",
+          "description": "V10 | optimización | SQLite en modo WAL con llaves foráneas activas en cada conexión",
+          "status": "passed",
+          "seconds": 0.786178,
+          "detail": {}
+        }
+      ],
+      "metrics": {}
+    },
+    {
+      "suite": "test_v12",
+      "tests": 18,
+      "passed": 18,
+      "failed": 0,
+      "errors": 0,
+      "cases": [
+        {
+          "id": "test_v12.Version12Cases.test_W01_seeded_catalog_and_access",
+          "description": "W01 | DEMO-2 | catálogo sembrado visible para operador y supervisor, no para administrador",
+          "status": "passed",
+          "seconds": 1.31785,
+          "detail": {
+            "seeded": 8,
+            "disabled": [
+              "DEMO-SUSPENDIDO"
+            ]
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W02_registered_instrument_must_exist",
+          "description": "W02 | DEMO-2 | un instrumento inscrito ausente del catálogo se rechaza sin cambios",
+          "status": "passed",
+          "seconds": 1.012866,
+          "detail": {
+            "status": 422,
+            "message": "Instrumento: un instrumento inscrito debe existir en el catálogo del mercado (regla DEMO-2)."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W03_supervisor_adds_instrument_then_it_can_be_used",
+          "description": "W03 | DEMO-2 | el no inscrito fuera del catálogo se admite; el supervisor agrega un inscrito y queda en la bitácora",
+          "status": "passed",
+          "seconds": 1.165096,
+          "detail": {
+            "added_id": 9,
+            "catalog_after": 9
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W04_registration_flag_must_match_catalog",
+          "description": "W04 | DEMO-2 | la inscripción informada debe coincidir con la del catálogo",
+          "status": "passed",
+          "seconds": 1.033173,
+          "detail": {
+            "messages": [
+              "Inscripción: el catálogo registra el instrumento como inscrito (regla DEMO-2).",
+              "Inscripción: el catálogo registra el instrumento como no inscrito (regla DEMO-2)."
+            ]
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W05_disabled_instrument_and_supervisor_toggle",
+          "description": "W05 | DEMO-2 | instrumento deshabilitado se rechaza; solo el supervisor cambia el catálogo",
+          "status": "passed",
+          "seconds": 1.480706,
+          "detail": {
+            "suspended": "Instrumento: está deshabilitado en el catálogo (regla DEMO-2).",
+            "operator_toggle": 403
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W06_catalog_change_after_preview_rolls_back",
+          "description": "W06 | DEMO-2 | si el catálogo cambia entre previsualizar y confirmar, la carga completa se revierte",
+          "status": "passed",
+          "seconds": 1.343582,
+          "detail": {
+            "status": 409,
+            "message": "El catálogo de instrumentos cambió después de la previsualización (regla DEMO-2). La carga no se guardó; volver a validar."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W07_bolsa_load_restricted_to_supervisor",
+          "description": "W07 | DEMO-3 | solo el supervisor previsualiza archivos de Bolsa y descarga su plantilla",
+          "status": "passed",
+          "seconds": 1.200929,
+          "detail": {
+            "operator_preview": 403,
+            "supervisor_template": 200
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W08_bolsa_replaces_broker_record_with_audit",
+          "description": "W08 | DEMO-3 | el archivo de Bolsa reemplaza el registro del corredor y la bitácora conserva el anterior",
+          "status": "passed",
+          "seconds": 1.276159,
+          "detail": {
+            "before": [
+              "manual",
+              "0.250000"
+            ],
+            "after": [
+              "bolsa-DEMO",
+              "0.300000"
+            ],
+            "notice": "Reemplazará el registro 1 (origen manual) por prioridad Bolsa (regla DEMO-3)."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W09_bolsa_over_bolsa_is_duplicate",
+          "description": "W09 | DEMO-3 | un segundo archivo de Bolsa con la misma llave se rechaza como duplicado",
+          "status": "passed",
+          "seconds": 1.313926,
+          "detail": {
+            "error": "Duplicado: ya existe un registro informado por Bolsa con la misma llave provisional (regla DEMO-3)."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W10_broker_data_cannot_override_bolsa",
+          "description": "W10 | DEMO-3 | registro manual o carga del corredor no reemplaza un registro informado por Bolsa",
+          "status": "passed",
+          "seconds": 1.171345,
+          "detail": {
+            "manual": "Existe un registro informado por Bolsa con la misma llave provisional; prevalece sobre la información del corredor (regla DEMO-3).",
+            "batch": "Existe un registro informado por Bolsa con la misma llave provisional; prevalece sobre la información del corredor (regla DEMO-3)."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W11_operator_cannot_change_bolsa_record",
+          "description": "W11 | DEMO-3 | el operador no modifica ni desactiva un registro de Bolsa; el supervisor sí",
+          "status": "passed",
+          "seconds": 1.151993,
+          "detail": {
+            "operator_put": 403,
+            "operator_delete": 403,
+            "supervisor": "modifica y desactiva"
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W12_bolsa_new_key_and_factor_mode",
+          "description": "W12 | DEMO-3 | una llave nueva de Bolsa se inserta con origen bolsa-DEMO y exige mode=factor",
+          "status": "passed",
+          "seconds": 0.986534,
+          "detail": {
+            "mode_error": "bolsa-DEMO requiere mode=factor."
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W13_bolsa_prevails_over_record_created_after_preview",
+          "description": "W13 | DEMO-3 | si el corredor crea la misma llave después de la previsualización, Bolsa igual prevalece",
+          "status": "passed",
+          "seconds": 1.125241,
+          "detail": {
+            "replaced_id": 4
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W14_previous_schema_is_backed_up",
+          "description": "W14 | migración | una base anterior a la v1.2 se respalda completa y se crea un esquema nuevo",
+          "status": "passed",
+          "seconds": 1.918399,
+          "detail": {
+            "backup": "respaldo_v1_20261112_062341_661917"
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W15_supplied_examples_06_07",
+          "description": "W15 | ejemplos | 06 reemplaza por prioridad Bolsa y 07 se rechaza completo por catálogo",
+          "status": "passed",
+          "seconds": 1.007224,
+          "detail": {
+            "example_06": 1,
+            "example_07": [
+              "Instrumento: está deshabilitado en el catálogo (regla DEMO-2).",
+              "Instrumento: un instrumento inscrito debe existir en el catálogo del mercado (regla DEMO-2)."
+            ]
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W16_interface_exposes_rules_by_profile",
+          "description": "W16 | interfaz | catálogo para ambos perfiles; opción y plantilla de Bolsa solo para supervisor",
+          "status": "passed",
+          "seconds": 1.076679,
+          "detail": {
+            "operator_bolsa_option": false,
+            "supervisor_bolsa_option": true
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W17_catalog_changes_apply_forward",
+          "description": "W17 | DEMO-2 | un cambio del catálogo rige hacia adelante: no altera registros guardados y revierte confirmaciones pendientes",
+          "status": "passed",
+          "seconds": 1.126842,
+          "detail": {
+            "update": 422,
+            "bolsa_confirm": 409,
+            "deactivate": 200
+          }
+        },
+        {
+          "id": "test_v12.Version12Cases.test_W18_add_instrument_validation",
+          "description": "W18 | DEMO-2 | alta de instrumentos: solo supervisor, datos válidos y sin duplicados",
+          "status": "passed",
+          "seconds": 1.097778,
+          "detail": {
+            "duplicate": "El registro está duplicado o incumple una referencia válida."
+          }
+        }
+      ],
+      "metrics": {}
+    }
+  ],
+  "source_directory": "<carpeta-de-trabajo>/repo-nuam",
+  "predecessor_zip_sha256": "c75bcd6788e7997e0aad45a1f4a48cea203a7b187823579c2f7d84f2c817836e",
+  "source_sha256": {
+    "app.py": "cb893b1b11c84428b6c6bd41c06c69b2601702bdaa77618de974c84c791f5680",
+    "schema.sql": "d144a78fd468012f6d1e8d8c8bddafdc98fde2808625b411ac76c956e12f1087",
+    "domain.py": "9b5e503b7cb688db6036c48be78f2b80040195013d8fb0b963511ff598334599",
+    "documentrepo.py": "f1583133f5caa5fb44e5be5ba6717b43bd6f06e0bee792a34c5a35510b21cd6b",
+    "templates/index.html": "3e862eca9d5ec135be8ba823faa6dc629a47c37efaf9b24f1574966408cee2ca",
+    "static/app.js": "81df17cfb7cb9a084252caf0b96e3b998e7df8ed5080b84ad9a02ce91faa8668",
+    "static/style.css": "84fbd6f3e96b44cc32d3c8e9d136a88ec3211f618eabeaa8edb880b29658d560",
+    "tests/test_demo.py": "49540509e09dd407ca947907ab4cb487057eb01ba4a4d50ac89e2f960922f0a8",
+    "tests/test_ui_revision.py": "757b4899d10a0982cbfda3df40735ae1ddc3831686763b8f251613e496bbe219",
+    "tests/test_complementarias.py": "10d1f52cf6d06f0a130e4c30921ec42c038d969d3cd65372fbcd53a000e3e48c",
+    "tests/test_v11.py": "5f0b57bbcce20f9148de05d6d6232d93415fa2472c138e3f6551634fd1661536",
+    "tests/test_v12.py": "1ba76a275d32fe93e3206797e208a096b2c90a77dfa6e71d3b5c05ecc1fa956e",
+    "wsgi.py": "b03815dd7c039c4f401c40224830606d39d6e5f54e1ed31166d337d9ccf49db9",
+    "pruebas_estres.py": "5514124bb18878e394eae014d1ca8621bbace11ef9f1aab0e85f1a51057bd855",
+    "run_all_tests.py": "e951e8ab565f7ef150e5dea35c7987a167b890e098ef5f39af3adb39397a6bf8"
+  },
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "executable": "<carpeta-de-trabajo>/venv312/bin/python",
+  "dependencies": "<carpeta-de-trabajo>/repo-nuam/vendor",
+  "isolated": true,
+  "corrections": [
+    "Ownership de archivos registrado antes de escribir; rollback de preview limpia todos los archivos creados.",
+    "Logout persiste SHA-256 del identificador aleatorio de sesión en evento de auditoría; la cookie anterior se rechaza incluso tras reiniciar con misma clave/base.",
+    "Índice parcial para hashes revocados sin tabla ni columna nueva; errores de almacenamiento controlados con 503 sin publicar rutas/SQL.",
+    "Los campos textuales obligatorios rechazan valores nulos, booleanos, colecciones y tipos incompatibles sin convertirlos a texto.",
+    "La confirmación exitosa sustituye el estado pendiente del lote visible, conserva el conteo confirmado y deshabilita una nueva confirmación; una respuesta anterior no sobrescribe la previsualización de otro lote.",
+    "v1.1: el atributo pattern del instrumento escapa el guion y vuelve a ser válido en Chrome (D3).",
+    "v1.1: registro operativo en data/logs/operacion.log con método, ruta declarada, estado, duración y perfil, sin cuerpo, consulta ni credenciales.",
+    "v1.1: NUAM_ROLES_FACTOR_MANUAL permite limitar el ingreso manual de factores; sin la variable rige la matriz de la Unidad 2.",
+    "v1.1: wsgi.py para servir con Waitress e ícono embebido que evita la solicitud 404 a /favicon.ico.",
+    "v1.1: SQLite en modo WAL; con 100 clientes en proceso el P95 de guardado bajó de 6,97 s con 31 respuestas 503 a 2,20 s sin 5xx (pruebas_estres.py).",
+    "v1.2: regla DEMO-2, definida por el equipo y pendiente de validación de NUAM: catálogo de instrumentos por mercado; un inscrito debe existir habilitado y un no inscrito nuevo se agrega con evento de bitácora.",
+    "v1.2: regla DEMO-3, definida por el equipo y pendiente de validación de NUAM: el archivo de Bolsa, cargado solo por el supervisor, reemplaza el registro del corredor y la bitácora conserva los valores anteriores.",
+    "v1.2: una base anterior al esquema 2 se respalda completa en data/respaldo_v1_<fecha>/ antes de crear el esquema nuevo."
+  ],
+  "limits": "Ejecución técnica local con bases/archivos temporales. No modifica base visible, fuente ZIP ni Downloads. No prueba infraestructura NUAM, dispositivos físicos ni acciones/comentarios humanos. Fallos intermedios se inyectan deliberadamente."
+}
