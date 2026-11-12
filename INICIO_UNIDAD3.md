@@ -1,6 +1,6 @@
 # Implementación académica del mantenedor tributario NUAM
 
-Proyecto Integrado, Grupo 4 — Unidad 3. Versión 1.1 del paquete.
+Proyecto Integrado, Grupo 4 — Unidad 3. Versión 1.1.1 del paquete.
 
 El paquete contiene el prototipo local, sus dependencias fijadas por versión, cinco CSV ficticios, cuatro suites de pruebas y una prueba de estrés sostenida. Al iniciar por primera vez, la aplicación genera una base SQLite con registros ficticios y una clave local. TinyDB conserva los reportes de carga que genera el prototipo. El ZIP no incluye bases existentes, archivos privados, registros ni claves.
 
@@ -20,6 +20,9 @@ El paquete contiene el prototipo local, sus dependencias fijadas por versión, c
 | `run_all_tests.py`, `tests/` | 68 casos en cuatro suites |
 | `pruebas_estres.py` | Carga sostenida de 20, 50 y 100 clientes y lotes sucesivos de 1.000 filas |
 | `ejemplos/` | Cinco CSV ficticios: dos válidos y tres con errores |
+| `preparar.cmd`, `iniciar.cmd`, `verificar.cmd` | Accesos para Windows: preparar el entorno, abrir la demostración y ejecutar las pruebas |
+| `README.md`, `docs/` | Presentación del proyecto y guías numeradas de arquitectura, seguridad, pruebas, rúbrica y verificación |
+| `.github/workflows/verificacion.yml` | Ejecución de las cuatro suites en GitHub Actions con Windows y Ubuntu |
 | `CONTRIBUTING.md`, `CHANGELOG.md` | Flujo de trabajo del equipo e historial de versiones |
 | `MANIFIESTO_SHA256.json` | Huella SHA-256 de cada archivo |
 
@@ -43,6 +46,8 @@ python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements-lock.txt
 .venv/bin/python app.py
 ```
+
+En Windows, los mismos pasos se ejecutan con doble clic: `preparar.cmd` crea `.venv` e instala las dependencias, `iniciar.cmd` abre la demostración y `verificar.cmd` ejecuta las pruebas.
 
 Si `python --version` no devuelve 3.12, seleccionar la instalación correcta antes de crear el entorno (en Windows, `py -3.12 -m venv .venv`). Abrir `http://127.0.0.1:8765` en el mismo equipo. El servidor se limita al equipo local y se detiene con `Ctrl+C`.
 

@@ -1,5 +1,24 @@
 # Historial de versiones
 
+## 1.1.1 — 11 de noviembre de 2026
+
+Origen: primera ejecución de las pruebas en GitHub Actions con Windows.
+
+Corregido
+
+- En Windows, V06, V07 y V10 dejaban abierta la base SQLite temporal y `tearDown` no podía borrar su carpeta (WinError 32), con 65 de 68 casos aprobados ([ejecución 2](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43135705148)). Las consultas directas de `tests/test_v11.py` usan ahora `contextlib.closing`. La aplicación no cambió.
+
+Agregado
+
+- `preparar.cmd`, `iniciar.cmd` y `verificar.cmd` para Windows, y `.gitattributes` para conservar sus finales de línea CRLF.
+- `README.md` y guías numeradas en `docs/`: arquitectura y datos, seguridad, pruebas y resultados, rúbrica y verificación.
+- `.github/workflows/verificacion.yml`: ejecuta las cuatro suites en Windows, mediante `verificar.cmd`, y en Ubuntu, con Python 3.12.
+
+Verificación
+
+- GitHub Actions: 68 de 68 en Windows y en Ubuntu ([ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316)). Con esto se cumple la repetición en Windows que la versión 1.1 dejó pendiente.
+- Linux, Python 3.12.3: 68 de 68 (`evidencias/ejecucion_completa_20261112_014542_576470`).
+
 ## 1.1 — 11 de noviembre de 2026
 
 Origen: discrepancias D3 y D5 del informe de pruebas de la Unidad 3 y revisión del paquete frente a la rúbrica.

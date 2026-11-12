@@ -34,7 +34,7 @@ Todas las cuentas usan la contraseña ficticia `Demo2026!`.
 
 ## 4. Pruebas
 
-Hacer doble clic en `verificar.cmd`. Ejecuta las cuatro suites (68 casos) con bases temporales y deja el informe en `evidencias/`. GitHub Actions repite las mismas suites en Windows y Ubuntu en cada cambio del repositorio.
+Hacer doble clic en `verificar.cmd`. Ejecuta las cuatro suites (68 casos) con bases temporales y deja el informe en `evidencias/`. GitHub Actions repite las mismas suites en Windows, con `verificar.cmd`, y en Ubuntu en cada cambio del repositorio; la [ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316) aprobó 68 de 68 en ambos.
 
 La prueba de estrés se ejecuta aparte porque dura varios minutos:
 
@@ -58,7 +58,7 @@ Los resultados del 11 de noviembre de 2026 y su explicación están en [docs/03-
 | `evidencias/` | Informes de las ejecuciones de la versión 1.1 |
 | `docs/` | Documentación técnica numerada y documentos entregados |
 | `CONTRIBUTING.md`, `CHANGELOG.md` | Flujo de trabajo del equipo e historial de versiones |
-| `MANIFIESTO_SHA256.json` | Huella de cada archivo del paquete entregado en DreamShaper |
+| `MANIFIESTO_SHA256.json` | Huella de cada archivo del paquete entregado en DreamShaper (versión 1.1.1) |
 
 ## 6. Documentación
 
