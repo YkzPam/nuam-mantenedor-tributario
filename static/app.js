@@ -1,6 +1,6 @@
 'use strict';
 const $ = id => document.getElementById(id);
-let csrf=document.body.dataset.csrf, me=null, currentPage=1, lastBatch=null, deleteRecord=null;
+let csrf=document.body.dataset.csrf, me=null, currentPage=1, lastBatch=null, deleteRecord=null, catalog=[];
 const element=(tag,attributes={},...children)=>{
   const node=document.createElement(tag);
   for(const [key,value] of Object.entries(attributes)){
@@ -39,23 +39,49 @@ async function loadRatings(){
   for(const row of data.items){
     const inst=element('td',{},row.instrumento,element('br'),element('span',{class:'badge',text:row.inscrito?'Inscrito':'No inscrito'}));
     const buttons=element('td',{},action('Detalle',()=>showDetail(row.id)),action('Modificar',()=>editRating(row.id)),action('Desactivar',()=>openDelete(row)));
-    $('rating-rows').append(element('tr',{},inst,element('td',{},row.corredor+' / '+row.mercado),element('td',{},row.periodo),element('td',{},row.calificacion),element('td',{},row.factor),element('td',{},row.origen),buttons));
+    const bolsa=row.origen==='bolsa-DEMO', origin=element('td',{},row.origen);
+    if(bolsa)origin.append(element('br'),element('span',{class:'badge',text:'Prioridad Bolsa'}));
+    if(bolsa&&me.user.rol!=='supervisor')for(const button of [...buttons.children].slice(1)){button.disabled=true;button.title='Regla DEMO-3: solo el supervisor cambia registros informados por Bolsa.';}
+    $('rating-rows').append(element('tr',{},inst,element('td',{},row.corredor+' / '+row.mercado),element('td',{},row.periodo),element('td',{},row.calificacion),element('td',{},row.factor),origin,buttons));
   }
   if(!data.items.length)$('rating-rows').append(element('tr',{},element('td',{colspan:7,text:'Sin registros que coincidan con los filtros.'})));
   $('count').textContent=data.total+' registro(s) · Página '+data.page+' de '+data.pages;
   $('previous').disabled=data.page<=1;$('next').disabled=data.page>=data.pages;
+}
+function catalogMatch(){
+  const code=$('rating-instrument').value.trim().toUpperCase(), market=$('rating-market').value;
+  const entry=catalog.find(item=>item.codigo===code&&item.mercado===market);
+  if(!code){$('catalog-hint').textContent='';return;}
+  if(!entry){$('catalog-hint').textContent='No figura en el catálogo: solo se admite como no inscrito (DEMO-2).';$('rating-registered').value='0';return;}
+  $('rating-registered').value=String(entry.inscrito);
+  $('catalog-hint').textContent='Catálogo: '+(entry.inscrito?'inscrito':'no inscrito')+' · '+(entry.habilitado?'habilitado':'deshabilitado, no admite registros (DEMO-2)');
+}
+async function loadCatalog(){
+  const params=new URLSearchParams();
+  if($('catalog-market').value)params.set('market',$('catalog-market').value);if($('catalog-query').value)params.set('q',$('catalog-query').value);
+  const data=await api('instruments?'+params);
+  if(!params.toString()){catalog=data.items;$('instrument-options').replaceChildren(...catalog.filter(item=>item.habilitado).map(item=>element('option',{value:item.codigo,label:item.mercado+' · '+(item.inscrito?'inscrito':'no inscrito')})));}
+  $('catalog-rows').replaceChildren();
+  for(const item of data.items){
+    const actions=element('td',{});
+    if(me.user.rol==='supervisor')actions.append(action(item.habilitado?'Deshabilitar':'Habilitar',async()=>{await api('instruments/'+item.id,'PUT',{enabled:!item.habilitado,version:item.version});notify('Catálogo actualizado y registrado en bitácora.');await loadCatalog();}));
+    else actions.append(element('span',{class:'hint',text:'Solo consulta'}));
+    $('catalog-rows').append(element('tr',{},element('td',{text:item.mercado}),element('td',{text:item.codigo}),element('td',{text:item.inscrito?'Inscrito':'No inscrito'}),element('td',{text:item.habilitado?'Habilitado':'Deshabilitado'}),actions));
+  }
+  if(!data.items.length)$('catalog-rows').append(element('tr',{},element('td',{colspan:5,text:'Sin instrumentos que coincidan con la búsqueda.'})));
+  $('catalog-count').textContent=data.total+' instrumento(s)'+(data.total>data.items.length?' · se muestran los primeros '+data.items.length:'')+'. '+data.rule;
 }
 function ratingMode(){
   const direct=$('rating-mode').value==='factor';$('rating-factor').disabled=!direct;$('rating-factor').required=direct;
   $('rating-amount').disabled=direct;$('rating-base').disabled=direct;$('rating-amount').required=!direct;$('rating-base').required=!direct;
 }
 function newRating(){
-  $('rating-form').reset();$('rating-id').value='';$('rating-version').value='';$('rating-broker').disabled=false;$('rating-title').textContent='Crear calificación';$('form-error').textContent='';ratingMode();$('edit-dialog').showModal();
+  $('rating-form').reset();$('rating-id').value='';$('rating-version').value='';$('rating-broker').disabled=false;$('rating-title').textContent='Crear calificación';$('form-error').textContent='';$('catalog-hint').textContent='';ratingMode();$('edit-dialog').showModal();
 }
 async function editRating(id){
   const {item}=await api('ratings/'+id);$('rating-title').textContent='Modificar calificación';$('rating-id').value=id;$('rating-version').value=item.version;
   for(const [field,key] of [['broker','corredor_id'],['market','mercado'],['period','periodo'],['instrument','instrumento'],['name','calificacion'],['registered','inscrito'],['amount','monto'],['base','base'],['factor','factor']])$('rating-'+field).value=item[key]??'';
-  $('rating-mode').value=item.monto!==null?'monto':'factor';$('rating-broker').disabled=true;$('form-error').textContent='';ratingMode();$('edit-dialog').showModal();
+  $('rating-mode').value=item.monto!==null?'monto':'factor';$('rating-broker').disabled=true;$('form-error').textContent='';$('catalog-hint').textContent='';ratingMode();$('edit-dialog').showModal();
 }
 async function showDetail(id){
   const {item}=await api('ratings/'+id);$('detail-fields').replaceChildren();
@@ -72,11 +98,11 @@ async function saveRating(event){
   event.preventDefault();
   const payload={};for(const [field,key] of [['broker','broker'],['market','market'],['period','period'],['instrument','instrument'],['name','rating'],['registered','registered'],['mode','mode'],['amount','amount'],['base','base'],['factor','factor'],['version','version']])payload[key]=$('rating-'+field).value;
   const id=$('rating-id').value;
-  try{await api(id?'ratings/'+id:'ratings',id?'PUT':'POST',payload);$('edit-dialog').close();notify(id?'Calificación modificada y registrada en bitácora.':'Calificación creada y registrada en bitácora.');await loadRatings();}
+  try{await api(id?'ratings/'+id:'ratings',id?'PUT':'POST',payload);$('edit-dialog').close();notify(id?'Calificación modificada y registrada en bitácora.':'Calificación creada y registrada en bitácora.');await loadRatings();await loadCatalog();}
   catch(error){$('form-error').textContent=error.message;}
 }
 async function uploadExample(invalid){
-  const mode=$('batch-kind').value==='DJ1948-DEMO'?'monto':'factor', instrument='DEMO-CARGA-'+Date.now();
+  const mode=$('batch-kind').value==='DJ1948-DEMO'?'monto':'factor', instrument=($('batch-kind').value==='bolsa-DEMO'?'DEMO-BOLSA-':'DEMO-CARGA-')+Date.now();
   const row=['SCL','2026-10',instrument,'Tributaria demo',mode,mode==='monto'?'250':'',mode==='monto'?'1000':'',mode==='factor'?'0.25':'','0'].join(',');
   let content='market,period,instrument,rating,mode,amount,base,factor,registered\n'+row+'\n';
   if(invalid){content+=row+'\n';content+='SCL,2026-99,DEMO-ERROR,Tributaria demo,'+mode+',-1,0,2,0\n';}
@@ -85,8 +111,8 @@ async function uploadExample(invalid){
 }
 async function preview(body){
   const data=await api('batches/preview','POST',body);lastBatch=data.id;$('preview').hidden=false;$('preview-rows').replaceChildren();
-  $('preview-count').textContent='Carga '+data.id+': '+data.total+' fila(s), '+data.valid+' válida(s), '+data.invalid+' con errores. '+(data.invalid?'Rechazo total: ninguna fila se incorporará.':'Lista para confirmación explícita.');
-  for(const row of data.rows)$('preview-rows').append(element('tr',{},element('td',{text:row.number}),element('td',{text:row.raw.instrument}),element('td',{text:row.errors.length?'Rechazada':'Válida'}),element('td',{text:row.errors.length?row.errors.join(' · '):row.clean.factor})));
+  $('preview-count').textContent='Carga '+data.id+': '+data.total+' fila(s), '+data.valid+' válida(s), '+data.invalid+' con errores'+(data.replacements?', '+data.replacements+' reemplazo(s) por prioridad Bolsa':'')+'. '+(data.invalid?'Rechazo total: ninguna fila se incorporará.':'Lista para confirmación explícita.');
+  for(const row of data.rows)$('preview-rows').append(element('tr',{},element('td',{text:row.number}),element('td',{text:row.raw.instrument}),element('td',{text:row.errors.length?'Rechazada':(row.notice?'Válida · reemplaza':'Válida')}),element('td',{text:row.errors.length?row.errors.join(' · '):row.clean.factor+(row.notice?' · '+row.notice:'')})));
   $('confirm-batch').disabled=!data.can_confirm;notify('Prevalidación terminada. Revisar el resultado por fila.');await loadBatches();
 }
 async function loadBatches(){
@@ -123,7 +149,7 @@ async function loadUsers(){
 async function switchView(view){
   for(const section of document.querySelectorAll('.view'))section.hidden=section.id!==view;
   for(const button of document.querySelectorAll('.nav-button'))button.classList.toggle('active',button.dataset.view===view);
-  if(view==='consulta')await loadRatings();if(view==='carga')await loadBatches();if(view==='auditoria')await loadAudit();if(view==='usuarios')await loadUsers();
+  if(view==='consulta')await loadRatings();if(view==='carga')await loadBatches();if(view==='catalogo')await loadCatalog();if(view==='auditoria')await loadAudit();if(view==='usuarios')await loadUsers();
 }
 async function start(){
   me=await api('me');csrf=me.csrf;
@@ -137,6 +163,9 @@ async function start(){
   $('clear-filter').addEventListener('click',run(async()=>{$('search-form').reset();currentPage=1;await loadRatings();}));
   $('previous').addEventListener('click',run(async()=>{currentPage--;await loadRatings();}));$('next').addEventListener('click',run(async()=>{currentPage++;await loadRatings();}));
   $('new-rating').addEventListener('click',newRating);$('rating-mode').addEventListener('change',ratingMode);$('rating-form').addEventListener('submit',saveRating);
+  $('rating-instrument').addEventListener('change',catalogMatch);$('rating-market').addEventListener('change',catalogMatch);
+  $('catalog-form').addEventListener('submit',run(loadCatalog));
+  if($('instrument-form'))$('instrument-form').addEventListener('submit',run(async()=>{await api('instruments','POST',{market:$('instrument-market').value,code:$('instrument-code').value,registered:$('instrument-registered').value});$('instrument-form').reset();notify('Instrumento agregado al catálogo y registrado en bitácora.');await loadCatalog();}));
   document.querySelectorAll('.close-dialog').forEach(b=>b.addEventListener('click',()=>$('edit-dialog').close()));document.querySelectorAll('.close-detail').forEach(b=>b.addEventListener('click',()=>$('detail-dialog').close()));
   document.querySelectorAll('.close-document').forEach(b=>b.addEventListener('click',()=>$('document-dialog').close()));
   $('cancel-delete').addEventListener('click',()=>$('delete-dialog').close());$('accept-delete').addEventListener('click',run(async()=>{await api('ratings/'+deleteRecord.id,'DELETE',{version:deleteRecord.version});$('delete-dialog').close();notify('Calificación desactivada. Sus datos y su historial se conservan.');await loadRatings();}));
@@ -146,12 +175,12 @@ async function start(){
     const batchId=lastBatch;
     const data=await api('batches/'+batchId+'/confirm','POST',{});
     if(lastBatch===batchId){
-      $('preview-count').textContent='Carga '+batchId+' confirmada: '+data.inserted+' registro(s) incorporado(s). No hay una nueva confirmación pendiente.';
+      $('preview-count').textContent='Carga '+batchId+' confirmada: '+data.inserted+' registro(s) incorporado(s). No hay una nueva confirmación pendiente.'+(data.replaced?' '+data.replaced+' reemplazo(s) por prioridad Bolsa (DEMO-3).':'');
       $('confirm-batch').disabled=true;
     }
-    notify(data.inserted+' registro(s) incorporado(s). Reintentos no duplican la carga.');await loadBatches();
+    notify(data.inserted+' registro(s) incorporado(s). Reintentos no duplican la carga.');await loadBatches();await loadCatalog();
   }));
   $('factor-form').addEventListener('submit',run(async()=>{const data=await api('factor/preview','POST',{amount:$('factor-amount').value,base:$('factor-base').value});$('factor-result').textContent='Factor de prueba: '+data.factor+' · '+data.rule;}));
-  await loadRatings();
+  await loadCatalog();await loadRatings();
 }
 start().catch(error=>notify(error.message,true));
