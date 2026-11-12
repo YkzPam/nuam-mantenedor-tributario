@@ -1,0 +1,84 @@
+[
+  {
+    "paso": "catalogo_supervisor",
+    "filas_iniciales": 8,
+    "suspendido": "SCL\tDEMO-SUSPENDIDO\tInscrito\tDeshabilitado\tHabilitar",
+    "agregado": "SCL\tDEMO-GAMMA\tInscrito\tHabilitado\tDeshabilitar",
+    "mensaje": "Instrumento agregado al catálogo y registrado en bitácora."
+  },
+  {
+    "captura": "01_catalogo_supervisor.jpg"
+  },
+  {
+    "paso": "previsualizar_bolsa",
+    "conteo": "Carga 1: 1 fila(s), 1 válida(s), 0 con errores, 1 reemplazo(s) por prioridad Bolsa. Lista para confirmación explícita.",
+    "fila": "2\tDEMO-ALFA\tVálida · reemplaza\t0.300000 · Reemplazará el registro 1 (origen manual) por prioridad Bolsa (regla DEMO-3)."
+  },
+  {
+    "captura": "02_bolsa_previsualizacion_reemplazo.jpg"
+  },
+  {
+    "paso": "confirmar_bolsa",
+    "conteo": "Carga 1 confirmada: 1 registro(s) incorporado(s). No hay una nueva confirmación pendiente. 1 reemplazo(s) por prioridad Bolsa (DEMO-3)."
+  },
+  {
+    "captura": "03_bolsa_confirmada.png (no incluida en el paquete)"
+  },
+  {
+    "paso": "previsualizar_catalogo_rechazos",
+    "conteo": "Carga 2: 2 fila(s), 0 válida(s), 2 con errores. Rechazo total: ninguna fila se incorporará.",
+    "filas": "2\tDEMO-SUSPENDIDO\tRechazada\tInstrumento: está deshabilitado en el catálogo (regla DEMO-2).\n3\tDEMO-INSCRITO-NUEVO\tRechazada\tInstrumento: un instrumento inscrito debe existir en el catálogo del mercado (regla DEMO-2)."
+  },
+  {
+    "captura": "04_catalogo_rechazos.jpg"
+  },
+  {
+    "paso": "consulta_supervisor_bolsa",
+    "filas": "DEMO-ALFA\nInscrito\tDEMO-A / SCL\t2026-10\tTributaria demo\t0.300000\tbolsa-DEMO\nPrioridad Bolsa\tDetalleModificarDesactivar"
+  },
+  {
+    "captura": "05_consulta_supervisor_bolsa.png (no incluida en el paquete)"
+  },
+  {
+    "paso": "operador_botones_bolsa",
+    "detalle_deshabilitado": false,
+    "modificar_deshabilitado": true,
+    "desactivar_deshabilitado": true,
+    "titulo": "Regla DEMO-3: solo el supervisor cambia registros informados por Bolsa."
+  },
+  {
+    "captura": "06_operador_registro_bolsa.jpg"
+  },
+  {
+    "paso": "formulario_catalogo",
+    "conocido": "Catálogo: inscrito · habilitado",
+    "inscripcion_conocido": "1",
+    "nuevo": "No figura en el catálogo: solo se admite como no inscrito (DEMO-2).",
+    "inscripcion_nuevo": "0"
+  },
+  {
+    "captura": "07_formulario_sugerencia_catalogo.jpg"
+  },
+  {
+    "paso": "catalogo_operador",
+    "filas": "SCL\tDEMO-GAMMA\tInscrito\tHabilitado\tSolo consulta",
+    "botones": 0,
+    "formulario_alta": 0
+  },
+  {
+    "captura": "08_catalogo_operador_solo_consulta.png (no incluida en el paquete)"
+  },
+  {
+    "paso": "bitacora_operador",
+    "integridad": "Integridad verificada: cadena HMAC y referencias anteriores correctas.",
+    "acciones": [
+      "#12 · crear · calificacion"
+    ]
+  },
+  {
+    "captura": "09_bitacora_operador.png (no incluida en el paquete)"
+  },
+  {
+    "errores_consola": []
+  }
+]
