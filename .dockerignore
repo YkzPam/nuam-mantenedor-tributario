@@ -1,0 +1,7 @@
+.git
+.venv
+venv
+data
+evidencias
+__pycache__
+*.pyc

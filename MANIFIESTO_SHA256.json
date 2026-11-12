@@ -1,0 +1,188 @@
+{
+  "unidad": 3,
+  "version": "1.1",
+  "fecha": "2026-11-11",
+  "zip_v1_0_sha256": "3b3e50e69f88992ea882b6badded4aa662aca5afdbf2ea9f9743b951750b1455",
+  "nota": "Huella por archivo. sha256_v1_0 indica que el archivo cambió respecto del paquete 1.0; nuevo_v1_1 marca archivos agregados. evidencias/ contiene resultados generados.",
+  "files": {
+    ".dockerignore": {
+      "bytes": 50,
+      "sha256": "773e66ade4ccd6bb44dccfaed45be1e5cfc9b0286757b6200509c4df8a0f9f10",
+      "nuevo_v1_1": true
+    },
+    ".gitignore": {
+      "bytes": 251,
+      "sha256": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f",
+      "nuevo_v1_1": true
+    },
+    "CHANGELOG.md": {
+      "bytes": 3640,
+      "sha256": "e0f9147af239faaf91c001ec9ce0333c116aa3f3ccc3128aa5078b738a1befba",
+      "nuevo_v1_1": true
+    },
+    "CONTRIBUTING.md": {
+      "bytes": 3072,
+      "sha256": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
+      "nuevo_v1_1": true
+    },
+    "Dockerfile": {
+      "bytes": 998,
+      "sha256": "253f920e0ece3a1095a114958c3af94c8a9f0bb74037bebb1134095420f5d640",
+      "nuevo_v1_1": true
+    },
+    "INICIO_UNIDAD3.md": {
+      "bytes": 7850,
+      "sha256": "052069c2f266dc24a7e431d58f59777794cc4b1cbb32583b02a66d707d769350",
+      "sha256_v1_0": "64a74dac149117203b07aa11647073588376f573e8ed0d937f89338a69cb6088"
+    },
+    "app.py": {
+      "bytes": 35148,
+      "sha256": "c31403bab44061db560d1f3d1a4407bd1c6041f6be7a1bce73b0007fa27918eb",
+      "sha256_v1_0": "cbb4279645bb0b432f814d8738cd3e385056266857963ecc68beb557e0ff91be"
+    },
+    "documentrepo.py": {
+      "bytes": 2047,
+      "sha256": "f1583133f5caa5fb44e5be5ba6717b43bd6f06e0bee792a34c5a35510b21cd6b"
+    },
+    "domain.py": {
+      "bytes": 4838,
+      "sha256": "9b5e503b7cb688db6036c48be78f2b80040195013d8fb0b963511ff598334599"
+    },
+    "ejemplos/01_montos_valido.csv": {
+      "bytes": 182,
+      "sha256": "0311b9894b27866d8e7aec2d775f259ccf16fad4c9dab382be61612f5f8ab2ee"
+    },
+    "ejemplos/02_encabezado_invalido.csv": {
+      "bytes": 43,
+      "sha256": "05d35f82374afbebe4af15ba0b2d23bc2de4d5160632381722fb53ae7d239824"
+    },
+    "ejemplos/03_campos_incompletos.csv": {
+      "bytes": 122,
+      "sha256": "fc712cb177068a8d092ae851cb4908d7916f7c720f2dbe846d7b00bdf9b91550"
+    },
+    "ejemplos/04_duplicados.csv": {
+      "bytes": 189,
+      "sha256": "e633901c8ce1bd72d4eacb7b503f70d788d48ac9b8c23e87b3f8ee42149c9411"
+    },
+    "ejemplos/05_factores_valido.csv": {
+      "bytes": 129,
+      "sha256": "0a48fb1f2fc4fbd3e85925283056bda8d5a94128e5c55036882fc311a78e656b"
+    },
+    "evidencias/LEEME.md": {
+      "bytes": 1861,
+      "sha256": "7328e637a4abcf6300765b7b2b895f4f832bb173b040f150694a525b3c9399f2"
+    },
+    "evidencias/chrome_d3_20261111/v1_0.json": {
+      "bytes": 1069,
+      "sha256": "a302ec31b736322975fe35a05ac1f407fa5b79a445ca089f936ae717bd34b363"
+    },
+    "evidencias/chrome_d3_20261111/v1_1.json": {
+      "bytes": 728,
+      "sha256": "1fb30775f37cb34eb10eeac798370abad22f15b0dac636a143cf90cecffd64d8"
+    },
+    "evidencias/chrome_d3_20261111/v1_1_validacion_instrumento.png": {
+      "bytes": 167482,
+      "sha256": "383dacea77af52e09f50567eef914188d8ea6c0f5c726785e5ffb33587e39e1e"
+    },
+    "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.json": {
+      "bytes": 36008,
+      "sha256": "00ada575b490934de3b7b6507b5a16c388e2888cb65f8f448b6e15d136d4f7de"
+    },
+    "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.md": {
+      "bytes": 5388,
+      "sha256": "b687acb2fe4f0d4a0f2bf8b531727017994a9e8887696c348fbcec53e2a3ff32"
+    },
+    "evidencias/estres_20261111_214239/resultados_estres.json": {
+      "bytes": 6431,
+      "sha256": "fdbb21cac7f50020fb4cb6abbd6197dfb35d5f9a702338ebee29796036025aa1"
+    },
+    "evidencias/estres_20261111_214239/resultados_estres.md": {
+      "bytes": 1622,
+      "sha256": "6bcdb9d54fe8d3942ad7b136b695602e094e280bf986c1771c8579669f2b0d01"
+    },
+    "evidencias/estres_20261111_214611/resultados_estres.json": {
+      "bytes": 5706,
+      "sha256": "205ef15a81538a2389ececfee18b4e1552d366817679a46ffbef5f635205d3f5"
+    },
+    "evidencias/estres_20261111_214611/resultados_estres.md": {
+      "bytes": 1553,
+      "sha256": "ca2ca61e3736ee8b143f607a58f7de116006ef73ac23c854faaa180cd2596e98"
+    },
+    "evidencias/estres_20261111_214611/waitress_salida_resumen.txt": {
+      "bytes": 325,
+      "sha256": "02e1c47c3611a11fe2c6062d2c7d1f1f9fb339f3a9b95c54435b7aa538dda890"
+    },
+    "evidencias/estres_sin_wal_20261111_213848/resultados_estres.json": {
+      "bytes": 6460,
+      "sha256": "ecd4dbcb320d664880e5d2e8a6249fca28ee3cfe4dc36b8f48b73db7b968f32b"
+    },
+    "evidencias/estres_sin_wal_20261111_213848/resultados_estres.md": {
+      "bytes": 1626,
+      "sha256": "42663777c8edb0106e836ee717668b08606ce0c133b58c79479cb731e056d7bc"
+    },
+    "pruebas_estres.py": {
+      "bytes": 17886,
+      "sha256": "711e8230d3b05fca3948b0cf949fda0a70437005d7c37c890a1a1bc25ea11f03",
+      "nuevo_v1_1": true
+    },
+    "requirements-lock.txt": {
+      "bytes": 123,
+      "sha256": "f3e1bcba595638e33174a5967ba5d704793ad05647a072d8e5dde118b6fe15a1"
+    },
+    "requirements-servidor.txt": {
+      "bytes": 16,
+      "sha256": "a931d147f00bf7e0d73b1ec0763ce32c7e652bf9acd23284138ce2fd1f025cb1",
+      "nuevo_v1_1": true
+    },
+    "run_all_tests.py": {
+      "bytes": 6954,
+      "sha256": "d116e30015abaf3b2bcace6545d0e8f50aa55f078a4cc6028a0fd9432e59640f",
+      "sha256_v1_0": "2ee17c3291d043e1734a203b46120622db3deba898303b9b2359350ae1d4f1e1"
+    },
+    "schema.sql": {
+      "bytes": 4072,
+      "sha256": "7247199d7d106fffffdd91ccb3d08548edffcd226c1ddd535dba5f6c4d10b9e5"
+    },
+    "static/app.js": {
+      "bytes": 14831,
+      "sha256": "b7fa89bbeeee7239cef719bd4f5c8aedd51a4223cfecc98a9453964ba95af5d4"
+    },
+    "static/style.css": {
+      "bytes": 7505,
+      "sha256": "84fbd6f3e96b44cc32d3c8e9d136a88ec3211f618eabeaa8edb880b29658d560"
+    },
+    "templates/error.html": {
+      "bytes": 330,
+      "sha256": "4b87a894408d9876acd59851b15b8ec62d92922f30dbab8d9b7fc3191a6b3b37"
+    },
+    "templates/index.html": {
+      "bytes": 12654,
+      "sha256": "f9740e0bcad4b311a3d7c0285238ae4cb707384f542a5b45183c43ebc4086650",
+      "sha256_v1_0": "f05106af338553c19d0dce58de636f2d91fa6de4d966adf6b9f24ef0fa08bf7d",
+      "sha256_origen": "4422123ad420faceab465586d436622e7a81268357f32e17b2a821e0cce960e4",
+      "ajuste": "Se omitió únicamente una atribución personal del pie de página en la copia."
+    },
+    "tests/test_complementarias.py": {
+      "bytes": 23823,
+      "sha256": "10d1f52cf6d06f0a130e4c30921ec42c038d969d3cd65372fbcd53a000e3e48c"
+    },
+    "tests/test_demo.py": {
+      "bytes": 22264,
+      "sha256": "a483f9155db420b887e660cd0058ec747f52e6b0325ecb7c11bea4da022ec51c"
+    },
+    "tests/test_ui_revision.py": {
+      "bytes": 12688,
+      "sha256": "757b4899d10a0982cbfda3df40735ae1ddc3831686763b8f251613e496bbe219"
+    },
+    "tests/test_v11.py": {
+      "bytes": 10569,
+      "sha256": "323ca47bc33d503694000d5a5cb6df6fd4dd123b7fa0b3a118ea4125a704465a",
+      "nuevo_v1_1": true
+    },
+    "wsgi.py": {
+      "bytes": 411,
+      "sha256": "b03815dd7c039c4f401c40224830606d39d6e5f54e1ed31166d337d9ccf49db9",
+      "nuevo_v1_1": true
+    }
+  }
+}

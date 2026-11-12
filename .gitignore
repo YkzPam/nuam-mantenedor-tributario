@@ -1,0 +1,11 @@
+# Entornos y cachés locales
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Datos generados al arrancar: base SQLite, clave local, archivos privados y registros
+data/
+
+# Resultados de cada ejecución de pruebas (se adjuntan aparte cuando corresponde)
+evidencias/
