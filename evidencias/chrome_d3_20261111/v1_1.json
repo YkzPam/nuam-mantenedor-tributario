@@ -1,0 +1,35 @@
+{
+ "console": [],
+ "requests_404": [],
+ "checks": {
+  "instrument": {
+   "DEMO-ALFA-2": {
+    "valid": true,
+    "patternMismatch": false,
+    "message": ""
+   },
+   "demo.beta_1": {
+    "valid": true,
+    "patternMismatch": false,
+    "message": ""
+   },
+   "-DEMO": {
+    "valid": false,
+    "patternMismatch": true,
+    "message": "Please match the requested format."
+   },
+   "DEMO@1": {
+    "valid": false,
+    "patternMismatch": true,
+    "message": "Please match the requested format."
+   },
+   "DEMO 1": {
+    "valid": false,
+    "patternMismatch": true,
+    "message": "Please match the requested format."
+   }
+  },
+  "bubble_message_after_submit": "Please match the requested format."
+ },
+ "chrome": "153.0.8010.12"
+}
