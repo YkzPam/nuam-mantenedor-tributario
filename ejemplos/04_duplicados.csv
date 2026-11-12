@@ -1,0 +1,3 @@
+market,period,instrument,rating,mode,amount,base,factor,registered
+SCL,2026-10,DEMO-DUPLICADO,Tributaria demo,monto,250,1000,,1
+SCL,2026-10,DEMO-DUPLICADO,Tributaria demo,monto,100,1000,,1
