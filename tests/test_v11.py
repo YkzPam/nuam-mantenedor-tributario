@@ -2,6 +2,7 @@
 
 Usa bases temporales; no toca data/ ni la base de la demostración visible.
 """
+from contextlib import closing
 import importlib
 import io
 import json
@@ -54,7 +55,8 @@ class Version11Cases(unittest.TestCase):
         return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
 
     def sql(self, query, params=()):
-        with sqlite3.connect(self.application.config["DATABASE"]) as conn:
+        # closing(): en Windows un archivo SQLite abierto impide borrar la carpeta temporal.
+        with closing(sqlite3.connect(self.application.config["DATABASE"])) as conn:
             return conn.execute(query, params).fetchall()
 
     def test_V01_instrument_pattern_valid_and_equivalent(self):
@@ -132,7 +134,7 @@ class Version11Cases(unittest.TestCase):
 
     def test_V10_sqlite_wal_enabled(self):
         """V10 | optimización | SQLite en modo WAL con llaves foráneas activas en cada conexión"""
-        with sqlite3.connect(self.application.config["DATABASE"]) as conn:
+        with closing(sqlite3.connect(self.application.config["DATABASE"])) as conn:
             self.assertEqual(conn.execute("PRAGMA journal_mode").fetchone()[0], "wal")
         with self.application.app_context():
             self.assertEqual(self.application.db().execute("PRAGMA foreign_keys").fetchone()[0], 1)
