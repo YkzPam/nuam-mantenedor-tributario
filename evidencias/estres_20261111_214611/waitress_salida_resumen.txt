@@ -1,0 +1,7 @@
+Resumen de la salida de waitress-serve durante la corrida por HTTP (líneas totales: 64095)
+
+- otras: INFO:waitress:Serving on http://127.0.0.1:8765: 1
+- aviso de cola de tareas: 46318
+- límite de conexiones alcanzado: 8888
+- bajo el límite, acepta de nuevo: 8888
+- profundidad máxima de la cola: 92; mínima informada: 1
