@@ -15,8 +15,11 @@ Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecu
 | --- | --- | --- |
 | Versión 1.0, 11 de noviembre de 2026 | Windows, Python 3.12.14 | 58 de 58 |
 | Versión 1.1, 11 de noviembre de 2026 | Linux, Python 3.12.3, entorno virtual nuevo | 68 de 68 |
+| Versión 1.1, GitHub Actions (ejecución 2) | Windows, Python 3.12 | 65 de 68: tres casos V no cerraban la base temporal |
+| Versión 1.1.1, GitHub Actions ([ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316)) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 68 de 68 en ambos |
+| Versión 1.1.1, 11 de noviembre de 2026 | Linux, Python 3.12.3 | 68 de 68 |
 
-El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las cuatro suites en Windows y Ubuntu con Python 3.12 en cada cambio del repositorio.
+El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las cuatro suites en Windows y Ubuntu con Python 3.12 en cada cambio del repositorio. Su primera ejecución en Windows detectó que V06, V07 y V10 dejaban abierta la base SQLite temporal, lo que impedía borrar su carpeta (WinError 32); la versión 1.1.1 corrigió esas pruebas sin cambiar la aplicación.
 
 ## 3.2 Resultados frente a los esperados
 
