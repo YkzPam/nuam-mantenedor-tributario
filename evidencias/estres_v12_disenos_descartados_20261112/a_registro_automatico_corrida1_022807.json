@@ -1,0 +1,256 @@
+{
+  "ejecutado_utc": "2026-11-12T02:26:31.461607+00:00",
+  "modo": "aplicación en proceso (Flask test_client) con SQLite temporal",
+  "python": "3.12.3",
+  "plataforma": "Linux-6.18.44-fc-v378-x86_64-with-glibc2.39",
+  "criterio_p95_s": 3.0,
+  "sesiones": 100,
+  "inicio_sesiones_s": 14.62,
+  "niveles": [
+    {
+      "clientes": 20,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 30.202,
+      "solicitudes": 9104,
+      "por_segundo": 301.43,
+      "operaciones": {
+        "consulta": {
+          "total": 7333,
+          "p50": 0.0433,
+          "p95": 0.0838,
+          "p99": 0.1046,
+          "maximo": 0.1544,
+          "codigos": {
+            "200": 7333
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1771,
+          "p50": 0.0693,
+          "p95": 0.6561,
+          "p99": 1.36,
+          "maximo": 3.4738,
+          "codigos": {
+            "201": 1771
+          },
+          "errores_5xx": 0
+        }
+      },
+      "guardados_201": 1771,
+      "cumple_p95": true,
+      "cumple_sin_5xx": true
+    },
+    {
+      "clientes": 50,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 30.441,
+      "solicitudes": 7688,
+      "por_segundo": 252.56,
+      "operaciones": {
+        "consulta": {
+          "total": 6133,
+          "p50": 0.0603,
+          "p95": 0.1355,
+          "p99": 0.1794,
+          "maximo": 0.3446,
+          "codigos": {
+            "200": 6133
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1555,
+          "p50": 0.1728,
+          "p95": 3.3037,
+          "p99": 5.7331,
+          "maximo": 9.8133,
+          "codigos": {
+            "201": 1555
+          },
+          "errores_5xx": 0
+        }
+      },
+      "guardados_201": 1555,
+      "cumple_p95": false,
+      "cumple_sin_5xx": true
+    },
+    {
+      "clientes": 100,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 31.21,
+      "solicitudes": 6906,
+      "por_segundo": 221.28,
+      "operaciones": {
+        "consulta": {
+          "total": 5509,
+          "p50": 0.0708,
+          "p95": 0.3418,
+          "p99": 0.5306,
+          "maximo": 0.8749,
+          "codigos": {
+            "200": 5509
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1397,
+          "p50": 0.5919,
+          "p95": 7.5362,
+          "p99": 10.0715,
+          "maximo": 10.1136,
+          "codigos": {
+            "201": 1371,
+            "503": 26
+          },
+          "errores_5xx": 26
+        }
+      },
+      "guardados_201": 1371,
+      "cumple_p95": false,
+      "cumple_sin_5xx": false
+    }
+  ],
+  "lotes": [
+    {
+      "lote": 1,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.0681,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.1727,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0053,
+      "total_corredor": 3380,
+      "memoria_mib": 125.0,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 2,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.0693,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.1847,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0069,
+      "total_corredor": 4380,
+      "memoria_mib": 125.1,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 3,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.0924,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2395,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0086,
+      "total_corredor": 5380,
+      "memoria_mib": 126.3,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 4,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.1128,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2125,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0126,
+      "total_corredor": 6380,
+      "memoria_mib": 127.5,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 5,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.1373,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.1974,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0142,
+      "total_corredor": 7380,
+      "memoria_mib": 129.6,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 6,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.1693,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2089,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0109,
+      "total_corredor": 8380,
+      "memoria_mib": 131.9,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 7,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.1635,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2195,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0111,
+      "total_corredor": 9380,
+      "memoria_mib": 134.7,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 8,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.1788,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2382,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0128,
+      "total_corredor": 10380,
+      "memoria_mib": 137.0,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 9,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.202,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2212,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0138,
+      "total_corredor": 11380,
+      "memoria_mib": 139.6,
+      "tipo_memoria": "residente actual"
+    },
+    {
+      "lote": 10,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.2137,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.2433,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.0196,
+      "total_corredor": 12380,
+      "memoria_mib": 142.4,
+      "tipo_memoria": "residente actual"
+    }
+  ],
+  "integridad": {
+    "guardados_201": 4697,
+    "guardados_persistidos": 4697,
+    "verificacion_bitacora_s": 0.342,
+    "filas_lote_confirmadas": 10000,
+    "filas_lote_persistidas": 10000,
+    "eventos_auditoria": 29517,
+    "cadena_hmac_valida": true
+  },
+  "cumple": false
+}

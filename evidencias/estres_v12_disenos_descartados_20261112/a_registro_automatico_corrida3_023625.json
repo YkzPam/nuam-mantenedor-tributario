@@ -1,0 +1,139 @@
+{
+  "ejecutado_utc": "2026-11-12T02:34:53.536001+00:00",
+  "modo": "aplicación en proceso (Flask test_client) con SQLite temporal",
+  "python": "3.12.3",
+  "plataforma": "Linux-6.18.44-fc-v378-x86_64-with-glibc2.39",
+  "criterio_p95_s": 3.0,
+  "sesiones": 100,
+  "inicio_sesiones_s": 14.81,
+  "niveles": [
+    {
+      "clientes": 20,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 30.284,
+      "solicitudes": 8437,
+      "por_segundo": 278.59,
+      "operaciones": {
+        "consulta": {
+          "total": 6751,
+          "p50": 0.0388,
+          "p95": 0.077,
+          "p99": 0.0987,
+          "maximo": 0.1782,
+          "codigos": {
+            "200": 6751
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1686,
+          "p50": 0.0687,
+          "p95": 0.8919,
+          "p99": 1.9654,
+          "maximo": 3.6815,
+          "codigos": {
+            "201": 1686
+          },
+          "errores_5xx": 0
+        }
+      },
+      "guardados_201": 1686,
+      "cumple_p95": true,
+      "cumple_sin_5xx": true
+    },
+    {
+      "clientes": 50,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 30.483,
+      "solicitudes": 7165,
+      "por_segundo": 235.05,
+      "operaciones": {
+        "consulta": {
+          "total": 5734,
+          "p50": 0.0644,
+          "p95": 0.1854,
+          "p99": 0.2369,
+          "maximo": 0.4026,
+          "codigos": {
+            "200": 5734
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1431,
+          "p50": 0.2038,
+          "p95": 3.3086,
+          "p99": 6.5165,
+          "maximo": 9.049,
+          "codigos": {
+            "201": 1431
+          },
+          "errores_5xx": 0
+        }
+      },
+      "guardados_201": 1431,
+      "cumple_p95": false,
+      "cumple_sin_5xx": true
+    },
+    {
+      "clientes": 100,
+      "segundos_configurados": 30.0,
+      "segundos_reales": 30.821,
+      "solicitudes": 6677,
+      "por_segundo": 216.64,
+      "operaciones": {
+        "consulta": {
+          "total": 5340,
+          "p50": 0.0817,
+          "p95": 0.3679,
+          "p99": 0.5844,
+          "maximo": 0.8976,
+          "codigos": {
+            "200": 5340
+          },
+          "errores_5xx": 0
+        },
+        "guardado": {
+          "total": 1337,
+          "p50": 0.6222,
+          "p95": 7.6573,
+          "p99": 10.0782,
+          "maximo": 10.3776,
+          "codigos": {
+            "201": 1309,
+            "503": 28
+          },
+          "errores_5xx": 28
+        }
+      },
+      "guardados_201": 1309,
+      "cumple_p95": false,
+      "cumple_sin_5xx": false
+    }
+  ],
+  "lotes": [
+    {
+      "lote": 1,
+      "filas": 1000,
+      "previsualizacion_http": 200,
+      "previsualizacion_s": 0.064,
+      "confirmacion_http": 200,
+      "confirmacion_s": 0.1387,
+      "insertadas": 1000,
+      "consulta_posterior_s": 0.006,
+      "total_corredor": 3166,
+      "memoria_mib": 125.6,
+      "tipo_memoria": "residente actual"
+    }
+  ],
+  "integridad": {
+    "guardados_201": 4426,
+    "guardados_persistidos": 4426,
+    "verificacion_bitacora_s": 0.1388,
+    "filas_lote_confirmadas": 1000,
+    "filas_lote_persistidas": 1000,
+    "eventos_auditoria": 10957,
+    "cadena_hmac_valida": true
+  },
+  "cumple": false
+}
