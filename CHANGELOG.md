@@ -17,6 +17,7 @@ Cambiado
 
 - Ocho definiciones de filas de prueba en `tests/test_demo.py` (casos I08, I10, I12, P02, S08, S15 y S16) y las filas de los lotes de `pruebas_estres.py` declaraban inscritos instrumentos inventados. Con DEMO-2 se rechazarían por el catálogo y algunas pruebas pasarían por un motivo distinto del que verifican, por lo que ahora se declaran no inscritas. Lo que cada prueba comprueba no cambió.
 - La prueba de estrés descartó cuatro diseños previos de DEMO-2. Agregar al catálogo cada no inscrito nuevo, con un segundo evento de bitácora, llevó el P95 de guardado con 100 clientes a entre 7,2 y 7,7 s, con 26 a 29 respuestas 5xx. Las variantes con una consulta previa al catálogo o con disparadores de SQLite quedaron entre 3,0 y 3,5 s, con una respuesta 5xx cada una. La versión entregada evalúa la regla dentro de la sentencia de escritura y midió 1,549 s sin respuestas 5xx, frente a 1,491 s de la 1.1.1 en el mismo equipo (`evidencias/estres_v12_disenos_descartados_20261112`).
+- Los pasos del flujo de GitHub Actions ya no indican la cantidad de suites, que cambia con cada versión.
 
 ## 1.1.1 — 11 de noviembre de 2026
 

@@ -19,15 +19,15 @@ jobs:
           python-version: '3.12'
           cache: pip
           cache-dependency-path: requirements-lock.txt
-      # En Windows se usa el mismo acceso que el equipo: verificar.cmd prepara .venv y ejecuta las cuatro suites.
-      - name: Preparar y ejecutar las cuatro suites con verificar.cmd
+      # En Windows se usa el mismo acceso que el equipo: verificar.cmd prepara .venv y ejecuta todas las suites.
+      - name: Preparar y ejecutar las suites con verificar.cmd
         if: runner.os == 'Windows'
         shell: cmd
         run: call verificar.cmd
       - name: Instalar dependencias fijadas
         if: runner.os != 'Windows'
         run: python -m pip install -r requirements-lock.txt
-      - name: Ejecutar las cuatro suites
+      - name: Ejecutar las suites
         if: runner.os != 'Windows'
         run: python run_all_tests.py
       - name: Conservar el informe de esta ejecución

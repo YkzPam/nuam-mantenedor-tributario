@@ -18,9 +18,10 @@
       "nuevo_despues_de_v1_0": true
     },
     ".github/workflows/verificacion.yml": {
-      "bytes": 1376,
-      "sha256": "e89d645a9e8af5c82deef2a404afd734b6110addb20e11cf9d8b79a0c1ec7643",
-      "nuevo_despues_de_v1_0": true
+      "bytes": 1361,
+      "sha256": "06ca13c4133339adad3bee0e1dcf508033650e20cab41b64c4b7a37c3a7a932b",
+      "nuevo_despues_de_v1_0": true,
+      "sha256_v1_1_1": "e89d645a9e8af5c82deef2a404afd734b6110addb20e11cf9d8b79a0c1ec7643"
     },
     ".gitignore": {
       "bytes": 251,
@@ -28,8 +29,8 @@
       "nuevo_despues_de_v1_0": true
     },
     "CHANGELOG.md": {
-      "bytes": 7664,
-      "sha256": "661ca3244d73789e7290f6abbe0d4ce767e30f9b881a09108bf6ff963a704aab",
+      "bytes": 7771,
+      "sha256": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569"
     },
@@ -50,8 +51,8 @@
       "sha256_v1_1_1": "6f93eac4751aa79374162aa1672c94852f2c7561f8290a45f9259b0acf56485f"
     },
     "README.md": {
-      "bytes": 5739,
-      "sha256": "beff1741b3a185e8d061be8f2358b970a59bef330bb2ba1a74d7fac1bf7c31ba",
+      "bytes": 5738,
+      "sha256": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "a294ff62b83de35b87a61e5a26a021ff87d976fafdb290c8d27b6bd34e5bc4c6"
     },
@@ -74,8 +75,8 @@
       "sha256_v1_1_1": "fd03733f470ce58d260e603827b24b25c800c2f80ccc373541d8bb0145ff394e"
     },
     "docs/03-pruebas-y-resultados.md": {
-      "bytes": 5235,
-      "sha256": "b8155610add8ba83744236d75e15eec46b2c46ff813c78052ef67ba0e4056065",
+      "bytes": 5437,
+      "sha256": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "521da6cd6ed9cf27e89072032d36cb95e7c94cd73e6236c9c9734cb255e681c8"
     },
@@ -130,8 +131,8 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/LEEME.md": {
-      "bytes": 3675,
-      "sha256": "f3432ea5f551938941ee2c20837a380a16da2ee19b79b2c5c12cc1cffd697336",
+      "bytes": 4133,
+      "sha256": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f",
       "sha256_v1_1_1": "143f0eaecd4a996c787e5b437d67faffe841a419830889756832bcedf41abd04"
     },
     "evidencias/chrome_d3_20261111/v1_0.json": {
@@ -182,24 +183,26 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.json": {
-      "bytes": 36008,
-      "sha256": "00ada575b490934de3b7b6507b5a16c388e2888cb65f8f448b6e15d136d4f7de"
+      "bytes": 36032,
+      "sha256": "d3608666be2e2d9f745b307ad73cf64416da98db9be35bce5d48a459444ea9d3",
+      "sha256_v1_1_1": "00ada575b490934de3b7b6507b5a16c388e2888cb65f8f448b6e15d136d4f7de"
     },
     "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.md": {
       "bytes": 5388,
       "sha256": "b687acb2fe4f0d4a0f2bf8b531727017994a9e8887696c348fbcec53e2a3ff32"
     },
     "evidencias/ejecucion_completa_20261112_014542_576470/resultados_corregidos.json": {
-      "bytes": 36020,
-      "sha256": "f86d07833f1b39c0132bff1ef863ee3e39896fda9a03786079f1be21b97451a6"
+      "bytes": 36044,
+      "sha256": "24b3cdb893d56a46c389fc0e9115e129faf81869a2ec83817b6484f193cced13",
+      "sha256_v1_1_1": "f86d07833f1b39c0132bff1ef863ee3e39896fda9a03786079f1be21b97451a6"
     },
     "evidencias/ejecucion_completa_20261112_014542_576470/resultados_corregidos.md": {
       "bytes": 5388,
       "sha256": "e6eb78d231b67668f33157dab86d3dd69f57cadde8c1a8b5ac91de25b4771070"
     },
     "evidencias/ejecucion_completa_20261112_062347_060112/resultados_corregidos.json": {
-      "bytes": 45163,
-      "sha256": "139873bded9c99e64f6799aeccf11478eb3d3153ae34de08c2ab0226e76d6d7c",
+      "bytes": 45187,
+      "sha256": "ba6b6d3c53b516f8ec74f0220267f2286844e78ff8136ee65252c93e6200f301",
       "nuevo_en_v1_2": true
     },
     "evidencias/ejecucion_completa_20261112_062347_060112/resultados_corregidos.md": {
@@ -348,6 +351,11 @@
     "evidencias/github_actions_20261112/windows_verificar_cmd_68_de_68.jpg": {
       "bytes": 79747,
       "sha256": "049cc00b1fca6b4bc7d24cfdf1b6b5b9703df2a959194afd16b137d3e4c8d3f2"
+    },
+    "evidencias/github_actions_20261112/windows_verificar_cmd_86_de_86.jpg": {
+      "bytes": 87110,
+      "sha256": "2eb94527de9157456a962024c2336f20815e5d4c56c2543cf46163bcf5d5ebb8",
+      "nuevo_en_v1_2": true
     },
     "iniciar.cmd": {
       "bytes": 612,
