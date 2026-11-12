@@ -130,7 +130,7 @@ class IntegrationCases(unittest.TestCase):
         self.assertEqual(self.request(f"/api/batches/{result.json['id']}/confirm").status_code,409);self.assertEqual(self.client.get('/api/ratings?q=BULK-').json['total'],0)
     def test_I08_bulk_concurrent_conflict_rollback(self):
         """I08 | integración | duplicado posterior a preview revierte todo el lote"""
-        rows=['SCL,2026-10,BULK-FIRST,Demo,monto,1,2,,1','SCL,2026-10,BULK-CONFLICT,Demo,monto,1,2,,1']
+        rows=['SCL,2026-10,BULK-FIRST,Demo,monto,1,2,,0','SCL,2026-10,BULK-CONFLICT,Demo,monto,1,2,,0']
         bid=self.preview(self.csv(rows)).json['id'];self.create(instrument='BULK-CONFLICT',rating='Demo')
         self.assertEqual(self.request(f'/api/batches/{bid}/confirm').status_code,409)
         self.assertEqual(self.client.get('/api/ratings?q=BULK-FIRST').json['total'],0)
@@ -141,7 +141,7 @@ class IntegrationCases(unittest.TestCase):
         row=self.client.get('/api/ratings?q=FACTOR-DEMO').json['items'][0];self.assertEqual(row['factor'],'0.500000');self.assertIsNone(row['monto'])
     def test_I10_private_persistence_hash_json(self):
         """I10 | integración | CSV y JSON privados persistidos con hash/metadatos y descarga autorizada"""
-        bid=self.preview(self.csv(['SCL,2026-10,FILE-DEMO,Demo,monto,1,2,,1'])).json['id']
+        bid=self.preview(self.csv(['SCL,2026-10,FILE-DEMO,Demo,monto,1,2,,0'])).json['id']
         files=self.client.get('/api/batches').json['items'][0]['files'];self.assertEqual(len(files),2)
         for file in files:
             response=self.client.get('/api/files/'+str(file['id']));self.assertEqual(response.status_code,200);self.assertEqual(response.headers['X-Content-Type-Options'],'nosniff')
@@ -154,7 +154,7 @@ class IntegrationCases(unittest.TestCase):
         self.assertEqual(self.sql('PRAGMA foreign_key_check'),[])
     def test_I12_documental_persistence_query(self):
         """I12 | integración | motor TinyDB persiste reporte y consulta SQL/documento funcional"""
-        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,1'])).json['id']
+        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,0'])).json['id']
         response=self.client.get('/api/documents/'+str(bid));self.assertEqual(response.status_code,200)
         self.assertEqual(response.json['engine'],'TinyDB 4.9.0');self.assertEqual(response.json['document']['report']['rows'][0]['clean']['factor'],'0.500000')
         from tinydb import TinyDB,Query
@@ -164,14 +164,14 @@ class IntegrationCases(unittest.TestCase):
         self.request(f'/api/batches/{bid}/confirm');self.assertEqual(self.client.get('/api/documents/'+str(bid)).json['document']['state'],'confirmada')
     def test_S15_documental_authorization(self):
         """S15 | seguridad | documento TinyDB exige corredor y perfil; repositorio no es público"""
-        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,1'])).json['id']
+        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,0'])).json['id']
         other=self.application.test_client();self.login(other,'operador_b')
         self.assertEqual(other.get('/api/documents/'+str(bid)).status_code,404);self.assertEqual(other.get('/api/documents').json['items'],[])
         admin=self.application.test_client();self.login(admin,'admin');self.assertEqual(admin.get('/api/documents').status_code,403)
         self.assertEqual(self.client.get('/data/private/reportes.tinydb.json').status_code,404)
     def test_S16_documental_hash_corruption(self):
         """S16 | seguridad | reporte modificado devuelve 409 y repositorio corrupto devuelve 503 controlado"""
-        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,1'])).json['id']
+        bid=self.preview(self.csv(['SCL,2026-10,DOC-DEMO,Demo,monto,1,2,,0'])).json['id']
         from tinydb import TinyDB,Query
         path=Path(self.application.config['PRIVATE'])/'reportes.tinydb.json'
         with TinyDB(path,encoding='utf-8') as store:store.table('reportes').update(dict(report={'fake':True}),Query().batch_id==bid)
@@ -216,7 +216,7 @@ class IntegrationCases(unittest.TestCase):
         self.assertEqual(self.client.get('/data/private/anything.csv').status_code,404)
     def test_S08_private_files_cross_broker_hash(self):
         """S08 | seguridad | archivo privado rechaza corredor ajeno y modificación de contenido"""
-        self.preview(self.csv(['SCL,2026-10,FILE-DEMO,Demo,monto,1,2,,1']));file=self.client.get('/api/batches').json['items'][0]['files'][0]
+        self.preview(self.csv(['SCL,2026-10,FILE-DEMO,Demo,monto,1,2,,0']));file=self.client.get('/api/batches').json['items'][0]['files'][0]
         other=self.application.test_client();self.login(other,'operador_b');self.assertEqual(other.get('/api/files/'+str(file['id'])).status_code,404)
         internal=self.sql('SELECT nombre_interno FROM archivo WHERE id=?',(file['id'],))[0][0]
         (Path(self.application.config['PRIVATE'])/internal).write_bytes(b'changed')
@@ -266,7 +266,7 @@ class IntegrationCases(unittest.TestCase):
         self.assertLessEqual(p95,3);self.assertTrue(all(c==200 for c in codes))
     def test_P02_thousand_rows_memory(self):
         """P02 | rendimiento | prevalidar/confirmar 1000 filas <=120 s con memoria medida"""
-        rows=[f'SCL,2026-10,PERF-{n},Demo,monto,1,2,,1' for n in range(1000)]
+        rows=[f'SCL,2026-10,PERF-{n},Demo,monto,1,2,,0' for n in range(1000)]
         tracemalloc.start();start=time.perf_counter();preview=self.preview(self.csv(rows));self.assertEqual(preview.status_code,200)
         response=self.request(f"/api/batches/{preview.json['id']}/confirm");elapsed=time.perf_counter()-start
         current,peak=tracemalloc.get_traced_memory();tracemalloc.stop()
