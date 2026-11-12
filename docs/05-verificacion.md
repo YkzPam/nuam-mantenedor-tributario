@@ -2,7 +2,7 @@
 
 ## 5.1 Integridad de los archivos
 
-El paquete entregado en DreamShaper es `NUAM_Unidad_3_Implementacion_v1.1.1.zip`. Su huella SHA-256 está en el Anexo B del documento de asesoría, porque no puede incluirse dentro del mismo ZIP. `MANIFIESTO_SHA256.json` registra el tamaño y la huella de cada archivo del paquete e indica los que cambiaron o se agregaron respecto de la versión 1.0. En PowerShell, la huella de un archivo se obtiene con:
+El paquete entregado en DreamShaper es `NUAM_Unidad_3_Implementacion_v1.2.zip`. Su huella SHA-256 está en el Anexo B del documento de asesoría, porque no puede incluirse dentro del mismo ZIP. `MANIFIESTO_SHA256.json` registra el tamaño y la huella de cada archivo del paquete e indica los que cambiaron o se agregaron respecto de la versión 1.1.1. En PowerShell, la huella de un archivo se obtiene con:
 
 ```powershell
 Get-FileHash .\app.py -Algorithm SHA256
@@ -16,7 +16,7 @@ El ZIP contiene los mismos archivos del repositorio, salvo los dos documentos `.
 verificar.cmd
 ```
 
-El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 68, "passed": 68, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
+El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 86, "passed": 86, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
 
 ## 5.3 Estrés y servidor WSGI
 
@@ -30,4 +30,4 @@ Para medir por HTTP, iniciar Waitress con `NUAM_DATA_DIR` apuntando a una carpet
 
 ## 5.4 Uso de IA
 
-Las versiones 1.1 y 1.1.1 se prepararon con apoyo de un asistente de inteligencia artificial generativa: corrección de D3, registro operativo, permiso configurable de factores, modo WAL, prueba de estrés, documentación y ejecución de las pruebas. Los resultados registrados provienen de ejecuciones reales en el entorno indicado en cada informe. El equipo debe revisar el código y poder explicar sus decisiones; la validación docente se confirma por separado.
+Las versiones 1.1, 1.1.1 y 1.2 se prepararon con apoyo de un asistente de inteligencia artificial generativa: corrección de D3, registro operativo, permiso configurable de factores, modo WAL, prueba de estrés, reglas DEMO-2 y DEMO-3, documentación y ejecución de las pruebas. Las reglas DEMO-2 y DEMO-3 las definió el equipo para la demostración, con autorización del docente para completar las definiciones que faltaban. Los resultados registrados provienen de ejecuciones reales en el entorno indicado en cada informe. El equipo debe revisar el código y poder explicar sus decisiones; la validación docente se confirma por separado.

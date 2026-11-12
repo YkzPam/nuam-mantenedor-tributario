@@ -4,11 +4,11 @@ La tabla relaciona cada indicador con la evidencia del repositorio y de los docu
 
 | Indicador | Puntos | Evidencia | Observación |
 | --- | ---: | --- | --- |
-| 3.1.1.1 Interfaces y necesidades del negocio | 5 | Diez historias de usuario implementadas (documento de asesoría, 6.2); `templates/`, `static/` | D7 depende de definiciones de NUAM |
+| 3.1.1.1 Interfaces y necesidades del negocio | 5 | Diez historias de usuario implementadas (documento de asesoría, 6.2); catálogo y prioridad de la Bolsa desde la versión 1.2; `templates/`, `static/` | Reglas DEMO-2 y DEMO-3 pendientes de validación de NUAM |
 | 3.1.1.2 Lineamientos estéticos y funcionales | 5 | Revisión en Chrome a 360, 768 y 1440 px y con teclado; UI01 a UI08; V01 | Usabilidad evaluada con perfiles simulados |
-| 3.1.2.3 Estructura de la base de datos | 5 | `schema.sql`; [01-arquitectura-y-datos.md](01-arquitectura-y-datos.md) | — |
+| 3.1.2.3 Estructura de la base de datos | 5 | `schema.sql` (once tablas; catálogo de instrumentos); [01-arquitectura-y-datos.md](01-arquitectura-y-datos.md) | — |
 | 3.1.2.4 Optimización y normalización | 5 | Tercera forma normal, índices, modo WAL y su medición en [03-pruebas-y-resultados.md](03-pruebas-y-resultados.md) | — |
-| 3.1.3.5 Patrones de seguridad | 5 | [02-seguridad.md](02-seguridad.md); suites S, CP y V | — |
+| 3.1.3.5 Patrones de seguridad | 5 | [02-seguridad.md](02-seguridad.md); suites S, CP, V y W | — |
 | 3.1.3.6 Colaboración en equipo | 5 | `CONTRIBUTING.md`, `CHANGELOG.md`, Anexo C del documento de asesoría | Roles según la planificación de la Unidad 2 |
 | 3.1.4.7 Configuración del entorno | 10 | `INICIO_UNIDAD3.md`, `preparar.cmd`, `iniciar.cmd`, `verificar.cmd`, `wsgi.py`, `Dockerfile` | La imagen Docker no se construyó |
 | 3.1.4.8 Documentación de la implementación | 5 | Sección 7 del documento de asesoría, `INICIO_UNIDAD3.md`, `MANIFIESTO_SHA256.json` | — |

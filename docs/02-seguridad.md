@@ -13,6 +13,8 @@
 | Archivos maliciosos | Solo CSV UTF-8, máximo 500 KB y 1.000 filas, nombre interno aleatorio y huella SHA-256 | U08, U09, S07, S08 |
 | Alteración de la bitácora | Disparadores de solo adición y cadena HMAC verificable | S09 |
 | Ingreso de factores por perfiles no autorizados | `NUAM_ROLES_FACTOR_MANUAL` validada al iniciar; el intento rechazado queda en la bitácora | V05, V06, V07 |
+| Datos del corredor que sobrescriben información de la Bolsa | Carga `bolsa-DEMO` solo para el supervisor; el operador no modifica ni desactiva registros de Bolsa; intentos rechazados en la bitácora (`carga_bolsa_denegada`, `prioridad_bolsa_denegada`) | W07, W10, W11 |
+| Registro de instrumentos inexistentes o suspendidos | Catálogo validado en la prevalidación y dentro de cada sentencia de escritura; solo el supervisor lo modifica y cada cambio queda en la bitácora | W02, W05, W06, W17, W18 |
 | Datos sensibles en registros | El registro operativo guarda ruta declarada, método, estado, duración y perfil, sin cuerpos, búsquedas, cookies ni credenciales | V03, V04 |
 | Encuadre y fuga de origen | `X-Frame-Options DENY`, `X-Content-Type-Options nosniff`, `Referrer-Policy same-origin` y hosts de confianza limitados | Revisión de código |
 

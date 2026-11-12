@@ -8,8 +8,9 @@
 | `tests/test_ui_revision.py` | 8 | Revisión automatizada de interfaz (UI) |
 | `tests/test_complementarias.py` | 10 | Casos complementarios del plan (CP): guardados concurrentes, fallos inyectados, CSRF y archivos de ejemplo |
 | `tests/test_v11.py` | 10 | Regresión de la versión 1.1 (V): campo instrumento, ícono, registro operativo, permiso de factores, WSGI y modo WAL |
+| `tests/test_v12.py` | 18 | Versión 1.2 (W): catálogo de instrumentos (DEMO-2), prioridad de la Bolsa (DEMO-3), cambios del catálogo durante una operación, respaldo del esquema anterior, ejemplos 06 y 07 e interfaz por perfil |
 
-Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecuta las cuatro suites y deja en `evidencias/` un informe JSON y Markdown con fecha, entorno, resultado por caso y huella de las fuentes.
+Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecuta las cinco suites y deja en `evidencias/` un informe JSON y Markdown con fecha, entorno, resultado por caso y huella de las fuentes.
 
 | Ejecución | Entorno | Resultado |
 | --- | --- | --- |
@@ -18,8 +19,9 @@ Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecu
 | Versión 1.1, GitHub Actions (ejecución 2) | Windows, Python 3.12 | 65 de 68: tres casos V no cerraban la base temporal |
 | Versión 1.1.1, GitHub Actions ([ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316)) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 68 de 68 en ambos |
 | Versión 1.1.1, 11 de noviembre de 2026 | Linux, Python 3.12.3 | 68 de 68 |
+| Versión 1.2, 12 de noviembre de 2026 | Linux, Python 3.12.3 | 86 de 86 |
 
-El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las cuatro suites en Windows y Ubuntu con Python 3.12 en cada cambio del repositorio. Su primera ejecución en Windows detectó que V06, V07 y V10 dejaban abierta la base SQLite temporal, lo que impedía borrar su carpeta (WinError 32); la versión 1.1.1 corrigió esas pruebas sin cambiar la aplicación.
+El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las suites en Windows y Ubuntu con Python 3.12 en cada cambio del repositorio. Su primera ejecución en Windows detectó que V06, V07 y V10 dejaban abierta la base SQLite temporal, lo que impedía borrar su carpeta (WinError 32); la versión 1.1.1 corrigió esas pruebas sin cambiar la aplicación.
 
 ## 3.2 Resultados frente a los esperados
 
@@ -41,8 +43,11 @@ El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las cua
 | Sin WAL, en proceso | 100 | 1,301 | 7,411 | 35 |
 | Versión 1.1, en proceso | 100 | 0,826 | 1,994 | 0 |
 | Versión 1.1, HTTP con Waitress | 100 | 0,546 | 0,530 | 0 |
+| Versión 1.1.1, en proceso, mismo equipo que la 1.2 | 100 | 1,006 | 1,491 | 0 |
+| Versión 1.2, en proceso | 100 | 0,947 | 1,549 | 0 |
+| Versión 1.2, HTTP con Waitress | 100 | 0,664 | 0,637 | 0 |
 
-Las 35 respuestas 503 sin WAL correspondieron al error `database is locked` de SQLite. Las tablas completas, con los niveles de 20 y 50 clientes y los diez lotes, están en `evidencias/`.
+Las 35 respuestas 503 sin WAL correspondieron al error `database is locked` de SQLite. En la versión 1.2 la prueba de estrés descartó cuatro diseños de la regla DEMO-2 que agregaban trabajo a cada guardado: con 100 clientes quedaron entre 3,0 y 7,7 s y con respuestas 5xx (`evidencias/estres_v12_disenos_descartados_20261112/NOTA.md`). Las tablas completas, con los niveles de 20 y 50 clientes y los diez lotes, están en `evidencias/`.
 
 ## 3.4 Discrepancias
 
@@ -54,7 +59,7 @@ Las 35 respuestas 503 sin WAL correspondieron al error `database is locked` de S
 | D4 | Guardado más lento que la consulta por el escritor único de SQLite | Causa confirmada; mitigada con WAL |
 | D5 | Concurrencia medida solo en ráfagas | Resuelta en parte: falta el volumen real de NUAM |
 | D6 | Fórmula, llave y formatos de demostración | Pendiente de NUAM |
-| D7 | Prioridad entre Bolsa y corredor y catálogo de instrumentos | Pendiente de NUAM; el permiso de factores quedó configurable |
+| D7 | Prioridad entre Bolsa y corredor y catálogo de instrumentos | Implementada en la versión 1.2 como reglas DEMO-3 y DEMO-2 definidas por el equipo; falta su validación por NUAM. El permiso de factores quedó configurable en la 1.1 |
 | D8 | Previsualización más lenta a medida que TinyDB acumula reportes | Abierta: se recomienda un documento independiente por lote |
 
 El análisis completo y las recomendaciones de cada discrepancia están en el informe de pruebas extendido (`docs/Informe_pruebas_NUAM_Grupo4_extendido.docx`).
