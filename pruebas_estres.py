@@ -203,7 +203,7 @@ def sustained_level(sessions, level, seconds, run_tag):
 def successive_batches(client, broker, batches, run_tag, measure_memory):
     rows_out = []
     for number in range(1, batches + 1):
-        rows = [f"SCL,2026-10,L{run_tag}-{number}-{n},Lote estres,monto,1,2,,1" for n in range(1000)]
+        rows = [f"SCL,2026-10,L{run_tag}-{number}-{n},Lote estres,monto,1,2,,0" for n in range(1000)]
         content = (",".join(CSV_COLUMNS) + "\n" + "\n".join(rows) + "\n").encode()
         started = time.perf_counter()
         status_preview, preview = client.post_file("/api/batches/preview", {"broker": str(broker), "kind": "DJ1948-DEMO"},

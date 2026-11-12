@@ -1,5 +1,23 @@
 # Historial de versiones
 
+## 1.2 — 12 de noviembre de 2026
+
+Origen: discrepancia D7. La prioridad entre Bolsa y corredor y el catálogo de instrumentos esperaban una definición de NUAM; el docente autorizó que el equipo las definiera para completar la demostración. Ambas reglas quedan pendientes de validación de NUAM.
+
+Agregado
+
+- Regla DEMO-2, catálogo de instrumentos. Tabla `instrumento` por mercado, con inscripción, estado y versión. Un inscrito debe figurar habilitado; un no inscrito fuera del catálogo se admite y, si figura, debe coincidir y estar habilitado. Se valida al crear, modificar, prevalidar y confirmar; en las escrituras, la condición va dentro de la misma sentencia `INSERT` o `UPDATE`. El supervisor agrega, deshabilita y habilita instrumentos (`/api/instruments`), y cada cambio queda en la bitácora. Nueva vista "Catálogo de instrumentos" y sugerencia de inscripción en el formulario.
+- Regla DEMO-3, prioridad de la Bolsa. Tipo de carga y origen `bolsa-DEMO`, solo para el supervisor y en modo factor. Una fila de Bolsa reemplaza el registro del corredor con la misma llave, conserva su identificador y deja los valores anteriores en el evento `prioridad_bolsa`. El registro manual y las cargas del corredor no pueden reemplazarlo, y el operador no puede modificarlo ni desactivarlo. La consulta muestra la marca "Prioridad Bolsa".
+- `ejemplos/06_bolsa_prioridad.csv` y `ejemplos/07_catalogo_rechazos.csv`.
+- Suite `tests/test_v12.py` con 18 casos (W01 a W18). El total pasa de 68 a 86 casos.
+- Respaldo automático: una base con esquema anterior se mueve, con sus archivos privados, a `data/respaldo_v1_<fecha>/` y se crea el esquema 2 (`PRAGMA user_version = 2`).
+- `evidencias/chrome_v12_20261112`: recorrido de la interfaz con Chrome sin cabeza, capturas y el script que lo generó.
+
+Cambiado
+
+- Ocho definiciones de filas de prueba en `tests/test_demo.py` (casos I08, I10, I12, P02, S08, S15 y S16) y las filas de los lotes de `pruebas_estres.py` declaraban inscritos instrumentos inventados. Con DEMO-2 se rechazarían por el catálogo y algunas pruebas pasarían por un motivo distinto del que verifican, por lo que ahora se declaran no inscritas. Lo que cada prueba comprueba no cambió.
+- La prueba de estrés descartó cuatro diseños previos de DEMO-2. Agregar al catálogo cada no inscrito nuevo, con un segundo evento de bitácora, llevó el P95 de guardado con 100 clientes a entre 7,2 y 7,7 s, con 26 a 29 respuestas 5xx. Las variantes con una consulta previa al catálogo o con disparadores de SQLite quedaron entre 3,0 y 3,5 s, con una respuesta 5xx cada una. La versión entregada evalúa la regla dentro de la sentencia de escritura y midió 1,549 s sin respuestas 5xx, frente a 1,491 s de la 1.1.1 en el mismo equipo (`evidencias/estres_v12_disenos_descartados_20261112`).
+
 ## 1.1.1 — 11 de noviembre de 2026
 
 Origen: primera ejecución de las pruebas en GitHub Actions con Windows.

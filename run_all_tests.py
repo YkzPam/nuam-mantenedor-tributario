@@ -1,4 +1,4 @@
-"""Ejecuta las cuatro suites del paquete v1.1 y conserva cada ejecución en evidencias/."""
+"""Ejecuta las cinco suites del paquete v1.2 y conserva cada ejecución en evidencias/."""
 from datetime import datetime, timezone
 import gc
 import hashlib
@@ -40,7 +40,7 @@ class RecordedResult(unittest.TextTestResult):
 
 
 groups = []
-for module_name in ["test_demo", "test_ui_revision", "test_complementarias", "test_v11"]:
+for module_name in ["test_demo", "test_ui_revision", "test_complementarias", "test_v11", "test_v12"]:
     module = __import__(module_name)
     suite = unittest.defaultTestLoader.loadTestsFromModule(module)
     result = unittest.TextTestRunner(verbosity=2, resultclass=RecordedResult).run(suite)
@@ -51,13 +51,13 @@ for module_name in ["test_demo", "test_ui_revision", "test_complementarias", "te
 
 sources = [CANDIDATE / filename for filename in ["app.py", "schema.sql", "domain.py", "documentrepo.py",
            "templates/index.html", "static/app.js", "static/style.css", "tests/test_demo.py",
-           "tests/test_ui_revision.py", "tests/test_complementarias.py", "tests/test_v11.py", "wsgi.py",
+           "tests/test_ui_revision.py", "tests/test_complementarias.py", "tests/test_v11.py", "tests/test_v12.py", "wsgi.py",
            "pruebas_estres.py", "run_all_tests.py"]]
 report = dict(executed_utc=datetime.now(timezone.utc).isoformat(),
               tests=sum(group["tests"] for group in groups), passed=sum(group["passed"] for group in groups),
               failed=sum(group["failed"] for group in groups), errors=sum(group["errors"] for group in groups),
               suites=groups, source_directory=str(CANDIDATE),
-              predecessor_zip_sha256="3b3e50e69f88992ea882b6badded4aa662aca5afdbf2ea9f9743b951750b1455",
+              predecessor_zip_sha256="c75bcd6788e7997e0aad45a1f4a48cea203a7b187823579c2f7d84f2c817836e",
               source_sha256={str(path.relative_to(CANDIDATE)).replace("\\", "/"): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources},
               python=sys.version, executable=sys.executable, dependencies=str(VENDOR), isolated=True,
               corrections=["Ownership de archivos registrado antes de escribir; rollback de preview limpia todos los archivos creados.",
@@ -69,17 +69,20 @@ report = dict(executed_utc=datetime.now(timezone.utc).isoformat(),
                            "v1.1: registro operativo en data/logs/operacion.log con método, ruta declarada, estado, duración y perfil, sin cuerpo, consulta ni credenciales.",
                            "v1.1: NUAM_ROLES_FACTOR_MANUAL permite limitar el ingreso manual de factores; sin la variable rige la matriz de la Unidad 2.",
                            "v1.1: wsgi.py para servir con Waitress e ícono embebido que evita la solicitud 404 a /favicon.ico.",
-                           "v1.1: SQLite en modo WAL; con 100 clientes en proceso el P95 de guardado bajó de 6,97 s con 31 respuestas 503 a 2,20 s sin 5xx (pruebas_estres.py)."],
+                           "v1.1: SQLite en modo WAL; con 100 clientes en proceso el P95 de guardado bajó de 6,97 s con 31 respuestas 503 a 2,20 s sin 5xx (pruebas_estres.py).",
+                           "v1.2: regla DEMO-2, definida por el equipo y pendiente de validación de NUAM: catálogo de instrumentos por mercado; un inscrito debe existir habilitado y un no inscrito nuevo se agrega con evento de bitácora.",
+                           "v1.2: regla DEMO-3, definida por el equipo y pendiente de validación de NUAM: el archivo de Bolsa, cargado solo por el supervisor, reemplaza el registro del corredor y la bitácora conserva los valores anteriores.",
+                           "v1.2: una base anterior al esquema 2 se respalda completa en data/respaldo_v1_<fecha>/ antes de crear el esquema nuevo."],
               limits="Ejecución técnica local con bases/archivos temporales. No modifica base visible, fuente ZIP ni Downloads. No prueba infraestructura NUAM, dispositivos físicos ni acciones/comentarios humanos. Fallos intermedios se inyectan deliberadamente.")
 destination = CANDIDATE / "evidencias" / ("ejecucion_completa_" + datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f"))
 destination.mkdir(parents=True, exist_ok=False)
 (destination / "resultados_corregidos.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-lines = ["# Pruebas del paquete de la Unidad 3 (v1.1)", "", f"Fecha UTC: {report['executed_utc']}", "",
+lines = ["# Pruebas del paquete de la Unidad 3 (v1.2)", "", f"Fecha UTC: {report['executed_utc']}", "",
          f"Total real: {report['passed']}/{report['tests']} aprobadas, {report['failed']} fallas, {report['errors']} errores.", "",
          "| Suite | Casos | Aprobados | Fallas | Errores |", "|---|---:|---:|---:|---:|"]
 for group in groups:
     lines.append(f"| {group['suite']} | {group['tests']} | {group['passed']} | {group['failed']} | {group['errors']} |")
-lines += ["", "## Correcciones verificadas", ""] + report["corrections"] + ["", "## Casos complementarios y de regresión v1.1", "",
+lines += ["", "## Correcciones verificadas", ""] + report["corrections"] + ["", "## Casos complementarios y de regresión v1.1 y v1.2", "",
           "| Caso | Resultado | Comprobación |", "|---|---|---|"]
 for case in [case for group in groups[2:] for case in group["cases"]]:
     lines.append(f"| {case['id'].rsplit('.',1)[-1]} | {case['status']} | {case['description']} |")
