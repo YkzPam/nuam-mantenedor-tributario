@@ -1,11 +1,12 @@
 {
   "unidad": 3,
-  "version": "1.2",
-  "fecha": "2026-11-12",
+  "version": "1.2.1",
+  "fecha": "2026-11-13",
   "zip_v1_0_sha256": "3b3e50e69f88992ea882b6badded4aa662aca5afdbf2ea9f9743b951750b1455",
   "zip_v1_1_sha256": "18cd606218ec3154b050fde109b5e551a8bf42e3201524a8fab5c1ed2d5d5c43",
   "zip_v1_1_1_sha256": "c75bcd6788e7997e0aad45a1f4a48cea203a7b187823579c2f7d84f2c817836e",
-  "nota": "Huella por archivo. sha256_v1_1_1 indica que el archivo cambió respecto del paquete 1.1.1 y nuevo_en_v1_2 marca los agregados en 1.2. sha256_v1_0 y nuevo_despues_de_v1_0 se conservan del manifiesto anterior y comparan con el paquete 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
+  "zip_v1_2_sha256": "d75f3ff07bedf88c380369874d3c6f1c8a4905ac7b587c4031fa5d508735516c",
+  "nota": "Huella por archivo. sha256_v1_2 indica que el archivo cambió respecto del paquete 1.2 y nuevo_en_v1_2_1 marca los agregados en 1.2.1. sha256_v1_1_1 y nuevo_en_v1_2 se conservan del manifiesto 1.2 y comparan con el paquete 1.1.1; sha256_v1_0 y nuevo_despues_de_v1_0 comparan con el paquete 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
   "files": {
     ".dockerignore": {
       "bytes": 50,
@@ -17,6 +18,11 @@
       "sha256": "21d6f370fb82967282e20f59e59d2d4f6988441b02f2b593e6d20e3e1ef9fd49",
       "nuevo_despues_de_v1_0": true
     },
+    ".github/pull_request_template.md": {
+      "bytes": 606,
+      "sha256": "9dd158cc372834aa32d517687afa01a4dbcf17811a8aa9747aae578b2de37c53",
+      "nuevo_en_v1_2_1": true
+    },
     ".github/workflows/verificacion.yml": {
       "bytes": 1361,
       "sha256": "06ca13c4133339adad3bee0e1dcf508033650e20cab41b64c4b7a37c3a7a932b",
@@ -24,37 +30,43 @@
       "sha256_v1_1_1": "e89d645a9e8af5c82deef2a404afd734b6110addb20e11cf9d8b79a0c1ec7643"
     },
     ".gitignore": {
-      "bytes": 251,
-      "sha256": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f",
-      "nuevo_despues_de_v1_0": true
+      "bytes": 266,
+      "sha256": "703e92dc8bd707654615ac18557857a0541a08f3cee2d489a4c0b4adaa7978fa",
+      "nuevo_despues_de_v1_0": true,
+      "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
     },
     "CHANGELOG.md": {
-      "bytes": 7771,
-      "sha256": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
+      "bytes": 8804,
+      "sha256": "15f94a31e66e45af57ad1eacef9d8bff8491427f9fe8273a14a1452b307c5f1a",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569"
+      "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
+      "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572"
     },
     "CONTRIBUTING.md": {
-      "bytes": 3072,
-      "sha256": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
-      "nuevo_despues_de_v1_0": true
+      "bytes": 4072,
+      "sha256": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383",
+      "nuevo_despues_de_v1_0": true,
+      "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70"
     },
     "Dockerfile": {
-      "bytes": 998,
-      "sha256": "253f920e0ece3a1095a114958c3af94c8a9f0bb74037bebb1134095420f5d640",
-      "nuevo_despues_de_v1_0": true
+      "bytes": 911,
+      "sha256": "9fac3bd11badf801db486ed2a06a2b590f1cd2d94bcd5826dc8eac018683d8a6",
+      "nuevo_despues_de_v1_0": true,
+      "sha256_v1_2": "253f920e0ece3a1095a114958c3af94c8a9f0bb74037bebb1134095420f5d640"
     },
     "INICIO_UNIDAD3.md": {
-      "bytes": 11686,
-      "sha256": "b202196fdcc56b1ab049d1227a59599c094fa023f1f806789139a21816da72a9",
+      "bytes": 11950,
+      "sha256": "cbc9841550138770dd1cd5873ae62102def6fcf055cf32893c2e2d2d0fa60a20",
       "sha256_v1_0": "64a74dac149117203b07aa11647073588376f573e8ed0d937f89338a69cb6088",
-      "sha256_v1_1_1": "6f93eac4751aa79374162aa1672c94852f2c7561f8290a45f9259b0acf56485f"
+      "sha256_v1_1_1": "6f93eac4751aa79374162aa1672c94852f2c7561f8290a45f9259b0acf56485f",
+      "sha256_v1_2": "b202196fdcc56b1ab049d1227a59599c094fa023f1f806789139a21816da72a9"
     },
     "README.md": {
-      "bytes": 5738,
-      "sha256": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c",
+      "bytes": 5771,
+      "sha256": "a72085dedfe7e557eca59748db96a889d6c04f1c125eaeaac32575b2b0834e8f",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_1_1": "a294ff62b83de35b87a61e5a26a021ff87d976fafdb290c8d27b6bd34e5bc4c6"
+      "sha256_v1_1_1": "a294ff62b83de35b87a61e5a26a021ff87d976fafdb290c8d27b6bd34e5bc4c6",
+      "sha256_v1_2": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c"
     },
     "app.py": {
       "bytes": 48376,
@@ -75,22 +87,35 @@
       "sha256_v1_1_1": "fd03733f470ce58d260e603827b24b25c800c2f80ccc373541d8bb0145ff394e"
     },
     "docs/03-pruebas-y-resultados.md": {
-      "bytes": 5437,
-      "sha256": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394",
+      "bytes": 5519,
+      "sha256": "5b408ca9885561cd1cb4a12a4639574a017c02a6bc68d7fc25d3bbf82131ab10",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_1_1": "521da6cd6ed9cf27e89072032d36cb95e7c94cd73e6236c9c9734cb255e681c8"
+      "sha256_v1_1_1": "521da6cd6ed9cf27e89072032d36cb95e7c94cd73e6236c9c9734cb255e681c8",
+      "sha256_v1_2": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394"
     },
     "docs/04-rubrica.md": {
-      "bytes": 2463,
-      "sha256": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b",
+      "bytes": 2846,
+      "sha256": "fd90d4fb6f2bf7d2c8eaa42defedab0e5199a3e8556b215e80f3080a7da07003",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_1_1": "4e8a713103b5a362ef23e5adc25f8901eddbb84b40fdd45bf2891b6d6f1fe65e"
+      "sha256_v1_1_1": "4e8a713103b5a362ef23e5adc25f8901eddbb84b40fdd45bf2891b6d6f1fe65e",
+      "sha256_v1_2": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b"
     },
     "docs/05-verificacion.md": {
-      "bytes": 1982,
-      "sha256": "c468198cbe5a1d1b9f9d20b11e4f6e1b7a46a39444eb919b5df22f031e9d3c6a",
+      "bytes": 3178,
+      "sha256": "65045f0ad563cac81dbc0f6325718426b660e32783af876d9321b9e22c5caff8",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_1_1": "99d9a9796bed2de137cf4d1eec981285f9372da2c357e8eb798df4bd53e6785a"
+      "sha256_v1_1_1": "99d9a9796bed2de137cf4d1eec981285f9372da2c357e8eb798df4bd53e6785a",
+      "sha256_v1_2": "c468198cbe5a1d1b9f9d20b11e4f6e1b7a46a39444eb919b5df22f031e9d3c6a"
+    },
+    "docs/06-sesion-usabilidad.md": {
+      "bytes": 3958,
+      "sha256": "6846869e16bcddd1431d58865ab5d16a97f94aa036300bf3f27f444e28a33b59",
+      "nuevo_en_v1_2_1": true
+    },
+    "docs/plantilla_sesion_usabilidad.csv": {
+      "bytes": 350,
+      "sha256": "255fa73313c51c4aee43850dc9f7297b844ee1db2364503e52ff992f1c209d3d",
+      "nuevo_en_v1_2_1": true
     },
     "documentrepo.py": {
       "bytes": 2047,
@@ -131,9 +156,10 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/LEEME.md": {
-      "bytes": 4133,
-      "sha256": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f",
-      "sha256_v1_1_1": "143f0eaecd4a996c787e5b437d67faffe841a419830889756832bcedf41abd04"
+      "bytes": 4362,
+      "sha256": "9ed5f8b8aecd3a28483a8a7375cf22044a8a26456f51d661c658b1a31486eae2",
+      "sha256_v1_1_1": "143f0eaecd4a996c787e5b437d67faffe841a419830889756832bcedf41abd04",
+      "sha256_v1_2": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f"
     },
     "evidencias/chrome_d3_20261111/v1_0.json": {
       "bytes": 1069,
@@ -181,6 +207,36 @@
       "bytes": 6313,
       "sha256": "9525b48ccd38b69b8a642091e390eb722bb79dc1d5f896363b924b26299ed389",
       "nuevo_en_v1_2": true
+    },
+    "evidencias/docker_20261113/NOTA.md": {
+      "bytes": 1887,
+      "sha256": "98919e637b18e7c321faeca68e279236c4a6e0ed7a4c89b84baa020ef1cf8ad9",
+      "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/construccion.log": {
+      "bytes": 4663,
+      "sha256": "9e44d365d4875e78b99641dbe5008be0afece4a6d783921b842867b0f04c01ce",
+      "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/imagen.txt": {
+      "bytes": 323,
+      "sha256": "0a35ee8c5e09cbc60ace2650aa178572029df0c4200283482dc6f3188841d117",
+      "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/prueba_humo.json": {
+      "bytes": 678,
+      "sha256": "3471a327a660440507446d498cc7f3728b514f4eeadf1e50f78e6e04165d6373",
+      "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/prueba_humo_docker.py": {
+      "bytes": 3008,
+      "sha256": "dad9be208bd443140e4159623f368d1cc3c6b744ff2b1053b81cc9f107fb1a05",
+      "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/pruebas_dentro_del_contenedor.txt": {
+      "bytes": 17834,
+      "sha256": "13ea5f86798c6129b07b7733da7fe7357f86afacb9f36a777991b50b88595cff",
+      "nuevo_en_v1_2_1": true
     },
     "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.json": {
       "bytes": 36032,

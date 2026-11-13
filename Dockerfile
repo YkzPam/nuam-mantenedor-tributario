@@ -1,7 +1,6 @@
 # Imagen opcional para ejecutar el prototipo con Waitress.
-# Estado: redactada y revisada, no construida (el equipo de prueba no tenía el servicio de Docker).
-# Los mismos pasos (Python 3.12, ambos archivos de dependencias, wsgi:app y NUAM_DATA_DIR) sí se
-# ejecutaron fuera de un contenedor; ver INICIO_UNIDAD3.md, sección 5.
+# Construida y verificada el 13 de noviembre de 2026 con Docker 29.9.3: 86 de 86 pruebas dentro
+# del contenedor y prueba de humo con volumen persistente (evidencias/docker_20261113).
 FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -21,5 +20,5 @@ VOLUME ["/datos"]
 EXPOSE 8765
 
 # Dentro del contenedor escucha en todas sus interfaces; publicar solo en el loopback del equipo:
-#   docker run --rm -p 127.0.0.1:8765:8765 -v nuam-datos:/datos nuam-mantenedor:1.1
+#   docker run --rm -p 127.0.0.1:8765:8765 -v nuam-datos:/datos nuam-mantenedor:1.2
 CMD ["waitress-serve", "--listen=0.0.0.0:8765", "--threads=8", "wsgi:app"]

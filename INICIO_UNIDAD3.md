@@ -14,7 +14,7 @@ El paquete contiene el prototipo local, sus dependencias fijadas por versión, s
 | `schema.sql` | Once tablas SQLite con llaves foráneas, restricciones, índices y disparadores (esquema 2) |
 | `templates/`, `static/` | Interfaz web |
 | `wsgi.py` | Punto de entrada para Waitress (opcional) |
-| `Dockerfile`, `.dockerignore` | Imagen opcional; redactada, no construida |
+| `Dockerfile`, `.dockerignore` | Imagen opcional con Waitress; construida y verificada el 13 de noviembre |
 | `requirements-lock.txt` | Dependencias de la aplicación con versión exacta |
 | `requirements-servidor.txt` | Waitress, solo para la opción de la sección 5 |
 | `run_all_tests.py`, `tests/` | 86 casos en cinco suites |
@@ -79,7 +79,7 @@ Las reglas de la versión 1.2 se recorren así. Como `supervisor`, abrir Catálo
 
 En Linux o macOS: `.venv/bin/waitress-serve --listen=127.0.0.1:8765 --threads=8 wsgi:app`. La variable `NUAM_DATA_DIR` permite dejar la base, la clave y los registros en otra carpeta, por ejemplo una carpeta desechable para la prueba de estrés.
 
-El `Dockerfile` reproduce esos pasos sobre `python:3.12-slim` con un usuario sin privilegios. No se construyó porque el equipo de prueba no tenía el servicio de Docker; si se usa, publicar solo en el equipo local:
+El `Dockerfile` reproduce esos pasos sobre `python:3.12-slim` con un usuario sin privilegios y guarda los datos en el volumen `/datos`. La imagen se construyó el 13 de noviembre con Docker 29.9.3: las 86 pruebas aprobaron dentro del contenedor y una prueba de humo comprobó el ingreso con CSRF, los permisos del catálogo y que los datos siguen en el volumen después de reiniciar (`evidencias/docker_20261113`). Publicar solo en el equipo local:
 
 ```bash
 docker build -t nuam-mantenedor:1.2 .

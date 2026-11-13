@@ -53,7 +53,7 @@ Los resultados del 11 de noviembre de 2026 y su explicación están en [docs/03-
 | `tests/`, `run_all_tests.py` | Cinco suites automatizadas |
 | `pruebas_estres.py` | Carga sostenida de 20, 50 y 100 clientes y lotes de 1.000 filas |
 | `ejemplos/` | Siete CSV ficticios: dos válidos, tres con errores, uno de Bolsa y uno rechazado por el catálogo |
-| `wsgi.py`, `requirements-servidor.txt`, `Dockerfile` | Ejecución opcional con Waitress; la imagen Docker no se construyó |
+| `wsgi.py`, `requirements-servidor.txt`, `Dockerfile` | Ejecución opcional con Waitress, directa o en contenedor; la imagen se verificó el 13 de noviembre |
 | `preparar.cmd`, `iniciar.cmd`, `verificar.cmd` | Accesos para Windows |
 | `evidencias/` | Informes de las ejecuciones de las versiones 1.1 a 1.2 |
 | `docs/` | Documentación técnica numerada y documentos entregados |

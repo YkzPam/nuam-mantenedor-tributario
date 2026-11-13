@@ -5,14 +5,14 @@ La tabla relaciona cada indicador con la evidencia del repositorio y de los docu
 | Indicador | Puntos | Evidencia | Observación |
 | --- | ---: | --- | --- |
 | 3.1.1.1 Interfaces y necesidades del negocio | 5 | Diez historias de usuario implementadas (documento de asesoría, 6.2); catálogo y prioridad de la Bolsa desde la versión 1.2; `templates/`, `static/` | Reglas DEMO-2 y DEMO-3 pendientes de validación de NUAM |
-| 3.1.1.2 Lineamientos estéticos y funcionales | 5 | Revisión en Chrome a 360, 768 y 1440 px y con teclado; UI01 a UI08; V01 | Usabilidad evaluada con perfiles simulados |
+| 3.1.1.2 Lineamientos estéticos y funcionales | 5 | Revisión en Chrome a 360, 768 y 1440 px y con teclado; UI01 a UI08; V01 | Usabilidad evaluada con perfiles simulados; la sesión con personas sigue [06-sesion-usabilidad.md](06-sesion-usabilidad.md) |
 | 3.1.2.3 Estructura de la base de datos | 5 | `schema.sql` (once tablas; catálogo de instrumentos); [01-arquitectura-y-datos.md](01-arquitectura-y-datos.md) | — |
 | 3.1.2.4 Optimización y normalización | 5 | Tercera forma normal, índices, modo WAL y su medición en [03-pruebas-y-resultados.md](03-pruebas-y-resultados.md) | — |
 | 3.1.3.5 Patrones de seguridad | 5 | [02-seguridad.md](02-seguridad.md); suites S, CP, V y W | — |
-| 3.1.3.6 Colaboración en equipo | 5 | `CONTRIBUTING.md`, `CHANGELOG.md`, Anexo C del documento de asesoría | Roles según la planificación de la Unidad 2 |
-| 3.1.4.7 Configuración del entorno | 10 | `INICIO_UNIDAD3.md`, `preparar.cmd`, `iniciar.cmd`, `verificar.cmd`, `wsgi.py`, `Dockerfile` | La imagen Docker no se construyó |
+| 3.1.3.6 Colaboración en equipo | 5 | `CONTRIBUTING.md` (roles y flujo con cuentas propias y pull requests), plantilla de pull request, `CHANGELOG.md`, Anexo C del documento de asesoría | Los commits del repositorio se hicieron desde una sola cuenta; los aportes de cada integrante deben quedar en pull requests propios |
+| 3.1.4.7 Configuración del entorno | 10 | `INICIO_UNIDAD3.md`, `preparar.cmd`, `iniciar.cmd`, `verificar.cmd`, `wsgi.py`, `Dockerfile`; imagen verificada en `evidencias/docker_20261113` | — |
 | 3.1.4.8 Documentación de la implementación | 5 | Sección 7 del documento de asesoría, `INICIO_UNIDAD3.md`, `MANIFIESTO_SHA256.json` | — |
-| 3.1.5.9 Cobertura del plan de pruebas | 10 | 26 elementos del plan; casos de borde (U03 a U09) y estrés (`pruebas_estres.py`) | Tres elementos de usabilidad en simulación |
+| 3.1.5.9 Cobertura del plan de pruebas | 10 | 26 elementos del plan; casos de borde (U03 a U09) y estrés (`pruebas_estres.py`); guía de la sesión con personas en [06-sesion-usabilidad.md](06-sesion-usabilidad.md) | Tres elementos de usabilidad en simulación hasta realizar esa sesión |
 | 3.1.5.10 Ejecución del protocolo | 10 | `run_all_tests.py`, `evidencias/`, GitHub Actions | — |
 | 3.1.5.11 Validación de resultados | 10 | Informe de pruebas extendido, secciones 4 a 7 | — |
 | 3.1.6.12 Discrepancias | 10 | D1 a D8 con causa y efecto | — |

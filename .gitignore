@@ -6,6 +6,7 @@ __pycache__/
 
 # Datos generados al arrancar: base SQLite, clave local, archivos privados y registros
 data/
+data_sesion_*/
 
 # Resultados de cada ejecución de pruebas (se adjuntan aparte cuando corresponde)
 evidencias/

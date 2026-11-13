@@ -1,0 +1,186 @@
+# Fecha: 2026-11-13T15:18:15-03:00
+# Comando: docker run --rm -e NUAM_DATA_DIR=/tmp/d nuam-mantenedor:1.2 python -m unittest discover -s tests -v
+# Usuario dentro del contenedor: nuam
+test_CP01_twenty_concurrent_saves (test_complementarias.ComplementaryCases.test_CP01_twenty_concurrent_saves)
+PLAN-R01: veinte guardados concurrentes, P95 y persistencia/auditoría. ... ok
+test_CP02_preview_file_failure_cleans_every_created_file (test_complementarias.ComplementaryCases.test_CP02_preview_file_failure_cleans_every_created_file)
+PLAN-I02: falla después del segundo archivo, sin SQL/documento/archivos huérfanos. ... ok
+test_CP03_preview_document_failure_rolls_back_all_stores (test_complementarias.ComplementaryCases.test_CP03_preview_document_failure_rolls_back_all_stores)
+PLAN-I02: falla TinyDB tras escribir; revierte SQL, archivos y documento derivado. ... ok
+test_CP04_confirmation_failure_after_first_insert_is_atomic (test_complementarias.ComplementaryCases.test_CP04_confirmation_failure_after_first_insert_is_atomic)
+PLAN-I02: falla en segunda fila al confirmar, sin calificación/evento parcial; reintento. ... ok
+test_CP05_postcommit_document_failure_is_recoverable_without_duplicate (test_complementarias.ComplementaryCases.test_CP05_postcommit_document_failure_is_recoverable_without_duplicate)
+PLAN-I02: falla documental posterior a commit conserva verdad SQL; reintento idempotente. ... ok
+test_CP06_crud_audit_failure_rolls_back_insert_update_and_soft_delete (test_complementarias.ComplementaryCases.test_CP06_crud_audit_failure_rolls_back_insert_update_and_soft_delete)
+PLAN-I03: falla de auditoría después de INSERT/UPDATE/baja revierte operación. ... ok
+test_CP07_required_and_calculation_failure_have_no_business_mutation (test_complementarias.ComplementaryCases.test_CP07_required_and_calculation_failure_have_no_business_mutation)
+PLAN-F02/PLAN-I03: obligatorio vacío y cálculo inválido señalan error sin escritura. ... ok
+test_CP08_csrf_all_mutations_missing_invalid_valid_and_audit_fields (test_complementarias.ComplementaryCases.test_CP08_csrf_all_mutations_missing_invalid_valid_and_audit_fields)
+PLAN-S06/PLAN-F05: nueve familias CSRF y eventos de operaciones con todos sus campos. ... ok
+test_CP09_login_privacy_logout_and_old_cookie_replay (test_complementarias.ComplementaryCases.test_CP09_login_privacy_logout_and_old_cookie_replay)
+PLAN-S02: error uniforme y bitácora privada; cookie previa al logout no reutilizable. ... ok
+test_CP10_five_supplied_csv_examples (test_complementarias.ComplementaryCases.test_CP10_five_supplied_csv_examples)
+PLAN-F03: cinco archivos de ejemplo por API, errores explicados y rechazo completo. ... ok
+test_I01_create_query_details (test_demo.IntegrationCases.test_I01_create_query_details)
+I01 | integración | crear y consultar por mercado/período/texto ... ok
+test_I02_update_audit (test_demo.IntegrationCases.test_I02_update_audit)
+I02 | integración | modificar con auditoría transaccional antes/después ... ok
+test_I03_inactivate (test_demo.IntegrationCases.test_I03_inactivate)
+I03 | integración | baja lógica conserva registro y bitácora ... ok
+test_I04_duplicate_no_partial_audit (test_demo.IntegrationCases.test_I04_duplicate_no_partial_audit)
+I04 | integración | índice único rechaza duplicado sin cambio parcial ... ok
+test_I05_concurrency (test_demo.IntegrationCases.test_I05_concurrency)
+I05 | integración | versión optimista evita sobrescritura de edición obsoleta ... ok
+test_I06_valid_bulk_idempotent (test_demo.IntegrationCases.test_I06_valid_bulk_idempotent)
+I06 | integración | carga válida, confirmación y reintento idempotente ... ok
+test_I07_invalid_bulk_atomic (test_demo.IntegrationCases.test_I07_invalid_bulk_atomic)
+I07 | integración | lote con duplicado y período inválido no guarda ninguna fila ... ok
+test_I08_bulk_concurrent_conflict_rollback (test_demo.IntegrationCases.test_I08_bulk_concurrent_conflict_rollback)
+I08 | integración | duplicado posterior a preview revierte todo el lote ... ok
+test_I09_factor_bulk (test_demo.IntegrationCases.test_I09_factor_bulk)
+I09 | integración | CSV de factores sin inventar montos ... ok
+test_I10_private_persistence_hash_json (test_demo.IntegrationCases.test_I10_private_persistence_hash_json)
+I10 | integración | CSV y JSON privados persistidos con hash/metadatos y descarga autorizada ... /app/tests/test_demo.py:147: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/nuam-tests-4oj_yux1/case-8c3xb26y/private/151d33b8a017571b63234c5dbbf992f0521c5d516b9a2cec.csv'>
+  response=self.client.get('/api/files/'+str(file['id']));self.assertEqual(response.status_code,200);self.assertEqual(response.headers['X-Content-Type-Options'],'nosniff')
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/usr/local/lib/python3.12/unittest/case.py:589: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/nuam-tests-4oj_yux1/case-8c3xb26y/private/e16d1ddbc1be8999536f698fbebd997c196ab11229d9ea26.json'>
+  if method() is not None:
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+ok
+test_I11_foreign_keys (test_demo.IntegrationCases.test_I11_foreign_keys)
+I11 | integración | SQLite rechaza referencia de corredor inexistente ... ok
+test_I12_documental_persistence_query (test_demo.IntegrationCases.test_I12_documental_persistence_query)
+I12 | integración | motor TinyDB persiste reporte y consulta SQL/documento funcional ... ok
+test_P01_twenty_clients_query (test_demo.IntegrationCases.test_P01_twenty_clients_query)
+P01 | rendimiento | 20 clientes concurrentes, P95 de consulta <=3 s y sin 5xx ... ok
+test_P02_thousand_rows_memory (test_demo.IntegrationCases.test_P02_thousand_rows_memory)
+P02 | rendimiento | prevalidar/confirmar 1000 filas <=120 s con memoria medida ... ok
+test_S01_unauthenticated (test_demo.IntegrationCases.test_S01_unauthenticated)
+S01 | seguridad | API no expone registros sin sesión ... ok
+test_S02_csrf_nomutation (test_demo.IntegrationCases.test_S02_csrf_nomutation)
+S02 | seguridad | token CSRF ausente/incorrecto impide escrituras ... ok
+test_S03_broker_object_boundaries (test_demo.IntegrationCases.test_S03_broker_object_boundaries)
+S03 | seguridad | corredor ajeno no se lista ni se accede mediante identificador ... ok
+test_S04_role_segregation (test_demo.IntegrationCases.test_S04_role_segregation)
+S04 | seguridad | administrador sin acceso tributario y operador sin administración ... ok
+test_S05_sql_injection (test_demo.IntegrationCases.test_S05_sql_injection)
+S05 | seguridad | consultas parametrizadas resisten payload de inyección ... ok
+test_S06_xss_no_execution_inputs (test_demo.IntegrationCases.test_S06_xss_no_execution_inputs)
+S06 | seguridad | validación rechaza script y CSP prohíbe scripts externos/inline ... ok
+test_S07_upload_restrictions (test_demo.IntegrationCases.test_S07_upload_restrictions)
+S07 | seguridad | archivos de extensión no permitida y binarios rechazados ... ok
+test_S08_private_files_cross_broker_hash (test_demo.IntegrationCases.test_S08_private_files_cross_broker_hash)
+S08 | seguridad | archivo privado rechaza corredor ajeno y modificación de contenido ... ok
+test_S09_audit_appendonly (test_demo.IntegrationCases.test_S09_audit_appendonly)
+S09 | seguridad | triggers rechazan edición/borrado y cadena HMAC es válida ... ok
+test_S10_profile_revocation_audit_scope (test_demo.IntegrationCases.test_S10_profile_revocation_audit_scope)
+S10 | seguridad | revocar corredor retira consulta y auditoría del ámbito anterior ... ok
+test_S11_malformed_json (test_demo.IntegrationCases.test_S11_malformed_json)
+S11 | seguridad | JSON no objeto devuelve error controlado, no 500 ... ok
+test_S12_expiry_logout_cookie (test_demo.IntegrationCases.test_S12_expiry_logout_cookie)
+S12 | seguridad | sesión expirada, cierre y cookie HttpOnly/SameSite ... ok
+test_S13_login_rate_limit (test_demo.IntegrationCases.test_S13_login_rate_limit)
+S13 | seguridad | bloqueo temporal luego de cinco fallos de acceso ... ok
+test_S14_supervisor_assigned_brokers (test_demo.IntegrationCases.test_S14_supervisor_assigned_brokers)
+S14 | seguridad | supervisor consulta solamente corredores asignados ... ok
+test_S15_documental_authorization (test_demo.IntegrationCases.test_S15_documental_authorization)
+S15 | seguridad | documento TinyDB exige corredor y perfil; repositorio no es público ... ok
+test_S16_documental_hash_corruption (test_demo.IntegrationCases.test_S16_documental_hash_corruption)
+S16 | seguridad | reporte modificado devuelve 409 y repositorio corrupto devuelve 503 controlado ... ok
+test_U01_decimal_conversion (test_demo.UnitCases.test_U01_decimal_conversion)
+U01 | unitario | conversión Decimal exacta y HALF_UP ... ok
+test_U02_zero_base (test_demo.UnitCases.test_U02_zero_base)
+U02 | unitario | impedir división por cero ... ok
+test_U03_negative_nonfinite_limit (test_demo.UnitCases.test_U03_negative_nonfinite_limit)
+U03 | unitario | rechazar negativos, NaN, infinito y exceso de precisión ... ok
+test_U04_factor_range (test_demo.UnitCases.test_U04_factor_range)
+U04 | unitario | factor directo fuera de rango y monto mayor que base ... ok
+test_U05_required_period_instrument (test_demo.UnitCases.test_U05_required_period_instrument)
+U05 | unitario | obligatorios, mes inválido y caracteres no permitidos ... ok
+test_U06_provisional_key (test_demo.UnitCases.test_U06_provisional_key)
+U06 | unitario | llave provisional compuesta y normalización de instrumento ... ok
+test_U07_csv_header (test_demo.UnitCases.test_U07_csv_header)
+U07 | unitario | encabezado exacto CSV ... ok
+test_U08_csv_binary_encoding (test_demo.UnitCases.test_U08_csv_binary_encoding)
+U08 | unitario | contenido binario, UTF-8 incorrecto y tamaño excesivo ... ok
+test_U09_csv_limit_columns (test_demo.UnitCases.test_U09_csv_limit_columns)
+U09 | unitario | máximo de filas y cantidad de columnas ... ok
+test_U10_non_registered (test_demo.UnitCases.test_U10_non_registered)
+U10 | unitario | instrumentos no inscritos ... ok
+test_UI01_consistent_visible_action_and_explanation (test_ui_revision.UiRevisionCases.test_UI01_consistent_visible_action_and_explanation)
+UI01: acción Desactivar y explicación explícita de baja lógica. ... ok
+test_UI02_dialog_accessible_name_description_and_safe_default (test_ui_revision.UiRevisionCases.test_UI02_dialog_accessible_name_description_and_safe_default)
+UI02: nombre y descripción enlazados; Cancelar primero y autofocus. ... ok
+test_UI03_confirmation_identifies_record_and_preserves_safe_text_rendering (test_ui_revision.UiRevisionCases.test_UI03_confirmation_identifies_record_and_preserves_safe_text_rendering)
+UI03: cuatro identificadores con textContent y foco seguro explícito. ... ok
+test_UI04_soft_delete_retains_data_and_audit (test_ui_revision.UiRevisionCases.test_UI04_soft_delete_retains_data_and_audit)
+UI04: desactivar oculta activos, conserva fila/datos y antes/después. ... ok
+test_UI05_other_corridor_cannot_deactivate (test_ui_revision.UiRevisionCases.test_UI05_other_corridor_cannot_deactivate)
+UI05: el cambio de rótulo no altera autorización por corredor. ... ok
+test_UI06_obsolete_version_does_not_deactivate (test_ui_revision.UiRevisionCases.test_UI06_obsolete_version_does_not_deactivate)
+UI06: una confirmación obsoleta conserva el registro activo. ... ok
+test_UI07_cancel_and_confirmation_have_distinct_scoped_styles (test_ui_revision.UiRevisionCases.test_UI07_cancel_and_confirmation_have_distinct_scoped_styles)
+UI07: Cancelar verde sólido; confirmación blanca/roja y bordes de 2 px. ... ok
+test_UI08_confirmed_batch_replaces_pending_state_only_after_success (test_ui_revision.UiRevisionCases.test_UI08_confirmed_batch_replaces_pending_state_only_after_success)
+UI08: estado confirmado tras API exitosa; conserva una previsualización nueva. ... ok
+test_V01_instrument_pattern_valid_and_equivalent (test_v11.Version11Cases.test_V01_instrument_pattern_valid_and_equivalent)
+V01 | regresión D3 | pattern con guion escapado y misma aceptación que el servidor ... ok
+test_V02_favicon_declared_without_extra_request (test_v11.Version11Cases.test_V02_favicon_declared_without_extra_request)
+V02 | regresión | ícono embebido evita la solicitud 404 a /favicon.ico ... ok
+test_V03_operation_log_metadata_only (test_v11.Version11Cases.test_V03_operation_log_metadata_only)
+V03 | registro operativo | líneas JSON con método, ruta, estado, duración y perfil ... ok
+test_V04_rejected_requests_are_logged (test_v11.Version11Cases.test_V04_rejected_requests_are_logged)
+V04 | registro operativo | CSRF rechazado y ruta inexistente quedan registrados ... ok
+test_V05_factor_roles_from_environment (test_v11.Version11Cases.test_V05_factor_roles_from_environment)
+V05 | configuración | NUAM_ROLES_FACTOR_MANUAL respeta la matriz y rechaza perfiles ajenos ... ok
+test_V06_factor_restricted_profile_denied_and_audited (test_v11.Version11Cases.test_V06_factor_restricted_profile_denied_and_audited)
+V06 | permisos | perfil sin autorización no ingresa factores; monto sigue disponible ... ok
+test_V07_factor_batch_denied_for_restricted_profile (test_v11.Version11Cases.test_V07_factor_batch_denied_for_restricted_profile)
+V07 | permisos | carga factores-DEMO rechazada antes de crear lote o archivos ... ok
+test_V08_wsgi_entrypoint_uses_data_dir (test_v11.Version11Cases.test_V08_wsgi_entrypoint_uses_data_dir)
+V08 | entorno | wsgi.py expone la aplicación y respeta NUAM_DATA_DIR ... ok
+test_V09_operation_log_rotation_keeps_three_backups (test_v11.Version11Cases.test_V09_operation_log_rotation_keeps_three_backups)
+V09 | registro operativo | rotación por tamaño con tres archivos anteriores como máximo ... ok
+test_V10_sqlite_wal_enabled (test_v11.Version11Cases.test_V10_sqlite_wal_enabled)
+V10 | optimización | SQLite en modo WAL con llaves foráneas activas en cada conexión ... ok
+test_W01_seeded_catalog_and_access (test_v12.Version12Cases.test_W01_seeded_catalog_and_access)
+W01 | DEMO-2 | catálogo sembrado visible para operador y supervisor, no para administrador ... ok
+test_W02_registered_instrument_must_exist (test_v12.Version12Cases.test_W02_registered_instrument_must_exist)
+W02 | DEMO-2 | un instrumento inscrito ausente del catálogo se rechaza sin cambios ... ok
+test_W03_supervisor_adds_instrument_then_it_can_be_used (test_v12.Version12Cases.test_W03_supervisor_adds_instrument_then_it_can_be_used)
+W03 | DEMO-2 | el no inscrito fuera del catálogo se admite; el supervisor agrega un inscrito y queda en la bitácora ... ok
+test_W04_registration_flag_must_match_catalog (test_v12.Version12Cases.test_W04_registration_flag_must_match_catalog)
+W04 | DEMO-2 | la inscripción informada debe coincidir con la del catálogo ... ok
+test_W05_disabled_instrument_and_supervisor_toggle (test_v12.Version12Cases.test_W05_disabled_instrument_and_supervisor_toggle)
+W05 | DEMO-2 | instrumento deshabilitado se rechaza; solo el supervisor cambia el catálogo ... ok
+test_W06_catalog_change_after_preview_rolls_back (test_v12.Version12Cases.test_W06_catalog_change_after_preview_rolls_back)
+W06 | DEMO-2 | si el catálogo cambia entre previsualizar y confirmar, la carga completa se revierte ... ok
+test_W07_bolsa_load_restricted_to_supervisor (test_v12.Version12Cases.test_W07_bolsa_load_restricted_to_supervisor)
+W07 | DEMO-3 | solo el supervisor previsualiza archivos de Bolsa y descarga su plantilla ... ok
+test_W08_bolsa_replaces_broker_record_with_audit (test_v12.Version12Cases.test_W08_bolsa_replaces_broker_record_with_audit)
+W08 | DEMO-3 | el archivo de Bolsa reemplaza el registro del corredor y la bitácora conserva el anterior ... ok
+test_W09_bolsa_over_bolsa_is_duplicate (test_v12.Version12Cases.test_W09_bolsa_over_bolsa_is_duplicate)
+W09 | DEMO-3 | un segundo archivo de Bolsa con la misma llave se rechaza como duplicado ... ok
+test_W10_broker_data_cannot_override_bolsa (test_v12.Version12Cases.test_W10_broker_data_cannot_override_bolsa)
+W10 | DEMO-3 | registro manual o carga del corredor no reemplaza un registro informado por Bolsa ... ok
+test_W11_operator_cannot_change_bolsa_record (test_v12.Version12Cases.test_W11_operator_cannot_change_bolsa_record)
+W11 | DEMO-3 | el operador no modifica ni desactiva un registro de Bolsa; el supervisor sí ... ok
+test_W12_bolsa_new_key_and_factor_mode (test_v12.Version12Cases.test_W12_bolsa_new_key_and_factor_mode)
+W12 | DEMO-3 | una llave nueva de Bolsa se inserta con origen bolsa-DEMO y exige mode=factor ... ok
+test_W13_bolsa_prevails_over_record_created_after_preview (test_v12.Version12Cases.test_W13_bolsa_prevails_over_record_created_after_preview)
+W13 | DEMO-3 | si el corredor crea la misma llave después de la previsualización, Bolsa igual prevalece ... ok
+test_W14_previous_schema_is_backed_up (test_v12.Version12Cases.test_W14_previous_schema_is_backed_up)
+W14 | migración | una base anterior a la v1.2 se respalda completa y se crea un esquema nuevo ... ok
+test_W15_supplied_examples_06_07 (test_v12.Version12Cases.test_W15_supplied_examples_06_07)
+W15 | ejemplos | 06 reemplaza por prioridad Bolsa y 07 se rechaza completo por catálogo ... ok
+test_W16_interface_exposes_rules_by_profile (test_v12.Version12Cases.test_W16_interface_exposes_rules_by_profile)
+W16 | interfaz | catálogo para ambos perfiles; opción y plantilla de Bolsa solo para supervisor ... ok
+test_W17_catalog_changes_apply_forward (test_v12.Version12Cases.test_W17_catalog_changes_apply_forward)
+W17 | DEMO-2 | un cambio del catálogo rige hacia adelante: no altera registros guardados y revierte confirmaciones pendientes ... ok
+test_W18_add_instrument_validation (test_v12.Version12Cases.test_W18_add_instrument_validation)
+W18 | DEMO-2 | alta de instrumentos: solo supervisor, datos válidos y sin duplicados ... ok
+
+----------------------------------------------------------------------
+Ran 86 tests in 29.701s
+
+OK

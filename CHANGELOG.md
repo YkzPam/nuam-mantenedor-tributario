@@ -1,5 +1,20 @@
 # Historial de versiones
 
+## 1.2.1 — 13 de noviembre de 2026
+
+Origen: revisión de la entrega frente a la rúbrica de la Unidad 3. No cambia el código de la aplicación, el esquema ni las pruebas.
+
+Agregado
+
+- Verificación del contenedor: la imagen del `Dockerfile` se construyó con Docker 29.9.3; 86 de 86 pruebas aprobaron dentro del contenedor y una prueba de humo comprobó CSRF, permisos del catálogo y persistencia del volumen tras reiniciar (`evidencias/docker_20261113`).
+- `docs/06-sesion-usabilidad.md` y `docs/plantilla_sesion_usabilidad.csv`: guía para repetir con personas reales los elementos P-UX01, P-UX02 y P-UX05, que siguen en simulación hasta realizar la sesión.
+- `CONTRIBUTING.md`, sección 5, y `.github/pull_request_template.md`: trabajo con cuentas propias, ramas y pull requests revisados por otro integrante.
+
+Cambiado
+
+- `Dockerfile`, `INICIO_UNIDAD3.md`, `README.md` y `docs/04-rubrica.md` dejan de indicar que la imagen no se construyó.
+- `.gitignore` excluye las carpetas `data_sesion_*` de la sesión de usabilidad.
+
 ## 1.2 — 12 de noviembre de 2026
 
 Origen: discrepancia D7. La prioridad entre Bolsa y corredor y el catálogo de instrumentos esperaban una definición de NUAM; el docente autorizó que el equipo las definiera para completar la demostración. Ambas reglas quedan pendientes de validación de NUAM.

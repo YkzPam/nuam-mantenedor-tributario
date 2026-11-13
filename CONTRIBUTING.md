@@ -35,3 +35,15 @@ La distribución proviene de la planificación y el diseño de la Unidad 2. Cada
 ## 4. Definición de terminado
 
 Una tarea está terminada cuando cumple su historia de usuario, respeta perfil y corredor, conserva los datos y eventos exigidos, supera sus pruebas y deja evidencia. Una regla que NUAM no ha definido se mantiene marcada como pendiente aunque su demostración funcione.
+
+## 5. Trabajo en GitHub con cuentas propias
+
+Cada integrante trabaja con su propia cuenta de GitHub, para que el historial muestre quién hizo y quién revisó cada cambio.
+
+1. Quien administra el repositorio agrega al integrante en Settings → Collaborators con permiso Write. El integrante acepta la invitación que le llega por correo.
+2. El integrante clona el repositorio o lo abre en GitHub Desktop y crea una rama propia, como indica la sección 2.
+3. Hace el cambio que le corresponde, con un commit que describa qué cambió y por qué, y lo sube a su rama.
+4. Abre un pull request hacia `main`. La plantilla del pull request pide el origen del cambio, las pruebas ejecutadas y quién revisa.
+5. Otro integrante revisa el pull request en la pestaña Files changed, deja sus observaciones y lo aprueba con Review changes → Approve. Solo después se integra.
+
+GitHub Actions ejecuta las pruebas en Windows y Ubuntu en cada pull request. Si falla, el cambio no se integra hasta corregirlo.

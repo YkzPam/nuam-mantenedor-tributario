@@ -1,0 +1,80 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.sandbox
+#1 transferring dockerfile: 1.11kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.1s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 90B done
+#3 DONE 0.0s
+
+#4 [stage-0 1/6] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#4 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2.02kB done
+#5 DONE 0.0s
+
+#6 [stage-0 2/6] WORKDIR /app
+#6 CACHED
+
+#7 [stage-0 3/6] COPY requirements-lock.txt requirements-servidor.txt ./
+#7 CACHED
+
+#8 [stage-0 4/6] RUN --mount=type=secret,id=ca,target=/tmp/ca.crt PIP_CERT=/tmp/ca.crt pip install --no-cache-dir -r requirements-lock.txt -r requirements-servidor.txt
+#8 1.445 Collecting Flask==3.1.3 (from -r requirements-lock.txt (line 1))
+#8 1.839   Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+#8 1.903 Collecting blinker==1.9.0 (from -r requirements-lock.txt (line 2))
+#8 1.957   Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+#8 2.050 Collecting click==8.5.0 (from -r requirements-lock.txt (line 3))
+#8 2.100   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#8 2.162 Collecting itsdangerous==2.2.0 (from -r requirements-lock.txt (line 4))
+#8 2.215   Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+#8 2.282 Collecting Jinja2==3.1.6 (from -r requirements-lock.txt (line 5))
+#8 2.333   Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+#8 2.464 Collecting MarkupSafe==3.0.4 (from -r requirements-lock.txt (line 6))
+#8 2.516   Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+#8 2.587 Collecting Werkzeug==3.1.9 (from -r requirements-lock.txt (line 7))
+#8 2.637   Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+#8 2.703 Collecting tinydb==4.9.0 (from -r requirements-lock.txt (line 8))
+#8 2.753   Downloading tinydb-4.9.0-py3-none-any.whl.metadata (6.7 kB)
+#8 2.819 Collecting waitress==3.0.2 (from -r requirements-servidor.txt (line 1))
+#8 2.869   Downloading waitress-3.0.2-py3-none-any.whl.metadata (5.8 kB)
+#8 2.942 Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+#8 3.021 Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+#8 3.074 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#8 3.137 Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+#8 3.186 Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+#8 3.250 Downloading markupsafe-3.0.4-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+#8 3.300 Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+#8 3.370 Downloading tinydb-4.9.0-py3-none-any.whl (25 kB)
+#8 3.433 Downloading waitress-3.0.2-py3-none-any.whl (56 kB)
+#8 3.448 Installing collected packages: waitress, tinydb, MarkupSafe, itsdangerous, click, blinker, Werkzeug, Jinja2, Flask
+#8 3.820 Successfully installed Flask-3.1.3 Jinja2-3.1.6 MarkupSafe-3.0.4 Werkzeug-3.1.9 blinker-1.9.0 click-8.5.0 itsdangerous-2.2.0 tinydb-4.9.0 waitress-3.0.2
+#8 3.820 WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+#8 4.226 
+#8 4.226 [notice] A new release of pip is available: 25.0.1 -> 26.3
+#8 4.226 [notice] To update, run: pip install --upgrade pip
+#8 DONE 4.3s
+
+#9 [stage-0 5/6] COPY . .
+#9 DONE 0.0s
+
+#10 [stage-0 6/6] RUN useradd --create-home --uid 10001 nuam     && mkdir -p /datos     && chown nuam:nuam /datos
+#10 DONE 0.1s
+
+#11 exporting to image
+#11 exporting layers
+#11 exporting layers 0.2s done
+#11 exporting manifest sha256:8f27701068871b6c13423d0efd6b063e3634688de5d48379764a8bbcfd8cc988 done
+#11 exporting config sha256:4bc5eeaae2798f20d9e0081e218f51a459ec710f3868c51c8d000aaf6f0289ac done
+#11 exporting attestation manifest sha256:bd0938a671f0157f00f7ad9134814180c0c55b177256e3338bbd680dbb523adc done
+#11 exporting manifest list sha256:f2d8bd80622898a683747acbb47204b723c161e7bd9db6347ace6b4747fc98ab done
+#11 naming to docker.io/library/nuam-mantenedor:1.2 done
+#11 unpacking to docker.io/library/nuam-mantenedor:1.2
+#11 unpacking to docker.io/library/nuam-mantenedor:1.2 0.9s done
+#11 DONE 1.1s

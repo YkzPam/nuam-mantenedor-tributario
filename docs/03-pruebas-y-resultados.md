@@ -54,7 +54,7 @@ Las 35 respuestas 503 sin WAL correspondieron al error `database is locked` de S
 
 | Código | Discrepancia | Estado |
 | --- | --- | --- |
-| D1 | Primera revisión de usabilidad bajo el 90 % (80 %) | Corregida en el código; evaluada con perfiles simulados |
+| D1 | Primera revisión de usabilidad bajo el 90 % (80 %) | Corregida en el código; evaluada con perfiles simulados. La sesión con personas sigue [06-sesion-usabilidad.md](06-sesion-usabilidad.md) |
 | D2 | Reporte y retroalimentación basados en simulación | Abierta: falta repetir con usuarios reales |
 | D3 | Atributo `pattern` del campo instrumento inválido en Chrome | Resuelta en la versión 1.1 |
 | D4 | Guardado más lento que la consulta por el escritor único de SQLite | Causa confirmada; mitigada con WAL |
