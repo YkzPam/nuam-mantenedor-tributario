@@ -71,6 +71,8 @@ async function loadCatalog(){
   if(!data.items.length)$('catalog-rows').append(element('tr',{},element('td',{colspan:5,text:'Sin instrumentos que coincidan con la búsqueda.'})));
   $('catalog-count').textContent=data.total+' instrumento(s)'+(data.total>data.items.length?' · se muestran los primeros '+data.items.length:'')+'. '+data.rule;
 }
+// H-03: nombres legibles de las entidades de la bitácora.
+const ENTITY_LABELS={calificacion:'calificación',carga:'carga',archivo:'archivo',instrumento:'instrumento',usuario:'usuario',seguridad:'seguridad'};
 function ratingMode(){
   const direct=$('rating-mode').value==='factor';$('rating-factor').disabled=!direct;$('rating-factor').required=direct;
   $('rating-amount').disabled=direct;$('rating-base').disabled=direct;$('rating-amount').required=!direct;$('rating-base').required=!direct;
@@ -129,7 +131,7 @@ async function loadAudit(){
   const data=await api('audit');$('audit-integrity').textContent=data.integrity?'Integridad verificada: cadena HMAC y referencias anteriores correctas.':'Advertencia: la cadena de integridad no coincide.';$('audit-items').replaceChildren();
   for(const row of data.items){
     const detail=element('details',{},element('summary',{text:'Ver valores anteriores y nuevos'}),element('p',{text:'Antes'}),element('pre',{text:row.antes_json?JSON.stringify(JSON.parse(row.antes_json),null,2):'No aplica'}),element('p',{text:'Después'}),element('pre',{text:row.despues_json?JSON.stringify(JSON.parse(row.despues_json),null,2):'No aplica'}));
-    $('audit-items').append(element('article',{class:'audit-card'},element('h3',{text:'#'+row.id+' · '+row.accion+' · '+row.entidad}),element('p',{text:row.fecha+' · Usuario '+(row.usuario_id??'no autenticado')+' · Corredor '+(row.corredor_id??'evento técnico')+' · '+row.resultado}),detail));
+    $('audit-items').append(element('article',{class:'audit-card'},element('h3',{text:'#'+row.id+' · '+row.accion+' · '+(ENTITY_LABELS[row.entidad]||row.entidad)}),element('p',{text:row.fecha+' · Usuario '+(row.usuario_login??row.usuario_id??'no autenticado')+' · Corredor '+(row.corredor_codigo??row.corredor_id??'evento técnico')+' · '+row.resultado}),detail));
   }
   if(!data.items.length)$('audit-items').append(element('p',{text:'No hay eventos dentro del ámbito autorizado.'}));
 }
@@ -147,6 +149,8 @@ async function loadUsers(){
   }
 }
 async function switchView(view){
+  // H-01: el aviso de la acción anterior no se arrastra a otra vista.
+  const notice=$('message');if(notice)notice.hidden=true;
   for(const section of document.querySelectorAll('.view'))section.hidden=section.id!==view;
   for(const button of document.querySelectorAll('.nav-button'))button.classList.toggle('active',button.dataset.view===view);
   if(view==='consulta')await loadRatings();if(view==='carga')await loadBatches();if(view==='catalogo')await loadCatalog();if(view==='auditoria')await loadAudit();if(view==='usuarios')await loadUsers();

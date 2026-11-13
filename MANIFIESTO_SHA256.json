@@ -1,12 +1,13 @@
 {
   "unidad": 3,
-  "version": "1.2.1",
+  "version": "1.2.2",
   "fecha": "2026-11-13",
   "zip_v1_0_sha256": "3b3e50e69f88992ea882b6badded4aa662aca5afdbf2ea9f9743b951750b1455",
   "zip_v1_1_sha256": "18cd606218ec3154b050fde109b5e551a8bf42e3201524a8fab5c1ed2d5d5c43",
   "zip_v1_1_1_sha256": "c75bcd6788e7997e0aad45a1f4a48cea203a7b187823579c2f7d84f2c817836e",
   "zip_v1_2_sha256": "d75f3ff07bedf88c380369874d3c6f1c8a4905ac7b587c4031fa5d508735516c",
-  "nota": "Huella por archivo. sha256_v1_2 indica que el archivo cambió respecto del paquete 1.2 y nuevo_en_v1_2_1 marca los agregados en 1.2.1. sha256_v1_1_1 y nuevo_en_v1_2 se conservan del manifiesto 1.2 y comparan con el paquete 1.1.1; sha256_v1_0 y nuevo_despues_de_v1_0 comparan con el paquete 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
+  "zip_v1_2_1_sha256": "d386877d1a316b412294e8c6db0cb3021f32cfffbe68ebd290ce2912a953b303",
+  "nota": "Huella por archivo. sha256_v1_2_1 indica que el archivo cambió respecto del paquete 1.2.1 y nuevo_en_v1_2_2 marca los agregados en 1.2.2. sha256_v1_2 y nuevo_en_v1_2_1 comparan con el paquete 1.2; sha256_v1_1_1 y nuevo_en_v1_2 comparan con el 1.1.1; sha256_v1_0 y nuevo_despues_de_v1_0, con el 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
   "files": {
     ".dockerignore": {
       "bytes": 50,
@@ -36,11 +37,12 @@
       "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
     },
     "CHANGELOG.md": {
-      "bytes": 8804,
-      "sha256": "15f94a31e66e45af57ad1eacef9d8bff8491427f9fe8273a14a1452b307c5f1a",
+      "bytes": 10122,
+      "sha256": "07900267d539ad5de8bf69d56b43f4b1741853b2dac12cedd6eb54645cff8022",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
-      "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572"
+      "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
+      "sha256_v1_2_1": "15f94a31e66e45af57ad1eacef9d8bff8491427f9fe8273a14a1452b307c5f1a"
     },
     "CONTRIBUTING.md": {
       "bytes": 4072,
@@ -55,24 +57,27 @@
       "sha256_v1_2": "253f920e0ece3a1095a114958c3af94c8a9f0bb74037bebb1134095420f5d640"
     },
     "INICIO_UNIDAD3.md": {
-      "bytes": 11950,
-      "sha256": "cbc9841550138770dd1cd5873ae62102def6fcf055cf32893c2e2d2d0fa60a20",
+      "bytes": 11957,
+      "sha256": "22d52e0214c010b3fc5e79eb6665466723bafab7f8856066d8e8769cbfbb41af",
       "sha256_v1_0": "64a74dac149117203b07aa11647073588376f573e8ed0d937f89338a69cb6088",
       "sha256_v1_1_1": "6f93eac4751aa79374162aa1672c94852f2c7561f8290a45f9259b0acf56485f",
-      "sha256_v1_2": "b202196fdcc56b1ab049d1227a59599c094fa023f1f806789139a21816da72a9"
+      "sha256_v1_2": "b202196fdcc56b1ab049d1227a59599c094fa023f1f806789139a21816da72a9",
+      "sha256_v1_2_1": "cbc9841550138770dd1cd5873ae62102def6fcf055cf32893c2e2d2d0fa60a20"
     },
     "README.md": {
       "bytes": 5771,
-      "sha256": "a72085dedfe7e557eca59748db96a889d6c04f1c125eaeaac32575b2b0834e8f",
+      "sha256": "1c2bdfc149ffd2f1aec10f8f6e857e90d47a4be5119ea62bc2f2e4e088d34ab1",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "a294ff62b83de35b87a61e5a26a021ff87d976fafdb290c8d27b6bd34e5bc4c6",
-      "sha256_v1_2": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c"
+      "sha256_v1_2": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c",
+      "sha256_v1_2_1": "a72085dedfe7e557eca59748db96a889d6c04f1c125eaeaac32575b2b0834e8f"
     },
     "app.py": {
-      "bytes": 48376,
-      "sha256": "cb893b1b11c84428b6c6bd41c06c69b2601702bdaa77618de974c84c791f5680",
+      "bytes": 48736,
+      "sha256": "299f6c7c9ea32057c72d6e7a2d0d2dc7f264b4d6aba8e97539ccab09e08e4c9f",
       "sha256_v1_0": "cbb4279645bb0b432f814d8738cd3e385056266857963ecc68beb557e0ff91be",
-      "sha256_v1_1_1": "c31403bab44061db560d1f3d1a4407bd1c6041f6be7a1bce73b0007fa27918eb"
+      "sha256_v1_1_1": "c31403bab44061db560d1f3d1a4407bd1c6041f6be7a1bce73b0007fa27918eb",
+      "sha256_v1_2_1": "cb893b1b11c84428b6c6bd41c06c69b2601702bdaa77618de974c84c791f5680"
     },
     "docs/01-arquitectura-y-datos.md": {
       "bytes": 6079,
@@ -87,30 +92,38 @@
       "sha256_v1_1_1": "fd03733f470ce58d260e603827b24b25c800c2f80ccc373541d8bb0145ff394e"
     },
     "docs/03-pruebas-y-resultados.md": {
-      "bytes": 5519,
-      "sha256": "5b408ca9885561cd1cb4a12a4639574a017c02a6bc68d7fc25d3bbf82131ab10",
+      "bytes": 5876,
+      "sha256": "917728c9f67895b5571189518833d2f07c6cc2cf66664b3ddc4023ddde4edbce",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "521da6cd6ed9cf27e89072032d36cb95e7c94cd73e6236c9c9734cb255e681c8",
-      "sha256_v1_2": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394"
+      "sha256_v1_2": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394",
+      "sha256_v1_2_1": "5b408ca9885561cd1cb4a12a4639574a017c02a6bc68d7fc25d3bbf82131ab10"
     },
     "docs/04-rubrica.md": {
-      "bytes": 2846,
-      "sha256": "fd90d4fb6f2bf7d2c8eaa42defedab0e5199a3e8556b215e80f3080a7da07003",
+      "bytes": 3126,
+      "sha256": "1037f4ea3b2566de4a2c51f09616f4edecf0570ee3739ab0fbfbe2f881223fcf",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "4e8a713103b5a362ef23e5adc25f8901eddbb84b40fdd45bf2891b6d6f1fe65e",
-      "sha256_v1_2": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b"
+      "sha256_v1_2": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b",
+      "sha256_v1_2_1": "fd90d4fb6f2bf7d2c8eaa42defedab0e5199a3e8556b215e80f3080a7da07003"
     },
     "docs/05-verificacion.md": {
       "bytes": 3178,
-      "sha256": "65045f0ad563cac81dbc0f6325718426b660e32783af876d9321b9e22c5caff8",
+      "sha256": "9a64f55b729a7fe08d92e23abc915f69af423dd638fd2550b3f808b41de03bbc",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "99d9a9796bed2de137cf4d1eec981285f9372da2c357e8eb798df4bd53e6785a",
-      "sha256_v1_2": "c468198cbe5a1d1b9f9d20b11e4f6e1b7a46a39444eb919b5df22f031e9d3c6a"
+      "sha256_v1_2": "c468198cbe5a1d1b9f9d20b11e4f6e1b7a46a39444eb919b5df22f031e9d3c6a",
+      "sha256_v1_2_1": "65045f0ad563cac81dbc0f6325718426b660e32783af876d9321b9e22c5caff8"
     },
     "docs/06-sesion-usabilidad.md": {
       "bytes": 3958,
       "sha256": "6846869e16bcddd1431d58865ab5d16a97f94aa036300bf3f27f444e28a33b59",
       "nuevo_en_v1_2_1": true
+    },
+    "docs/07-evaluacion-heuristica.md": {
+      "bytes": 5687,
+      "sha256": "ef4582afa0b3e4c1a9d6e90e14456a2de0f1852de6796ae2e9a2a2bb8db85778",
+      "nuevo_en_v1_2_2": true
     },
     "docs/plantilla_sesion_usabilidad.csv": {
       "bytes": 350,
@@ -156,10 +169,11 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/LEEME.md": {
-      "bytes": 4362,
-      "sha256": "9ed5f8b8aecd3a28483a8a7375cf22044a8a26456f51d661c658b1a31486eae2",
+      "bytes": 4787,
+      "sha256": "391d3e1f27cc2a5dc204384becac98892dc1e67bd9eb3ad9555c4bf9e478e361",
       "sha256_v1_1_1": "143f0eaecd4a996c787e5b437d67faffe841a419830889756832bcedf41abd04",
-      "sha256_v1_2": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f"
+      "sha256_v1_2": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f",
+      "sha256_v1_2_1": "9ed5f8b8aecd3a28483a8a7375cf22044a8a26456f51d661c658b1a31486eae2"
     },
     "evidencias/chrome_d3_20261111/v1_0.json": {
       "bytes": 1069,
@@ -209,9 +223,10 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/docker_20261113/NOTA.md": {
-      "bytes": 1887,
-      "sha256": "98919e637b18e7c321faeca68e279236c4a6e0ed7a4c89b84baa020ef1cf8ad9",
-      "nuevo_en_v1_2_1": true
+      "bytes": 2201,
+      "sha256": "de9606a961216e33084ee9a486718bd43a1d92266835323246818cdafed665aa",
+      "nuevo_en_v1_2_1": true,
+      "sha256_v1_2_1": "98919e637b18e7c321faeca68e279236c4a6e0ed7a4c89b84baa020ef1cf8ad9"
     },
     "evidencias/docker_20261113/construccion.log": {
       "bytes": 4663,
@@ -237,6 +252,21 @@
       "bytes": 17834,
       "sha256": "13ea5f86798c6129b07b7733da7fe7357f86afacb9f36a777991b50b88595cff",
       "nuevo_en_v1_2_1": true
+    },
+    "evidencias/docker_20261113/v1_2_2/construccion.log": {
+      "bytes": 1775,
+      "sha256": "b84019e9f6166b36e2f689dc063d91bc5b78d9ed6804a027da07236534cf5525",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/docker_20261113/v1_2_2/imagen.txt": {
+      "bytes": 192,
+      "sha256": "204c9b54f64522d049ecb6919c7967813e501b1d98a580354de432c2c3574199",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/docker_20261113/v1_2_2/prueba_humo.json": {
+      "bytes": 678,
+      "sha256": "f9fc76e8308a8c8434ec2afd23af66db698279a702d1ef689a8d8f2e4b8b1bc8",
+      "nuevo_en_v1_2_2": true
     },
     "evidencias/ejecucion_completa_20261111_214727_152229/resultados_corregidos.json": {
       "bytes": 36032,
@@ -265,6 +295,16 @@
       "bytes": 8759,
       "sha256": "b4c00e25fa9e12ca8f2f4d9e4011b8f9082ed18de43a256b2f015042c657f6f8",
       "nuevo_en_v1_2": true
+    },
+    "evidencias/ejecucion_completa_20261113_185008_912162/resultados_corregidos.json": {
+      "bytes": 46316,
+      "sha256": "4f9f2c51f35b53099354b9c9d80476d4c8fb9f3ee21cb50ad5a2745f45c76869",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/ejecucion_completa_20261113_185008_912162/resultados_corregidos.md": {
+      "bytes": 9389,
+      "sha256": "005feb0e1249bd459747172e558e18455dbc1d2ef14a9363afe1d9c96d25aa7d",
+      "nuevo_en_v1_2_2": true
     },
     "evidencias/estres_20261111_214239/resultados_estres.json": {
       "bytes": 6431,
@@ -413,6 +453,126 @@
       "sha256": "2eb94527de9157456a962024c2336f20815e5d4c56c2543cf46163bcf5d5ebb8",
       "nuevo_en_v1_2": true
     },
+    "evidencias/heuristica_20261113/antes/01_ingreso.jpg": {
+      "bytes": 34123,
+      "sha256": "24d6e6f36cbe9b15dc4799f84ed74811f24c1e4c38771ec47e718a7c9b416f17",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/02_ingreso_error.jpg": {
+      "bytes": 36079,
+      "sha256": "d862993075d0962672704cbdc3c0f5ea5b3d21055395a6041ab3af9e01f51c74",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/03_consulta_inicial.jpg": {
+      "bytes": 67865,
+      "sha256": "3339173bad040f4b2833fca27b54a433cc1a41edba349476a207aeeaec4e9c32",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/04_busqueda.jpg": {
+      "bytes": 61781,
+      "sha256": "0e882874d99bcc118c9f73782a79b164b8ac2a11150d45e33460e1f540c2b3e7",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/05_formulario_vacio.jpg": {
+      "bytes": 64058,
+      "sha256": "4db91ecf508a9cdad5a5ae63966278518ba8312d8b09e9b14473776799f895f4",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/06_formulario_completo.jpg": {
+      "bytes": 64382,
+      "sha256": "f65d502963ef43ffa262bb8e4ef2d1e4ab97994f274273dff9f9b381857a59e9",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/07_guardado.jpg": {
+      "bytes": 75081,
+      "sha256": "2461a0e7567b7bbd8fda38d7a295b3d433060d5a2111c54cd9677cf4c8636684",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/08_modificar.jpg": {
+      "bytes": 70783,
+      "sha256": "3779b172529cdb61c11788e18d38aa4907c18789fa6889fd09c6390454f70364",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/09_desactivar.jpg": {
+      "bytes": 69971,
+      "sha256": "697fd7a3d03744cec22b9fe8e0e7cebf1addb2d58952c4938f82c9dd0325ccde",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/10_carga_con_errores.jpg": {
+      "bytes": 111549,
+      "sha256": "b646c33fb88ee25ad205987230c0695ef83ae3ceae247f2bf1410db8bc44a3ac",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/11_carga_valida.jpg": {
+      "bytes": 132908,
+      "sha256": "4c9c92b60a241caf39776d27554edae65857b789436331f06c225fb6c9e4044b",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/12_carga_confirmada.jpg": {
+      "bytes": 133559,
+      "sha256": "ca8b7c8efc6f2d6bccb97b91230539cc70770f437e60c179d345574ba69f3d24",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/13_conversion.jpg": {
+      "bytes": 61216,
+      "sha256": "d580ca7d436485ea7e47cf6f2ae564c361bbde43f2605dcce0a7d532985e1000",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/14_bitacora.jpg": {
+      "bytes": 83179,
+      "sha256": "e36220f2a6d9ed899dc5b2a7d2266fa94b391efb79670df7ff7d8fa79ed7e436",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/15_catalogo_supervisor.jpg": {
+      "bytes": 93029,
+      "sha256": "3a82fe8762ebbdfadceafb65359fcc829f10c7c6b61a0ea1f0a0362c2430d943",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/16_movil_consulta.jpg": {
+      "bytes": 73218,
+      "sha256": "c7d69dec95a7268cdf53c649f75fb18ac6c493b7f4a3fa989317b6c4672a7e7d",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/17_movil_formulario.jpg": {
+      "bytes": 66591,
+      "sha256": "638bed6d2d31d40a45626c6f7f819abccfefa8eea42b3b790c48dcbbbf08d1d5",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/antes/recorrido.json": {
+      "bytes": 2450,
+      "sha256": "a18fbe12df8d755b6ec6ad6a7db5ade9f917e5065fce9f5b980100294ab4314c",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/despues/01_ingreso.jpg": {
+      "bytes": 34145,
+      "sha256": "88aa3f11a4ad064953a90162efc49165da7b5484d53573a95abbbe57a1f2040a",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/despues/06_formulario_completo.jpg": {
+      "bytes": 64559,
+      "sha256": "dcc3d10f284a93c8eadac247f0ebd5707057ebf58b8ea006a153706e901373a5",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/despues/13_conversion.jpg": {
+      "bytes": 57774,
+      "sha256": "88df2f0c8616d2483ff64683cf17b76f30b72b35eee20e1e573009d1b2b2d099",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/despues/14_bitacora.jpg": {
+      "bytes": 85774,
+      "sha256": "cf33cc6be6c690df801c37fc01bb1fd9deae95c06d9892838c4454765c383841",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/despues/recorrido.json": {
+      "bytes": 2450,
+      "sha256": "a18fbe12df8d755b6ec6ad6a7db5ade9f917e5065fce9f5b980100294ab4314c",
+      "nuevo_en_v1_2_2": true
+    },
+    "evidencias/heuristica_20261113/heuristica_capturas.py": {
+      "bytes": 6084,
+      "sha256": "18e2ac487776febf83adbdee8992536122d5fb7f0d36cbc92b85d9a700324c0f",
+      "nuevo_en_v1_2_2": true
+    },
     "iniciar.cmd": {
       "bytes": 612,
       "sha256": "ac49de32ec20309ad834cc1f26d1681a453d73578f8c5bda0986de5dfa2eb6f5",
@@ -439,10 +599,11 @@
       "nuevo_despues_de_v1_0": true
     },
     "run_all_tests.py": {
-      "bytes": 7630,
-      "sha256": "e951e8ab565f7ef150e5dea35c7987a167b890e098ef5f39af3adb39397a6bf8",
+      "bytes": 7957,
+      "sha256": "cfc975669ba52d1418ca5d5c4a7cb3f54de370c8100d1e3271c570ab4ca1545d",
       "sha256_v1_0": "2ee17c3291d043e1734a203b46120622db3deba898303b9b2359350ae1d4f1e1",
-      "sha256_v1_1_1": "d116e30015abaf3b2bcace6545d0e8f50aa55f078a4cc6028a0fd9432e59640f"
+      "sha256_v1_1_1": "d116e30015abaf3b2bcace6545d0e8f50aa55f078a4cc6028a0fd9432e59640f",
+      "sha256_v1_2_1": "e951e8ab565f7ef150e5dea35c7987a167b890e098ef5f39af3adb39397a6bf8"
     },
     "schema.sql": {
       "bytes": 4701,
@@ -450,13 +611,15 @@
       "sha256_v1_1_1": "7247199d7d106fffffdd91ccb3d08548edffcd226c1ddd535dba5f6c4d10b9e5"
     },
     "static/app.js": {
-      "bytes": 18389,
-      "sha256": "81df17cfb7cb9a084252caf0b96e3b998e7df8ed5080b84ad9a02ce91faa8668",
-      "sha256_v1_1_1": "b7fa89bbeeee7239cef719bd4f5c8aedd51a4223cfecc98a9453964ba95af5d4"
+      "bytes": 18799,
+      "sha256": "98348407cce543380b0e328518d938e3567f289b0a12c73b902a93bf55dd19c4",
+      "sha256_v1_1_1": "b7fa89bbeeee7239cef719bd4f5c8aedd51a4223cfecc98a9453964ba95af5d4",
+      "sha256_v1_2_1": "81df17cfb7cb9a084252caf0b96e3b998e7df8ed5080b84ad9a02ce91faa8668"
     },
     "static/style.css": {
-      "bytes": 7505,
-      "sha256": "84fbd6f3e96b44cc32d3c8e9d136a88ec3211f618eabeaa8edb880b29658d560"
+      "bytes": 7608,
+      "sha256": "c8599231223e46c9ac553b3bf9bb4339405f2a72833f2553226a84c5b6feba2e",
+      "sha256_v1_2_1": "84fbd6f3e96b44cc32d3c8e9d136a88ec3211f618eabeaa8edb880b29658d560"
     },
     "templates/error.html": {
       "bytes": 330,
@@ -464,11 +627,12 @@
     },
     "templates/index.html": {
       "bytes": 15900,
-      "sha256": "3e862eca9d5ec135be8ba823faa6dc629a47c37efaf9b24f1574966408cee2ca",
+      "sha256": "fbcd1094e9000f5b68b014cda5f6e8ae9ede283510aca449d5fed211d77f8f1c",
       "sha256_v1_0": "f05106af338553c19d0dce58de636f2d91fa6de4d966adf6b9f24ef0fa08bf7d",
       "sha256_origen": "4422123ad420faceab465586d436622e7a81268357f32e17b2a821e0cce960e4",
       "ajuste": "Se omitió únicamente una atribución personal del pie de página en la copia.",
-      "sha256_v1_1_1": "f9740e0bcad4b311a3d7c0285238ae4cb707384f542a5b45183c43ebc4086650"
+      "sha256_v1_1_1": "f9740e0bcad4b311a3d7c0285238ae4cb707384f542a5b45183c43ebc4086650",
+      "sha256_v1_2_1": "3e862eca9d5ec135be8ba823faa6dc629a47c37efaf9b24f1574966408cee2ca"
     },
     "tests/test_complementarias.py": {
       "bytes": 23823,
@@ -489,9 +653,10 @@
       "nuevo_despues_de_v1_0": true
     },
     "tests/test_v12.py": {
-      "bytes": 25524,
-      "sha256": "1ba76a275d32fe93e3206797e208a096b2c90a77dfa6e71d3b5c05ecc1fa956e",
-      "nuevo_en_v1_2": true
+      "bytes": 27453,
+      "sha256": "6a21a7011bc4fcde128f07465db6ce99a4b0fa1607263f15007aaad8b0d04546",
+      "nuevo_en_v1_2": true,
+      "sha256_v1_2_1": "1ba76a275d32fe93e3206797e208a096b2c90a77dfa6e71d3b5c05ecc1fa956e"
     },
     "verificar.cmd": {
       "bytes": 439,

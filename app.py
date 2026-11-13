@@ -645,7 +645,10 @@ def create_app(data_dir=None, testing=False):
             # El catálogo es común a los corredores: sus cambios quedan sin corredor y los revisa el supervisor.
             ids=allowed_brokers()
             where=('corredor_id IN ('+','.join('?'*len(ids))+') OR ' if ids else '')+"(entidad='instrumento' AND corredor_id IS NULL)"; params=ids
-        items=[dict(r) for r in db().execute('SELECT * FROM evento_auditoria WHERE '+where+' ORDER BY id DESC LIMIT 100',params)]
+        # H-03: se agregan el usuario y el código del corredor para que la bitácora no muestre solo identificadores.
+        items=[dict(r) for r in db().execute('SELECT e.*, u.login AS usuario_login, c.codigo AS corredor_codigo FROM evento_auditoria e '
+                                             'LEFT JOIN usuario u ON u.id=e.usuario_id LEFT JOIN corredor c ON c.id=e.corredor_id '
+                                             'WHERE '+where+' ORDER BY e.id DESC LIMIT 100',params)]
         previous='0'*64; integrity=True
         for row in db().execute('SELECT * FROM evento_auditoria ORDER BY id'):
             values=dict(row); values.pop('id'); digest=values.pop('hash_evento')

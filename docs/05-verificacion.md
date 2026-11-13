@@ -16,7 +16,7 @@ El ZIP contiene los mismos archivos del repositorio, salvo los dos documentos `.
 verificar.cmd
 ```
 
-El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 86, "passed": 86, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
+El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 88, "passed": 88, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
 
 ## 5.3 Estrés y servidor WSGI
 

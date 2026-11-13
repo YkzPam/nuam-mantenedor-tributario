@@ -1,0 +1,1 @@
+Imagen sha256:9a432ba629e6ecbb365cdffd64ef002d1920ff928f9e2eb27a619186d1925e8f | 187997852 bytes | linux/amd64 | Usuario=nuam | Cmd=[waitress-serve --listen=0.0.0.0:8765 --threads=8 wsgi:app]

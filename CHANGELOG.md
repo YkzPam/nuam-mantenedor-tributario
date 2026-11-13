@@ -1,5 +1,24 @@
 # Historial de versiones
 
+## 1.2.2 — 13 de noviembre de 2026
+
+Origen: evaluación heurística de la interfaz con las diez heurísticas de Nielsen (`docs/07-evaluacion-heuristica.md`).
+
+Corregido
+
+- H-01: el aviso de la última acción se oculta al cambiar de vista.
+- H-02: la pantalla de ingreso decía "Unidad 2"; ahora indica la Unidad 3.
+- H-03: la bitácora muestra el usuario y el código del corredor en lugar de sus identificadores, y la entidad "calificación" con tilde. La consulta de `/api/audit` agrega esos datos con una unión de lectura; la tabla de eventos y su cadena HMAC no cambian.
+- H-04: los campos inactivos del formulario se distinguen con fondo gris y borde discontinuo.
+- La descripción de DEMO-2 en el informe de `run_all_tests.py` correspondía a un diseño descartado ("un no inscrito nuevo se agrega"); ahora describe la regla entregada.
+
+Agregado
+
+- Casos W19 y W20 en `tests/test_v12.py`. El total pasa de 86 a 88; 88 de 88 dentro del contenedor (`evidencias/ejecucion_completa_20261113_185008_912162`).
+- `evidencias/heuristica_20261113`: capturas antes y después de las correcciones, registro del recorrido y el script que lo generó.
+
+Sin cambios en la escritura de calificaciones: la prueba de estrés de la versión 1.2 sigue vigente. H-05, H-06 y H-07 quedan como recomendaciones antes de un piloto.
+
 ## 1.2.1 — 13 de noviembre de 2026
 
 Origen: revisión de la entrega frente a la rúbrica de la Unidad 3. No cambia el código de la aplicación, el esquema ni las pruebas.

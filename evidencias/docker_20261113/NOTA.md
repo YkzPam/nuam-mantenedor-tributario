@@ -29,3 +29,7 @@ RUN --mount=type=secret,id=ca,target=/tmp/ca.crt PIP_CERT=/tmp/ca.crt pip instal
 El certificado no queda en ninguna capa de la imagen; el historial solo conserva la ruta `/tmp/ca.crt`. El resto de las instrucciones es idéntico. En un equipo con acceso directo a internet basta el primer comando.
 
 Tanto las pruebas como la aplicación publicada se ejecutaron con el usuario sin privilegios `nuam` que define el `Dockerfile`.
+
+## Versión 1.2.2
+
+La imagen se reconstruyó el mismo día con el código de la versión 1.2.2 (`v1_2_2/`), con el mismo procedimiento. `run_all_tests.py` aprobó 88 de 88 dentro de esa imagen (`evidencias/ejecucion_completa_20261113_185008_912162`) y la prueba de humo volvió a aprobar sus seis comprobaciones.

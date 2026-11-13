@@ -353,6 +353,36 @@ class Version12Cases(unittest.TestCase):
         self.assertEqual(self.sql("SELECT count(*) FROM instrumento WHERE codigo='W12-X'")[0][0], 0)
         self.details = dict(duplicate=duplicate.json["error"])
 
+    def test_W19_audit_shows_user_and_broker_names(self):
+        """W19 | Evaluación heurística H-03 | la bitácora entrega usuario y corredor legibles sin romper la cadena HMAC"""
+        operator = self.client()
+        created = self.send(operator, "post", "/api/ratings", PAYLOAD)
+        self.assertEqual(created.status_code, 201)
+        audit = operator.get("/api/audit").json
+        own = [item for item in audit["items"] if item["entidad"] == "calificacion"]
+        self.assertTrue(own)
+        self.assertEqual(own[0]["usuario_login"], "operador_a")
+        self.assertEqual(own[0]["corredor_codigo"], "DEMO-A")
+        self.assertTrue(audit["integrity"])
+        self.assertNotIn("password_hash", json.dumps(audit))
+        script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("row.usuario_login??row.usuario_id", script)
+        self.assertIn("calificacion:'calificación'", script)
+        self.details = dict(usuario=own[0]["usuario_login"], corredor=own[0]["corredor_codigo"], integridad=audit["integrity"])
+
+    def test_W20_heuristic_interface_corrections(self):
+        """W20 | Evaluación heurística H-01, H-02 y H-04 | aviso por vista, unidad correcta e inactivos distinguibles"""
+        script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
+        view = script[script.index("async function switchView(view){"):]
+        view = view[:view.index("\n}")]
+        self.assertIn("notice.hidden=true", view)
+        login_page = self.application.test_client().get("/").get_data(as_text=True)
+        self.assertIn("UNIDAD 3", login_page)
+        self.assertNotIn("UNIDAD 2", login_page)
+        style = (ROOT / "static" / "style.css").read_text(encoding="utf-8")
+        self.assertRegex(style, r"input:disabled,select:disabled\{[^}]*border-style:dashed")
+        self.details = dict(aviso_por_vista=True, unidad="UNIDAD 3", inactivos="borde discontinuo")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
