@@ -58,7 +58,7 @@ Los resultados del 11 de noviembre de 2026 y su explicación están en [docs/03-
 | `evidencias/` | Informes de las ejecuciones de las versiones 1.1 a 1.2 |
 | `docs/` | Documentación técnica numerada y documentos entregados |
 | `CONTRIBUTING.md`, `CHANGELOG.md` | Flujo de trabajo del equipo e historial de versiones |
-| `MANIFIESTO_SHA256.json` | Huella de cada archivo del paquete entregado en DreamShaper (versión 1.2) |
+| `MANIFIESTO_SHA256.json` | Huella de cada archivo del paquete entregado en DreamShaper (versión 1.2.4) |
 
 ## 6. Documentación
 
