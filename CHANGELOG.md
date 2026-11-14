@@ -17,6 +17,10 @@ Agregado
 
 Sin cambios en la API ni en la escritura de calificaciones: la prueba de estrés de la versión 1.2 sigue vigente.
 
+Cambiado
+
+- La declaración de uso de IA (`docs/05-verificacion.md` y anexos D de los documentos) se refiere a un asistente de inteligencia artificial generativa, sin nombrar la herramienta, y cubre las versiones 1.1 a 1.2.4.
+
 ## 1.2.3 — 14 de noviembre de 2026
 
 Sin cambios en el código ni en las pruebas.
