@@ -17,10 +17,10 @@ Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecu
 | Versión 1.0, 11 de noviembre de 2026 | Windows, Python 3.12.14 | 58 de 58 |
 | Versión 1.1, 11 de noviembre de 2026 | Linux, Python 3.12.3, entorno virtual nuevo | 68 de 68 |
 | Versión 1.1, GitHub Actions (ejecución 2) | Windows, Python 3.12 | 65 de 68: tres casos V no cerraban la base temporal |
-| Versión 1.1.1, GitHub Actions ([ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316)) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 68 de 68 en ambos |
+| Versión 1.1.1, GitHub Actions (ejecución 3 de GitHub Actions) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 68 de 68 en ambos |
 | Versión 1.1.1, 11 de noviembre de 2026 | Linux, Python 3.12.3 | 68 de 68 |
 | Versión 1.2, 12 de noviembre de 2026 | Linux, Python 3.12.3 | 86 de 86 |
-| Versión 1.2, GitHub Actions ([ejecución 24](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43169732121)) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 86 de 86 en ambos |
+| Versión 1.2, GitHub Actions (ejecución 24 de GitHub Actions) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 86 de 86 en ambos |
 | Versión 1.2.1, 13 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 86 de 86 |
 | Versión 1.2.2, 13 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 88 de 88 |
 | Versión 1.2.4, 14 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 90 de 90 |

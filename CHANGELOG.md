@@ -20,6 +20,7 @@ Sin cambios en la API ni en la escritura de calificaciones: la prueba de estrés
 Cambiado
 
 - La declaración de uso de IA (`docs/05-verificacion.md` y anexos D de los documentos) se refiere a un asistente de inteligencia artificial generativa, sin nombrar la herramienta, y cubre las versiones 1.1 a 1.2.4.
+- El repositorio se volvió a publicar con el mismo nombre y el mismo historial. Las ejecuciones anteriores de GitHub Actions (2, 3 y 24) se citan por número; las capturas y los registros de esas versiones están en `evidencias/`.
 
 ## 1.2.3 — 14 de noviembre de 2026
 
@@ -87,7 +88,7 @@ Origen: primera ejecución de las pruebas en GitHub Actions con Windows.
 
 Corregido
 
-- En Windows, V06, V07 y V10 dejaban abierta la base SQLite temporal y `tearDown` no podía borrar su carpeta (WinError 32), con 65 de 68 casos aprobados ([ejecución 2](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43135705148)). Las consultas directas de `tests/test_v11.py` usan ahora `contextlib.closing`. La aplicación no cambió.
+- En Windows, V06, V07 y V10 dejaban abierta la base SQLite temporal y `tearDown` no podía borrar su carpeta (WinError 32), con 65 de 68 casos aprobados (ejecución 2 de GitHub Actions). Las consultas directas de `tests/test_v11.py` usan ahora `contextlib.closing`. La aplicación no cambió.
 
 Agregado
 
@@ -97,7 +98,7 @@ Agregado
 
 Verificación
 
-- GitHub Actions: 68 de 68 en Windows y en Ubuntu ([ejecución 3](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43136203316)). Con esto se cumple la repetición en Windows que la versión 1.1 dejó pendiente.
+- GitHub Actions: 68 de 68 en Windows y en Ubuntu (ejecución 3 de GitHub Actions). Con esto se cumple la repetición en Windows que la versión 1.1 dejó pendiente.
 - Linux, Python 3.12.3: 68 de 68 (`evidencias/ejecucion_completa_20261112_014542_576470`).
 
 ## 1.1 — 11 de noviembre de 2026
