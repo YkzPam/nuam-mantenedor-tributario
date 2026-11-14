@@ -12,6 +12,17 @@ La distribución proviene de la planificación y el diseño de la Unidad 2. Cada
 | María Jesús Erices | Facilitación de Scrum y revisión de calidad | `templates/`, `static/`, validaciones de `domain.py`, carpeta `tests/` |
 | Pablo Doussang | Desarrollo e integración de datos | `schema.sql`, rutas de `app.py`, `documentrepo.py`, permisos por rol y corredor |
 
+### 1.1 Aportes en la Unidad 3
+
+Según lo informado por el equipo el 14 de noviembre de 2026:
+
+| Integrante | Aporte en la Unidad 3 |
+|---|---|
+| Pablo Doussang | Diagramas del proyecto y pruebas |
+| María Jesús Erices | Redacción de los documentos de la entrega y presentación |
+
+Estos aportes se hicieron fuera del repositorio. Hasta la versión 1.2.3 los commits se registraron desde una sola cuenta; la sección 5 describe cómo cada integrante puede trabajar con su propia cuenta.
+
 ## 2. Flujo de un cambio
 
 1. Registrar el cambio en el backlog con su origen: historia de usuario (HU01 a HU10), discrepancia del informe de pruebas (D1 a D7) o solicitud del docente.

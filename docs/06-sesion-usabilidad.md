@@ -49,3 +49,7 @@ Se copia `docs/plantilla_sesion_usabilidad.csv` a `evidencias/usabilidad_<fecha>
 | `comentario` | Lo que dijo o hizo la persona, en palabras simples |
 
 Con el archivo lleno, el informe de pruebas cambia el estado de P-UX01, P-UX02 y P-UX05 de "Simulación" al resultado real, y D1 y D2 se actualizan con lo observado, sea favorable o no.
+
+## 6.5 Simulación del 14 de noviembre
+
+No hubo personas disponibles para esta sesión. Con autorización del docente, el protocolo se aplicó a tres perfiles ficticios sobre la versión 1.2.2: una operadora con experiencia, un analista recién incorporado y un operador que usa el celular a 360 px. El resultado fue 14 de 15 tareas sin ayuda (93,3 %); los tres perfiles interpretaron el error de T4 y la facilidad promedio fue 4,0 sobre 5. La tarea que requirió ayuda fue T3 en el celular, por el problema H-05 de la evaluación heurística. Los datos, rotulados como ficticios, están en `evidencias/usabilidad_simulada_20261114`. Esta simulación no reemplaza la sesión con personas: si se realiza, sus resultados se registran aparte y prevalecen.

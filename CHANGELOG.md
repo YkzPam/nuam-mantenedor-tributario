@@ -1,5 +1,12 @@
 # Historial de versiones
 
+## 1.2.3 — 14 de noviembre de 2026
+
+Sin cambios en el código ni en las pruebas.
+
+- Sesión de usabilidad simulada con tres perfiles ficticios, autorizada por el docente porque no hubo personas disponibles: 14 de 15 tareas sin ayuda (93,3 %). La única tarea con ayuda coincide con el hallazgo H-05 (`evidencias/usabilidad_simulada_20261114`, `docs/06-sesion-usabilidad.md`, sección 6.5).
+- `CONTRIBUTING.md`, sección 1.1: aportes de cada integrante en la Unidad 3, según lo informado por el equipo.
+
 ## 1.2.2 — 13 de noviembre de 2026
 
 Origen: evaluación heurística de la interfaz con las diez heurísticas de Nielsen (`docs/07-evaluacion-heuristica.md`).

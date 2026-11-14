@@ -1,0 +1,19 @@
+participante,fecha,tarea,completada_sin_ayuda,tiempo_s,errores,interpreto_mensaje,facilidad_1_5,comentario
+P1-simulado,2026-11-14,T1,si,25,0,,,Escribió el código en el filtro y buscó sin dudar
+P1-simulado,2026-11-14,T2,si,70,0,,,Completó el formulario de arriba hacia abajo; revisó el aviso del catálogo antes de guardar
+P1-simulado,2026-11-14,T3,si,45,0,,,Encontró Modificar y Desactivar en la fila; leyó la confirmación antes de aceptar
+P1-simulado,2026-11-14,T4,si,50,0,si,,Indicó la fila 2 y que faltaba el período
+P1-simulado,2026-11-14,T5,si,40,0,,,Prevalidó y confirmó; notó el conteo de registros incorporados
+P1-simulado,2026-11-14,final,,,,,5,Lo más claro fue el reporte por fila; cambiaría que el formulario no traiga valores de ejemplo
+P2-simulado,2026-11-14,T1,si,35,0,,,Buscó primero en el menú lateral y después usó el filtro
+P2-simulado,2026-11-14,T2,si,120,1,,,Eligió primero el modo factor y volvió a monto al ver el campo Factor directo; no pidió ayuda
+P2-simulado,2026-11-14,T3,si,60,0,,,Dudó entre desactivar y eliminar; la confirmación aclaró que es una baja lógica
+P2-simulado,2026-11-14,T4,si,75,0,si,,Leyó el motivo de la fila y lo explicó con sus palabras
+P2-simulado,2026-11-14,T5,si,55,0,,,Sin problemas
+P2-simulado,2026-11-14,final,,,,,4,Lo más confuso fue la diferencia entre monto y factor; cambiaría la ayuda junto a ese campo
+P3-simulado,2026-11-14,T1,si,40,0,,,Usó la vista a 360 px; el filtro quedó visible arriba
+P3-simulado,2026-11-14,T2,si,110,0,,,El formulario se desplazó bien dentro del diálogo
+P3-simulado,2026-11-14,T3,no,150,2,,,No encontró los botones de la fila porque Acciones quedaba fuera de la pantalla; pidió ayuda y desplazó la tabla hacia el lado
+P3-simulado,2026-11-14,T4,si,80,0,si,,Identificó la fila y el motivo
+P3-simulado,2026-11-14,T5,si,60,0,,,Sin problemas
+P3-simulado,2026-11-14,final,,,,,3,Lo más confuso fue no ver las acciones en el celular; cambiaría la tabla por tarjetas

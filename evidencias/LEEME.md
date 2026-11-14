@@ -1,4 +1,4 @@
-# Evidencias de las versiones 1.1 a 1.2.2
+# Evidencias de las versiones 1.1 a 1.2.3
 
 Ejecuciones del 11 y 12 de noviembre de 2026 (hora de Chile; los nombres de carpeta usan la fecha UTC) en Linux con Python 3.12.3 y las dependencias de `requirements-lock.txt` y `requirements-servidor.txt`, instaladas en un entorno nuevo. Al volver a ejecutar las pruebas se agregan carpetas nuevas con su propia fecha; las de esta lista no se reemplazan.
 
@@ -17,6 +17,7 @@ Ejecuciones del 11 y 12 de noviembre de 2026 (hora de Chile; los nombres de carp
 | `estres_v111_mismo_equipo_20261112` | Versión 1.1.1 medida en el mismo equipo que la 1.2, como referencia (30 y 60 s por nivel) |
 | `estres_v12_disenos_descartados_20261112` | Cuatro diseños de la regla DEMO-2 descartados por la prueba de estrés; `NOTA.md` resume cada uno |
 | `docker_20261113` | Versión 1.2.1: construcción de la imagen con Docker 29.9.3, 86 de 86 pruebas dentro del contenedor y prueba de humo con volumen persistente; `v1_2_2/` repite la construcción y la prueba de humo con el código 1.2.2; `NOTA.md` explica el uso del proxy durante la construcción |
+| `usabilidad_simulada_20261114` | Versión 1.2.3: sesión de usabilidad **simulada** con tres perfiles ficticios, autorizada por el docente por falta de participantes; 14 de 15 tareas sin ayuda |
 | `heuristica_20261113` | Evaluación heurística: 17 capturas de la versión 1.2.1 (`antes/`), 4 capturas con las correcciones de la 1.2.2 (`despues/`), registro de cada recorrido y el script que lo generó |
 | `ejecucion_completa_20261113_185008_912162` | Versión 1.2.2 dentro de la imagen Docker 1.2.2, Python 3.12.16: 88 de 88, con W19 y W20 |
 | `chrome_v12_20261112` | Recorrido de la versión 1.2 con Chrome sin cabeza: catálogo, carga de Bolsa, rechazos por catálogo, botones del operador y sugerencia del formulario. Incluye el script que lo generó y su registro; la consola no mostró errores |

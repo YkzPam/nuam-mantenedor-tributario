@@ -1,13 +1,14 @@
 {
   "unidad": 3,
-  "version": "1.2.2",
-  "fecha": "2026-11-13",
+  "version": "1.2.3",
+  "fecha": "2026-11-14",
   "zip_v1_0_sha256": "3b3e50e69f88992ea882b6badded4aa662aca5afdbf2ea9f9743b951750b1455",
   "zip_v1_1_sha256": "18cd606218ec3154b050fde109b5e551a8bf42e3201524a8fab5c1ed2d5d5c43",
   "zip_v1_1_1_sha256": "c75bcd6788e7997e0aad45a1f4a48cea203a7b187823579c2f7d84f2c817836e",
   "zip_v1_2_sha256": "d75f3ff07bedf88c380369874d3c6f1c8a4905ac7b587c4031fa5d508735516c",
   "zip_v1_2_1_sha256": "d386877d1a316b412294e8c6db0cb3021f32cfffbe68ebd290ce2912a953b303",
-  "nota": "Huella por archivo. sha256_v1_2_1 indica que el archivo cambió respecto del paquete 1.2.1 y nuevo_en_v1_2_2 marca los agregados en 1.2.2. sha256_v1_2 y nuevo_en_v1_2_1 comparan con el paquete 1.2; sha256_v1_1_1 y nuevo_en_v1_2 comparan con el 1.1.1; sha256_v1_0 y nuevo_despues_de_v1_0, con el 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
+  "zip_v1_2_2_sha256": "e7d4eaa429c9fbd9f0c7bd764ba6f6d71068d6281be12c21f5b547d680db2a51",
+  "nota": "Huella por archivo. sha256_v1_2_2 indica que el archivo cambió respecto del paquete 1.2.1 y nuevo_en_v1_2_3 marca los agregados en 1.2.2. sha256_v1_2 y nuevo_en_v1_2_1 comparan con el paquete 1.2; sha256_v1_1_1 y nuevo_en_v1_2 comparan con el 1.1.1; sha256_v1_0 y nuevo_despues_de_v1_0, con el 1.0. evidencias/ contiene resultados generados. Los .docx de docs/ se entregan por separado y no forman parte del paquete.",
   "files": {
     ".dockerignore": {
       "bytes": 50,
@@ -37,18 +38,20 @@
       "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
     },
     "CHANGELOG.md": {
-      "bytes": 10122,
-      "sha256": "07900267d539ad5de8bf69d56b43f4b1741853b2dac12cedd6eb54645cff8022",
+      "bytes": 10628,
+      "sha256": "9e90e49bf2158f6a15d2c5a637d82414ec5f8fbf22788ecd894c90230c64674d",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
       "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
-      "sha256_v1_2_1": "15f94a31e66e45af57ad1eacef9d8bff8491427f9fe8273a14a1452b307c5f1a"
+      "sha256_v1_2_1": "15f94a31e66e45af57ad1eacef9d8bff8491427f9fe8273a14a1452b307c5f1a",
+      "sha256_v1_2_2": "07900267d539ad5de8bf69d56b43f4b1741853b2dac12cedd6eb54645cff8022"
     },
     "CONTRIBUTING.md": {
-      "bytes": 4072,
-      "sha256": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383",
+      "bytes": 4563,
+      "sha256": "b885f7f1f941276053bc77f049637a8ac46fcfcff2fe58029f44ff89504cf488",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70"
+      "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
+      "sha256_v1_2_2": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383"
     },
     "Dockerfile": {
       "bytes": 911,
@@ -92,20 +95,22 @@
       "sha256_v1_1_1": "fd03733f470ce58d260e603827b24b25c800c2f80ccc373541d8bb0145ff394e"
     },
     "docs/03-pruebas-y-resultados.md": {
-      "bytes": 5876,
-      "sha256": "917728c9f67895b5571189518833d2f07c6cc2cf66664b3ddc4023ddde4edbce",
+      "bytes": 5909,
+      "sha256": "ab510b1f315322aafc494c88105fa1dc620f95a0f60b193a55e324f34bde13fb",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "521da6cd6ed9cf27e89072032d36cb95e7c94cd73e6236c9c9734cb255e681c8",
       "sha256_v1_2": "e83fa630d066a9e193f2692ed83bcf2c36bf7cf14c2bc263bf87582cd2973394",
-      "sha256_v1_2_1": "5b408ca9885561cd1cb4a12a4639574a017c02a6bc68d7fc25d3bbf82131ab10"
+      "sha256_v1_2_1": "5b408ca9885561cd1cb4a12a4639574a017c02a6bc68d7fc25d3bbf82131ab10",
+      "sha256_v1_2_2": "917728c9f67895b5571189518833d2f07c6cc2cf66664b3ddc4023ddde4edbce"
     },
     "docs/04-rubrica.md": {
-      "bytes": 3126,
-      "sha256": "1037f4ea3b2566de4a2c51f09616f4edecf0570ee3739ab0fbfbe2f881223fcf",
+      "bytes": 3174,
+      "sha256": "4e9efa1413c002e030e44a77a6daa7bfe58c4dad8e83411a331445d0bad01776",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "4e8a713103b5a362ef23e5adc25f8901eddbb84b40fdd45bf2891b6d6f1fe65e",
       "sha256_v1_2": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b",
-      "sha256_v1_2_1": "fd90d4fb6f2bf7d2c8eaa42defedab0e5199a3e8556b215e80f3080a7da07003"
+      "sha256_v1_2_1": "fd90d4fb6f2bf7d2c8eaa42defedab0e5199a3e8556b215e80f3080a7da07003",
+      "sha256_v1_2_2": "1037f4ea3b2566de4a2c51f09616f4edecf0570ee3739ab0fbfbe2f881223fcf"
     },
     "docs/05-verificacion.md": {
       "bytes": 3178,
@@ -116,9 +121,10 @@
       "sha256_v1_2_1": "65045f0ad563cac81dbc0f6325718426b660e32783af876d9321b9e22c5caff8"
     },
     "docs/06-sesion-usabilidad.md": {
-      "bytes": 3958,
-      "sha256": "6846869e16bcddd1431d58865ab5d16a97f94aa036300bf3f27f444e28a33b59",
-      "nuevo_en_v1_2_1": true
+      "bytes": 4712,
+      "sha256": "04e075cdc5ec9fbc71e2df94ae958e8421824659f9be94a16ed1eabb5f8ba135",
+      "nuevo_en_v1_2_1": true,
+      "sha256_v1_2_2": "6846869e16bcddd1431d58865ab5d16a97f94aa036300bf3f27f444e28a33b59"
     },
     "docs/07-evaluacion-heuristica.md": {
       "bytes": 5687,
@@ -169,11 +175,12 @@
       "nuevo_en_v1_2": true
     },
     "evidencias/LEEME.md": {
-      "bytes": 4787,
-      "sha256": "391d3e1f27cc2a5dc204384becac98892dc1e67bd9eb3ad9555c4bf9e478e361",
+      "bytes": 4984,
+      "sha256": "5aaa66a7336965abecdab5e0d767c7e7f777e370cd7dabdf62ab2d9a8c8ef7a2",
       "sha256_v1_1_1": "143f0eaecd4a996c787e5b437d67faffe841a419830889756832bcedf41abd04",
       "sha256_v1_2": "4bb1b2446b5cbb9e61746bbf9903ea758d8e3338ebcf49bbb50333164a6e476f",
-      "sha256_v1_2_1": "9ed5f8b8aecd3a28483a8a7375cf22044a8a26456f51d661c658b1a31486eae2"
+      "sha256_v1_2_1": "9ed5f8b8aecd3a28483a8a7375cf22044a8a26456f51d661c658b1a31486eae2",
+      "sha256_v1_2_2": "391d3e1f27cc2a5dc204384becac98892dc1e67bd9eb3ad9555c4bf9e478e361"
     },
     "evidencias/chrome_d3_20261111/v1_0.json": {
       "bytes": 1069,
@@ -572,6 +579,16 @@
       "bytes": 6084,
       "sha256": "18e2ac487776febf83adbdee8992536122d5fb7f0d36cbc92b85d9a700324c0f",
       "nuevo_en_v1_2_2": true
+    },
+    "evidencias/usabilidad_simulada_20261114/LEEME.md": {
+      "bytes": 1479,
+      "sha256": "e4c3a0cd3d6593fc63fd530d0bbb9563825cca6d35559bdf03c1badd00ecc71c",
+      "nuevo_en_v1_2_3": true
+    },
+    "evidencias/usabilidad_simulada_20261114/resultados_simulados.csv": {
+      "bytes": 1981,
+      "sha256": "f7aac6e88a7553a1bb0bd29d7418e89db49152e440cd9f83091a6667c715e961",
+      "nuevo_en_v1_2_3": true
     },
     "iniciar.cmd": {
       "bytes": 612,
