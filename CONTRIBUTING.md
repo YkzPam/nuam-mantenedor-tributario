@@ -18,10 +18,11 @@ Según lo informado por el equipo el 14 de noviembre de 2026:
 
 | Integrante | Aporte en la Unidad 3 |
 |---|---|
+| Benjamín Concha | Orden del backlog, regla DEMO-1 (conversión de montos a factores) y bitácora de auditoría |
 | Pablo Doussang | Diagramas del proyecto y pruebas |
 | María Jesús Erices | Redacción de los documentos de la entrega y presentación |
 
-Estos aportes se hicieron fuera del repositorio. Hasta la versión 1.2.3 los commits se registraron desde una sola cuenta; la sección 5 describe cómo cada integrante puede trabajar con su propia cuenta.
+Los aportes de Pablo y María Jesús se hicieron fuera del repositorio. Hasta la versión 1.2.3 los commits se registraron desde una sola cuenta; la sección 5 describe cómo cada integrante puede trabajar con su propia cuenta.
 
 ## 2. Flujo de un cambio
 

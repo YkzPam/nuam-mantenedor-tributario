@@ -38,8 +38,8 @@
       "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
     },
     "CHANGELOG.md": {
-      "bytes": 10628,
-      "sha256": "9e90e49bf2158f6a15d2c5a637d82414ec5f8fbf22788ecd894c90230c64674d",
+      "bytes": 10668,
+      "sha256": "d349bf6efdc92e0fd67f3e4660c6e05461b731417c44dda1fb51e2aa1687d904",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
       "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
@@ -47,8 +47,8 @@
       "sha256_v1_2_2": "07900267d539ad5de8bf69d56b43f4b1741853b2dac12cedd6eb54645cff8022"
     },
     "CONTRIBUTING.md": {
-      "bytes": 4563,
-      "sha256": "b885f7f1f941276053bc77f049637a8ac46fcfcff2fe58029f44ff89504cf488",
+      "bytes": 4702,
+      "sha256": "613f38030984cdc84a8755640a3abd512453b80c89265a7b7c5ce4c8e73a43d1",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
       "sha256_v1_2_2": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383"
