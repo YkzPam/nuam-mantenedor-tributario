@@ -1,5 +1,22 @@
 # Historial de versiones
 
+## 1.2.4 — 14 de noviembre de 2026
+
+Origen: hallazgos H-05 a H-07 de la evaluación heurística (`docs/07-evaluacion-heuristica.md`).
+
+Corregido
+
+- H-05: a 700 px o menos, la consulta muestra cada calificación como tarjeta, con sus datos rotulados y las acciones visibles sin desplazamiento lateral.
+- H-06: el formulario de creación abre vacío; los ejemplos quedan como texto de ayuda.
+- H-07: validación propia en español que indica todos los campos pendientes de una vez, los marca y lleva el foco al primero.
+
+Agregado
+
+- Casos W21 y W22. El total pasa de 88 a 90; 90 de 90 dentro de la imagen Docker 1.2.4 (`evidencias/ejecucion_completa_20261114_153652_447706`).
+- Capturas posteriores en `evidencias/heuristica_20261113/despues_v1_2_4` y nueva prueba de humo del contenedor en `evidencias/docker_20261113/v1_2_4`.
+
+Sin cambios en la API ni en la escritura de calificaciones: la prueba de estrés de la versión 1.2 sigue vigente.
+
 ## 1.2.3 — 14 de noviembre de 2026
 
 Sin cambios en el código ni en las pruebas.

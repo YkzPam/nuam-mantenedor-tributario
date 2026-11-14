@@ -5,7 +5,7 @@ La tabla relaciona cada indicador con la evidencia del repositorio y de los docu
 | Indicador | Puntos | Evidencia | Observación |
 | --- | ---: | --- | --- |
 | 3.1.1.1 Interfaces y necesidades del negocio | 5 | Diez historias de usuario implementadas (documento de asesoría, 6.2); catálogo y prioridad de la Bolsa desde la versión 1.2; `templates/`, `static/` | Reglas DEMO-2 y DEMO-3 pendientes de validación de NUAM |
-| 3.1.1.2 Lineamientos estéticos y funcionales | 5 | Revisión en Chrome a 360, 768 y 1440 px y con teclado; UI01 a UI08; V01 | Evaluación heurística con diez heurísticas y siete hallazgos, cuatro corregidos ([07-evaluacion-heuristica.md](07-evaluacion-heuristica.md)); usabilidad con perfiles simulados; la sesión con personas sigue [06-sesion-usabilidad.md](06-sesion-usabilidad.md) |
+| 3.1.1.2 Lineamientos estéticos y funcionales | 5 | Revisión en Chrome a 360, 768 y 1440 px y con teclado; UI01 a UI08; V01 | Evaluación heurística con diez heurísticas y siete hallazgos, todos corregidos ([07-evaluacion-heuristica.md](07-evaluacion-heuristica.md)); usabilidad con perfiles simulados; la sesión con personas sigue [06-sesion-usabilidad.md](06-sesion-usabilidad.md) |
 | 3.1.2.3 Estructura de la base de datos | 5 | `schema.sql` (once tablas; catálogo de instrumentos); [01-arquitectura-y-datos.md](01-arquitectura-y-datos.md) | — |
 | 3.1.2.4 Optimización y normalización | 5 | Tercera forma normal, índices, modo WAL y su medición en [03-pruebas-y-resultados.md](03-pruebas-y-resultados.md) | — |
 | 3.1.3.5 Patrones de seguridad | 5 | [02-seguridad.md](02-seguridad.md); suites S, CP, V y W | — |

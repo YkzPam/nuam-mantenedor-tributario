@@ -1,4 +1,4 @@
-"""Ejecuta las cinco suites del paquete v1.2.2 y conserva cada ejecución en evidencias/."""
+"""Ejecuta las cinco suites del paquete v1.2.4 y conserva cada ejecución en evidencias/."""
 from datetime import datetime, timezone
 import gc
 import hashlib
@@ -57,7 +57,7 @@ report = dict(executed_utc=datetime.now(timezone.utc).isoformat(),
               tests=sum(group["tests"] for group in groups), passed=sum(group["passed"] for group in groups),
               failed=sum(group["failed"] for group in groups), errors=sum(group["errors"] for group in groups),
               suites=groups, source_directory=str(CANDIDATE),
-              predecessor_zip_sha256="d386877d1a316b412294e8c6db0cb3021f32cfffbe68ebd290ce2912a953b303",
+              predecessor_zip_sha256="2b739ed09f3d4fb16f7ed7a3c8cef8f638eabb6bdfe10fe52fb61a1e738a82cb",
               source_sha256={str(path.relative_to(CANDIDATE)).replace("\\", "/"): hashlib.sha256(path.read_bytes()).hexdigest() for path in sources},
               python=sys.version, executable=sys.executable, dependencies=str(VENDOR), isolated=True,
               corrections=["Ownership de archivos registrado antes de escribir; rollback de preview limpia todos los archivos creados.",
@@ -73,12 +73,13 @@ report = dict(executed_utc=datetime.now(timezone.utc).isoformat(),
                            "v1.2: regla DEMO-2, definida por el equipo y pendiente de validación de NUAM: catálogo de instrumentos por mercado; un inscrito debe existir habilitado y un no inscrito fuera del catálogo se admite y, si figura, debe estar habilitado.",
                            "v1.2: regla DEMO-3, definida por el equipo y pendiente de validación de NUAM: el archivo de Bolsa, cargado solo por el supervisor, reemplaza el registro del corredor y la bitácora conserva los valores anteriores.",
                            "v1.2: una base anterior al esquema 2 se respalda completa en data/respaldo_v1_<fecha>/ antes de crear el esquema nuevo.",
-                           "v1.2.2: correcciones de la evaluación heurística: el aviso de una acción no pasa a otra vista (H-01), la pantalla de ingreso indica la Unidad 3 (H-02), la bitácora muestra usuario y corredor legibles (H-03) y los campos inactivos se distinguen (H-04); W19 y W20."],
+                           "v1.2.2: correcciones de la evaluación heurística: el aviso de una acción no pasa a otra vista (H-01), la pantalla de ingreso indica la Unidad 3 (H-02), la bitácora muestra usuario y corredor legibles (H-03) y los campos inactivos se distinguen (H-04); W19 y W20.",
+                           "v1.2.4: la consulta se muestra como tarjetas con acciones visibles en pantallas angostas (H-05), el formulario abre sin valores de ejemplo (H-06) y una validación propia en español indica todos los campos pendientes (H-07); W21 y W22."],
               limits="Ejecución técnica local con bases/archivos temporales. No modifica base visible, fuente ZIP ni Downloads. No prueba infraestructura NUAM, dispositivos físicos ni acciones/comentarios humanos. Fallos intermedios se inyectan deliberadamente.")
 destination = CANDIDATE / "evidencias" / ("ejecucion_completa_" + datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f"))
 destination.mkdir(parents=True, exist_ok=False)
 (destination / "resultados_corregidos.json").write_text(json.dumps(report, ensure_ascii=False, indent=2)+"\n", encoding="utf-8")
-lines = ["# Pruebas del paquete de la Unidad 3 (v1.2.2)", "", f"Fecha UTC: {report['executed_utc']}", "",
+lines = ["# Pruebas del paquete de la Unidad 3 (v1.2.4)", "", f"Fecha UTC: {report['executed_utc']}", "",
          f"Total real: {report['passed']}/{report['tests']} aprobadas, {report['failed']} fallas, {report['errors']} errores.", "",
          "| Suite | Casos | Aprobados | Fallas | Errores |", "|---|---:|---:|---:|---:|"]
 for group in groups:

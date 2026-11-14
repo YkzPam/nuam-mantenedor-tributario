@@ -8,7 +8,7 @@
 | `tests/test_ui_revision.py` | 8 | Revisión automatizada de interfaz (UI) |
 | `tests/test_complementarias.py` | 10 | Casos complementarios del plan (CP): guardados concurrentes, fallos inyectados, CSRF y archivos de ejemplo |
 | `tests/test_v11.py` | 10 | Regresión de la versión 1.1 (V): campo instrumento, ícono, registro operativo, permiso de factores, WSGI y modo WAL |
-| `tests/test_v12.py` | 20 | Versión 1.2 (W01 a W18): catálogo de instrumentos (DEMO-2), prioridad de la Bolsa (DEMO-3), cambios del catálogo durante una operación, respaldo del esquema anterior, ejemplos 06 y 07 e interfaz por perfil. Versión 1.2.2 (W19 y W20): correcciones de la evaluación heurística |
+| `tests/test_v12.py` | 22 | Versión 1.2 (W01 a W18): catálogo de instrumentos (DEMO-2), prioridad de la Bolsa (DEMO-3), cambios del catálogo durante una operación, respaldo del esquema anterior, ejemplos 06 y 07 e interfaz por perfil. Versiones 1.2.2 y 1.2.4 (W19 a W22): correcciones de la evaluación heurística |
 
 Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecuta las cinco suites y deja en `evidencias/` un informe JSON y Markdown con fecha, entorno, resultado por caso y huella de las fuentes.
 
@@ -23,6 +23,7 @@ Cada caso crea sus propias bases y carpetas temporales. `run_all_tests.py` ejecu
 | Versión 1.2, GitHub Actions ([ejecución 24](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43169732121)) | Windows con `verificar.cmd` y Ubuntu, Python 3.12 | 86 de 86 en ambos |
 | Versión 1.2.1, 13 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 86 de 86 |
 | Versión 1.2.2, 13 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 88 de 88 |
+| Versión 1.2.4, 14 de noviembre de 2026 | Contenedor Docker, Python 3.12.16 | 90 de 90 |
 
 El flujo de GitHub Actions (`.github/workflows/verificacion.yml`) repite las suites en Windows y Ubuntu con Python 3.12 en cada cambio del repositorio. Su primera ejecución en Windows detectó que V06, V07 y V10 dejaban abierta la base SQLite temporal, lo que impedía borrar su carpeta (WinError 32); la versión 1.1.1 corrigió esas pruebas sin cambiar la aplicación.
 

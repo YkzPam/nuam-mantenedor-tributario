@@ -37,12 +37,12 @@ async function loadRatings(){
   for(const [id,name] of [['filter-broker','broker'],['filter-market','market'],['filter-period','period'],['filter-origin','origin'],['filter-query','q']])if($(id).value)params.set(name,$(id).value);
   const data=await api('ratings?'+params);$('rating-rows').replaceChildren();
   for(const row of data.items){
-    const inst=element('td',{},row.instrumento,element('br'),element('span',{class:'badge',text:row.inscrito?'Inscrito':'No inscrito'}));
-    const buttons=element('td',{},action('Detalle',()=>showDetail(row.id)),action('Modificar',()=>editRating(row.id)),action('Desactivar',()=>openDelete(row)));
-    const bolsa=row.origen==='bolsa-DEMO', origin=element('td',{},row.origen);
+    const inst=element('td',{'data-label':'Instrumento'},row.instrumento,element('br'),element('span',{class:'badge',text:row.inscrito?'Inscrito':'No inscrito'}));
+    const buttons=element('td',{'data-label':'Acciones'},action('Detalle',()=>showDetail(row.id)),action('Modificar',()=>editRating(row.id)),action('Desactivar',()=>openDelete(row)));
+    const bolsa=row.origen==='bolsa-DEMO', origin=element('td',{'data-label':'Origen'},row.origen);
     if(bolsa)origin.append(element('br'),element('span',{class:'badge',text:'Prioridad Bolsa'}));
     if(bolsa&&me.user.rol!=='supervisor')for(const button of [...buttons.children].slice(1)){button.disabled=true;button.title='Regla DEMO-3: solo el supervisor cambia registros informados por Bolsa.';}
-    $('rating-rows').append(element('tr',{},inst,element('td',{},row.corredor+' / '+row.mercado),element('td',{},row.periodo),element('td',{},row.calificacion),element('td',{},row.factor),origin,buttons));
+    $('rating-rows').append(element('tr',{},inst,element('td',{'data-label':'Corredor / mercado'},row.corredor+' / '+row.mercado),element('td',{'data-label':'Período'},row.periodo),element('td',{'data-label':'Calificación'},row.calificacion),element('td',{'data-label':'Factor'},row.factor),origin,buttons));
   }
   if(!data.items.length)$('rating-rows').append(element('tr',{},element('td',{colspan:7,text:'Sin registros que coincidan con los filtros.'})));
   $('count').textContent=data.total+' registro(s) · Página '+data.page+' de '+data.pages;
@@ -78,7 +78,7 @@ function ratingMode(){
   $('rating-amount').disabled=direct;$('rating-base').disabled=direct;$('rating-amount').required=!direct;$('rating-base').required=!direct;
 }
 function newRating(){
-  $('rating-form').reset();$('rating-id').value='';$('rating-version').value='';$('rating-broker').disabled=false;$('rating-title').textContent='Crear calificación';$('form-error').textContent='';$('catalog-hint').textContent='';ratingMode();$('edit-dialog').showModal();
+  $('rating-form').reset();for(const c of $('rating-form').querySelectorAll('[aria-invalid]'))c.removeAttribute('aria-invalid');$('rating-id').value='';$('rating-version').value='';$('rating-broker').disabled=false;$('rating-title').textContent='Crear calificación';$('form-error').textContent='';$('catalog-hint').textContent='';ratingMode();$('edit-dialog').showModal();
 }
 async function editRating(id){
   const {item}=await api('ratings/'+id);$('rating-title').textContent='Modificar calificación';$('rating-id').value=id;$('rating-version').value=item.version;
@@ -96,8 +96,23 @@ function openDelete(row){
   $('delete-dialog').showModal();
   $('cancel-delete').focus();
 }
+// H-07: validación propia en español que indica todos los campos pendientes de una vez.
+function formProblems(form){
+  const problems=[];
+  for(const control of form.querySelectorAll('input,select')){
+    control.removeAttribute('aria-invalid');
+    if(control.disabled||control.type==='hidden'||control.checkValidity())continue;
+    const label=form.querySelector('label[for="'+control.id+'"]');
+    const reason=control.validity.valueMissing?'falta completar':'formato no válido';
+    control.setAttribute('aria-invalid','true');
+    problems.push({control,text:(label?label.textContent:control.id)+' ('+reason+')'});
+  }
+  return problems;
+}
 async function saveRating(event){
   event.preventDefault();
+  const problems=formProblems($('rating-form'));
+  if(problems.length){$('form-error').textContent='Revisa estos campos: '+problems.map(p=>p.text).join(', ')+'.';problems[0].control.focus();return;}
   const payload={};for(const [field,key] of [['broker','broker'],['market','market'],['period','period'],['instrument','instrument'],['name','rating'],['registered','registered'],['mode','mode'],['amount','amount'],['base','base'],['factor','factor'],['version','version']])payload[key]=$('rating-'+field).value;
   const id=$('rating-id').value;
   try{await api(id?'ratings/'+id:'ratings',id?'PUT':'POST',payload);$('edit-dialog').close();notify(id?'Calificación modificada y registrada en bitácora.':'Calificación creada y registrada en bitácora.');await loadRatings();await loadCatalog();}

@@ -29,15 +29,15 @@ La evaluación la hizo un solo evaluador: el asistente de IA declarado en `docs/
 | H-02 | Ingreso | El rótulo decía "Proyecto Integrado · Unidad 2" en la entrega de la Unidad 3 | 4 | 1 | Corregido en 1.2.2 |
 | H-03 | Bitácora | Cada evento mostraba "Usuario 1 · Corredor 1" en vez del usuario y el corredor, y la entidad "calificacion" sin tilde | 2 | 2 | Corregido en 1.2.2 |
 | H-04 | Formulario | En modo monto, el campo Factor directo está inactivo pero se veía igual que uno activo, con su valor de ejemplo | 1 | 1 | Corregido en 1.2.2 |
-| H-05 | Consulta a 360 px | Las columnas Factor, Origen y Acciones quedan fuera de la pantalla; hay que desplazar la tabla hacia el lado sin una señal que lo indique | 6 | 2 | Recomendación para el piloto |
-| H-06 | Formulario de creación | El formulario abre con valores de ejemplo (calificación, monto, base y factor); se podrían guardar sin revisarlos | 5 | 2 | Se mantiene en la demostración; recomendación para el piloto |
-| H-07 | Formulario enviado vacío | La validación nativa del navegador marca un campo a la vez, en el idioma del navegador ("Please fill out this field" en Chrome en inglés) | 9 | 1 | Recomendación para el piloto |
+| H-05 | Consulta a 360 px | Las columnas Factor, Origen y Acciones quedan fuera de la pantalla; hay que desplazar la tabla hacia el lado sin una señal que lo indique | 6 | 2 | Corregido en 1.2.4 |
+| H-06 | Formulario de creación | El formulario abre con valores de ejemplo (calificación, monto, base y factor); se podrían guardar sin revisarlos | 5 | 2 | Corregido en 1.2.4 |
+| H-07 | Formulario enviado vacío | La validación nativa del navegador marca un campo a la vez, en el idioma del navegador ("Please fill out this field" en Chrome en inglés) | 9 | 1 | Corregido en 1.2.4 |
 
 ## 7.4 Correcciones y verificación
 
 La versión 1.2.2 corrige H-01 a H-04. El aviso se oculta al cambiar de vista. La pantalla de ingreso indica la Unidad 3. La consulta de la bitácora agrega el usuario y el código del corredor con una unión de lectura, sin modificar la tabla de eventos ni su cadena HMAC, y la interfaz muestra "calificación" con tilde. Los campos inactivos usan fondo gris y borde discontinuo. Los casos W19 y W20 verifican estos cambios, y las cinco suites aprobaron 88 de 88 dentro del contenedor (`evidencias/ejecucion_completa_20261113_185008_912162`). Las capturas posteriores están en `evidencias/heuristica_20261113/despues`. Los cambios no tocan la escritura de calificaciones, por lo que la prueba de estrés de la versión 1.2 sigue vigente.
 
-H-05, H-06 y H-07 quedan como recomendaciones antes de un piloto: mostrar la consulta como tarjetas en pantallas angostas, abrir el formulario vacío y reemplazar la validación nativa por mensajes propios que indiquen todos los campos faltantes a la vez.
+La versión 1.2.4 corrige H-05 a H-07. A 700 píxeles o menos, cada calificación se muestra como una tarjeta con sus datos rotulados y los botones Detalle, Modificar y Desactivar visibles, sin desplazamiento lateral. El formulario de creación abre vacío y los ejemplos quedan solo como texto de ayuda dentro de cada campo. La validación nativa del navegador se reemplazó por una propia que, al guardar, indica en español todos los campos pendientes de una vez, por ejemplo "Revisa estos campos: Período (falta completar), Monto ficticio (falta completar)", marca esos campos y lleva el foco al primero. Los casos W21 y W22 verifican estos cambios. Las cinco suites aprobaron 90 de 90 dentro de la imagen Docker 1.2.4 (`evidencias/ejecucion_completa_20261114_153652_447706`), y las capturas posteriores están en `evidencias/heuristica_20261113/despues_v1_2_4`. Con estas correcciones, los siete hallazgos de la evaluación quedan resueltos.
 
 ## 7.5 Referencias
 

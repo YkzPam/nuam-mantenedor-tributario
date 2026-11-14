@@ -1,0 +1,32 @@
+[
+  {
+    "prueba": "Login sin token CSRF rechazado",
+    "ok": true,
+    "detalle": "HTTP 403"
+  },
+  {
+    "prueba": "Login de supervisor con CSRF",
+    "ok": true,
+    "detalle": "HTTP 200"
+  },
+  {
+    "prueba": "Catálogo semilla visible",
+    "ok": true,
+    "detalle": "HTTP 200, 1 resultado(s)"
+  },
+  {
+    "prueba": "Alta de instrumento por supervisor",
+    "ok": true,
+    "detalle": "HTTP 201, código DEMO-DOCKER-123654"
+  },
+  {
+    "prueba": "Operador no puede modificar el catálogo",
+    "ok": true,
+    "detalle": "HTTP 403"
+  },
+  {
+    "prueba": "El dato persiste en el volumen tras reiniciar",
+    "ok": true,
+    "detalle": "HTTP 200, 1 resultado(s)"
+  }
+]

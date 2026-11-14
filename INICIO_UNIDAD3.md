@@ -17,7 +17,7 @@ El paquete contiene el prototipo local, sus dependencias fijadas por versión, s
 | `Dockerfile`, `.dockerignore` | Imagen opcional con Waitress; construida y verificada el 13 de noviembre |
 | `requirements-lock.txt` | Dependencias de la aplicación con versión exacta |
 | `requirements-servidor.txt` | Waitress, solo para la opción de la sección 5 |
-| `run_all_tests.py`, `tests/` | 88 casos en cinco suites |
+| `run_all_tests.py`, `tests/` | 90 casos en cinco suites |
 | `pruebas_estres.py` | Carga sostenida de 20, 50 y 100 clientes y lotes sucesivos de 1.000 filas |
 | `ejemplos/` | Siete CSV ficticios: dos válidos, tres con errores, uno de Bolsa (06) y uno rechazado por el catálogo (07) |
 | `preparar.cmd`, `iniciar.cmd`, `verificar.cmd` | Accesos para Windows: preparar el entorno, abrir la demostración y ejecutar las pruebas |
@@ -92,7 +92,7 @@ docker run --rm -p 127.0.0.1:8765:8765 -v nuam-datos:/datos nuam-mantenedor:1.2
 .\.venv\Scripts\python.exe run_all_tests.py
 ```
 
-La ejecución utiliza bases temporales y genera su propio informe en `evidencias/`. Los 88 casos cubren dominio, integración, seguridad, rendimiento local, comprobaciones automatizadas de interfaz y la regresión de las versiones 1.1, 1.2 y 1.2.2.
+La ejecución utiliza bases temporales y genera su propio informe en `evidencias/`. Los 90 casos cubren dominio, integración, seguridad, rendimiento local, comprobaciones automatizadas de interfaz y la regresión de las versiones 1.1, 1.2, 1.2.2 y 1.2.4.
 
 La prueba de estrés se ejecuta aparte porque dura varios minutos:
 

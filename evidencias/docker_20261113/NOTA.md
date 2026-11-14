@@ -33,3 +33,7 @@ Tanto las pruebas como la aplicación publicada se ejecutaron con el usuario sin
 ## Versión 1.2.2
 
 La imagen se reconstruyó el mismo día con el código de la versión 1.2.2 (`v1_2_2/`), con el mismo procedimiento. `run_all_tests.py` aprobó 88 de 88 dentro de esa imagen (`evidencias/ejecucion_completa_20261113_185008_912162`) y la prueba de humo volvió a aprobar sus seis comprobaciones.
+
+## Versión 1.2.4
+
+Reconstrucción del 14 de noviembre con el código de la versión 1.2.4 (`v1_2_4/`). `run_all_tests.py` aprobó 90 de 90 dentro de esa imagen (`evidencias/ejecucion_completa_20261114_153652_447706`) y la prueba de humo aprobó sus seis comprobaciones.

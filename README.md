@@ -34,7 +34,7 @@ Todas las cuentas usan la contraseña ficticia `Demo2026!`.
 
 ## 4. Pruebas
 
-Hacer doble clic en `verificar.cmd`. Ejecuta las cinco suites (88 casos) con bases temporales y deja el informe en `evidencias/`. GitHub Actions repite las mismas suites en Windows, con `verificar.cmd`, y en Ubuntu en cada cambio del repositorio; en la versión 1.2, la [ejecución 24](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43169732121) aprobó 86 de 86 en ambos.
+Hacer doble clic en `verificar.cmd`. Ejecuta las cinco suites (90 casos) con bases temporales y deja el informe en `evidencias/`. GitHub Actions repite las mismas suites en Windows, con `verificar.cmd`, y en Ubuntu en cada cambio del repositorio; en la versión 1.2, la [ejecución 24](https://github.com/YkzPam/nuam-mantenedor-tributario/actions/runs/43169732121) aprobó 86 de 86 en ambos.
 
 La prueba de estrés se ejecuta aparte porque dura varios minutos:
 

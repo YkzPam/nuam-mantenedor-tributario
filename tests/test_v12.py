@@ -383,6 +383,37 @@ class Version12Cases(unittest.TestCase):
         self.assertRegex(style, r"input:disabled,select:disabled\{[^}]*border-style:dashed")
         self.details = dict(aviso_por_vista=True, unidad="UNIDAD 3", inactivos="borde discontinuo")
 
+    def test_W21_narrow_screen_cards_show_actions(self):
+        """W21 | Evaluación heurística H-05 | a 700 px o menos cada calificación es una tarjeta con sus acciones visibles"""
+        page = self.client().get("/").get_data(as_text=True)
+        self.assertIn('<table class="card-table">', page)
+        script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
+        for label in ("Instrumento", "Corredor / mercado", "Período", "Calificación", "Factor", "Origen", "Acciones"):
+            self.assertIn("'data-label':'" + label + "'", script)
+        style = (ROOT / "static" / "style.css").read_text(encoding="utf-8")
+        narrow = style[style.index("@media(max-width:700px){.card-table"):]
+        self.assertIn(".card-table td::before{content:attr(data-label)", narrow)
+        self.assertIn(".card-table td[data-label=Acciones]{display:flex", narrow)
+        self.details = dict(etiquetas=7, ancho_maximo_px=700)
+
+    def test_W22_empty_form_and_own_validation(self):
+        """W22 | Evaluación heurística H-06 y H-07 | formulario sin valores de ejemplo y aviso en español con todos los campos pendientes"""
+        page = self.client().get("/").get_data(as_text=True)
+        form = page[page.index('<form id="rating-form"'):page.index("</form>", page.index('<form id="rating-form"'))]
+        self.assertIn('<form id="rating-form" novalidate>', form)
+        for field in ("rating-period", "rating-name", "rating-factor", "rating-amount", "rating-base"):
+            tag = form[form.index('id="' + field + '"'):]
+            tag = tag[:tag.index(">")]
+            self.assertNotIn("value=", tag, field)
+        self.assertIn('placeholder="Ej.: Tributaria demo"', form)
+        script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
+        save = script[script.index("async function saveRating(event){"):]
+        save = save[:save.index("\n}")]
+        self.assertIn("formProblems($('rating-form'))", save)
+        self.assertIn("'Revisa estos campos: '", save)
+        self.assertIn("control.validity.valueMissing?'falta completar':'formato no válido'", script)
+        self.details = dict(valores_de_ejemplo=0, validacion="propia, todos los campos a la vez")
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

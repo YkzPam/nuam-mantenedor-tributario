@@ -8,6 +8,6 @@
 | P2-simulado | Analista recién incorporado, sin experiencia en factores tributarios | 1366 px |
 | P3-simulado | Operador que revisa calificaciones desde el celular | 360 px |
 
-Resultado: 14 de 15 tareas sin ayuda (93,3 %), sobre el umbral del plan. En T4, los tres perfiles interpretaron el motivo del error de la fila. La facilidad promedio fue 4,0 sobre 5. La única tarea con ayuda fue T3 de P3-simulado: a 360 px, las acciones de la fila quedan fuera de la pantalla, el mismo problema que la evaluación heurística registró como H-05 (`docs/07-evaluacion-heuristica.md`).
+Resultado: 14 de 15 tareas sin ayuda (93,3 %), sobre el umbral del plan. En T4, los tres perfiles interpretaron el motivo del error de la fila. La facilidad promedio fue 4,0 sobre 5. La única tarea con ayuda fue T3 de P3-simulado: a 360 px, las acciones de la fila quedan fuera de la pantalla, el mismo problema que la evaluación heurística registró como H-05 (`docs/07-evaluacion-heuristica.md`) y que la versión 1.2.4 corrigió con la vista en tarjetas.
 
 Que las cinco tareas pueden completarse en el sistema sí está comprobado con ejecución real: el recorrido de `evidencias/heuristica_20261113` hizo la búsqueda, el alta, la modificación, la desactivación, la prevalidación con errores y la carga válida confirmada. Lo simulado es el comportamiento de las personas.

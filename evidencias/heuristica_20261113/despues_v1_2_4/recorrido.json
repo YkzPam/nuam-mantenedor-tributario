@@ -1,0 +1,92 @@
+[
+  {
+    "captura": "01_ingreso.png",
+    "estado": "Pantalla de ingreso",
+    "mensaje": ""
+  },
+  {
+    "captura": "02_ingreso_error.png",
+    "estado": "Contraseña incorrecta",
+    "mensaje": ""
+  },
+  {
+    "captura": "03_consulta_inicial.png",
+    "estado": "Operador: consulta inicial",
+    "mensaje": ""
+  },
+  {
+    "captura": "04_busqueda.png",
+    "estado": "Búsqueda de DEMO-ALFA",
+    "mensaje": ""
+  },
+  {
+    "captura": "05_formulario_vacio.png",
+    "estado": "Formulario enviado sin datos",
+    "mensaje": ""
+  },
+  {
+    "captura": "06_formulario_completo.png",
+    "estado": "Formulario completo antes de guardar",
+    "mensaje": ""
+  },
+  {
+    "captura": "07_guardado.png",
+    "estado": "Calificación guardada",
+    "mensaje": "Calificación creada y registrada en bitácora."
+  },
+  {
+    "captura": "08_modificar.png",
+    "estado": "Formulario de modificación",
+    "mensaje": "Calificación creada y registrada en bitácora."
+  },
+  {
+    "captura": "09_desactivar.png",
+    "estado": "Confirmación de desactivación",
+    "mensaje": "Calificación creada y registrada en bitácora."
+  },
+  {
+    "captura": "10_carga_con_errores.png",
+    "estado": "Prevalidación de 03_campos_incompletos.csv",
+    "mensaje": "Prevalidación terminada. Revisar el resultado por fila."
+  },
+  {
+    "captura": "11_carga_valida.png",
+    "estado": "Prevalidación de 01_montos_valido.csv",
+    "mensaje": "Prevalidación terminada. Revisar el resultado por fila."
+  },
+  {
+    "captura": "12_carga_confirmada.png",
+    "estado": "Lote confirmado",
+    "mensaje": "2 registro(s) incorporado(s). Reintentos no duplican la carga."
+  },
+  {
+    "captura": "13_conversion.png",
+    "estado": "Conversión ilustrativa DEMO-1",
+    "mensaje": "2 registro(s) incorporado(s). Reintentos no duplican la carga."
+  },
+  {
+    "captura": "14_bitacora.png",
+    "estado": "Bitácora e integridad",
+    "mensaje": "2 registro(s) incorporado(s). Reintentos no duplican la carga."
+  },
+  {
+    "captura": "15_catalogo_supervisor.png",
+    "estado": "Supervisor: catálogo de instrumentos",
+    "mensaje": ""
+  },
+  {
+    "captura": "16_movil_consulta.png",
+    "estado": "Consulta a 360 px",
+    "mensaje": ""
+  },
+  {
+    "captura": "17_movil_formulario.png",
+    "estado": "Formulario a 360 px",
+    "mensaje": ""
+  },
+  {
+    "errores_consola": [
+      "Failed to load resource: the server responded with a status of 401 (UNAUTHORIZED)"
+    ]
+  }
+]
