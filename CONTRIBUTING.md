@@ -22,7 +22,7 @@ Según lo informado por el equipo el 14 de noviembre de 2026:
 | Pablo Doussang | Diagramas del proyecto y pruebas |
 | María Jesús Erices | Redacción de los documentos de la entrega y presentación |
 
-Los aportes de Pablo y María Jesús se hicieron fuera del repositorio. Por indicación del docente, la integración en el repositorio y la publicación en DreamShaper quedaron a cargo de un integrante, que registra en esta guía y en la documentación los aportes del resto; por eso los commits se registran desde una sola cuenta. La sección 5 describe cómo cada integrante puede trabajar con su propia cuenta si el equipo lo decide más adelante.
+Los aportes de Pablo y María Jesús se hicieron fuera del repositorio. Por indicación del docente, la integración en el repositorio y la publicación en DreamShaper quedaron a cargo de un integrante, que registra en esta guía y en la documentación los aportes del resto; por eso los commits se registran desde una sola cuenta. La sección 5 describe cómo cada integrante puede trabajar con su propia cuenta si el equipo lo decide más adelante. El 14 de noviembre de 2026, según lo informado por el integrador, el docente confirmó al equipo que está de acuerdo con esta forma de trabajo: un integrante integra y publica, y la guía registra los aportes de los demás.
 
 ### 1.2 Revisión cruzada sin cuentas propias
 
