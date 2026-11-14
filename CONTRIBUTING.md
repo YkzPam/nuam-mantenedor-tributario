@@ -24,6 +24,17 @@ Según lo informado por el equipo el 14 de noviembre de 2026:
 
 Los aportes de Pablo y María Jesús se hicieron fuera del repositorio. Por indicación del docente, la integración en el repositorio y la publicación en DreamShaper quedaron a cargo de un integrante, que registra en esta guía y en la documentación los aportes del resto; por eso los commits se registran desde una sola cuenta. La sección 5 describe cómo cada integrante puede trabajar con su propia cuenta si el equipo lo decide más adelante.
 
+### 1.2 Revisión cruzada sin cuentas propias
+
+Mientras Pablo y María Jesús no dispongan de computador para trabajar en GitHub, el paso 6 de la sección 2 se aplica fuera del repositorio con el siguiente procedimiento acordado:
+
+1. El integrador prepara el cambio, ejecuta `python run_all_tests.py` y comparte con el equipo el material que se debe revisar: documento, diagrama o reporte de pruebas.
+2. Pablo revisa lo relacionado con diagramas y casos de prueba. María Jesús revisa la redacción de los documentos y el material de la presentación. Ambos envían sus observaciones al integrador por el canal del equipo.
+3. El integrador aplica las observaciones, repite las pruebas e integra el cambio en `main` con un commit que describe qué cambió.
+4. La publicación en DreamShaper se hace después de que GitHub Actions aprueba el cambio.
+
+Como estas revisiones no pasan por un pull request, el historial de GitHub no las registra. La sección 5 se mantiene como procedimiento para cuando cada integrante trabaje con su propia cuenta.
+
 ## 2. Flujo de un cambio
 
 1. Registrar el cambio en el backlog con su origen: historia de usuario (HU01 a HU10), discrepancia del informe de pruebas (D1 a D7) o solicitud del docente.
