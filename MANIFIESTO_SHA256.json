@@ -119,8 +119,8 @@
       "sha256_v1_2_4": "2e44caf426ccb363a84e5fd3fdac03a9dfdf01bfea0c22d91b2da9516ab8c4c5"
     },
     "docs/04-rubrica.md": {
-      "bytes": 3251,
-      "sha256": "8e939f71c40dd6975a0bbea5c812967d78e3d5c47356771c28cc45be75099353",
+      "bytes": 3489,
+      "sha256": "8a19b14dcb899dfa9928c7538e95224b13c97d2e9cd3e9380861831a733240db",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "4e8a713103b5a362ef23e5adc25f8901eddbb84b40fdd45bf2891b6d6f1fe65e",
       "sha256_v1_2": "5c67c080d9ac9fa6a0c9265e69863b98cde89f188287f55720902400ae2b286b",
