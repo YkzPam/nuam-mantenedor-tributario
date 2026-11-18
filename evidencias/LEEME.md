@@ -18,8 +18,8 @@ Ejecuciones del 11 y 12 de noviembre de 2026 (hora de Chile; los nombres de carp
 | `estres_v12_disenos_descartados_20261112` | Cuatro diseños de la regla DEMO-2 descartados por la prueba de estrés; `NOTA.md` resume cada uno |
 | `docker_20261113` | Versión 1.2.1: construcción de la imagen con Docker 29.9.3, 86 de 86 pruebas dentro del contenedor y prueba de humo con volumen persistente; `v1_2_2/`, `v1_2_4/` y `v1_3/` repiten la construcción y la prueba de humo con el código de esas versiones; `NOTA.md` explica el uso del proxy durante la construcción |
 | `ejecucion_completa_20261114_153652_447706` | Versión 1.2.4 dentro de la imagen Docker 1.2.4, Python 3.12.16: 90 de 90, con W21 y W22 |
-| `ejecucion_completa_20261118_192802_227666` | Versión 1.3 en Linux, Python 3.13: 91 de 91, con W23 |
-| `ejecucion_completa_20261118_192203_455155` | Versión 1.3 dentro de la imagen Docker 1.3, Python 3.12.16: 91 de 91 |
+| `ejecucion_completa_20261118_194433_000954` | Versión 1.3 en Linux, Python 3.13: 91 de 91, con W23 |
+| `ejecucion_completa_20261118_194527_662626` | Versión 1.3 dentro de la imagen Docker 1.3, Python 3.12.16: 91 de 91 |
 | `chrome_v13_20261118` | Recorrido de la versión 1.3 con Chrome sin cabeza con los cuatro usuarios: textos de pantalla sin rótulos de demostración, flujo completo y bitácora íntegra; 12 capturas y el script usado |
 | `usabilidad_simulada_20261114` | Versión 1.2.3: sesión de usabilidad **simulada** con tres perfiles ficticios, autorizada por el docente por falta de participantes; 14 de 15 tareas sin ayuda |
 | `heuristica_20261113` | Evaluación heurística: 17 capturas de la versión 1.2.1 (`antes/`), 4 capturas con las correcciones de la 1.2.2 (`despues/`), 4 con las de la 1.2.4 (`despues_v1_2_4/`), registro de cada recorrido y el script que lo generó |

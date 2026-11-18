@@ -1,5 +1,5 @@
 Docker cliente 29.9.3 / servidor 29.9.3
-Imagen sha256:2e8c157d0c660f2a73d7f848919ae396508ca1b3015a5a68539248da1af2fe02 | 188059803 bytes | linux/amd64 | Usuario=nuam | Cmd=[waitress-serve --listen=0.0.0.0:8765 --threads=8 wsgi:app]
+Imagen sha256:af8ea66363ee71e93d1f946256d9fcc27ee62da76f7a600066a4644602266e46 | 188079519 bytes | linux/amd64 | Usuario=nuam | Cmd=[waitress-serve --listen=0.0.0.0:8765 --threads=8 wsgi:app]
 Python 3.12.16
 Flask        3.1.3
 tinydb       4.9.0

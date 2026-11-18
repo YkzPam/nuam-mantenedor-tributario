@@ -1,6 +1,6 @@
 # Pruebas del paquete de la Unidad 3 (v1.3)
 
-Fecha UTC: 2026-11-18T19:22:03.454174+00:00
+Fecha UTC: 2026-11-18T19:44:32.999367+00:00
 
 Total real: 91/91 aprobadas, 0 fallas, 0 errores.
 
@@ -77,7 +77,7 @@ v1.3: la interfaz deja de mostrar rótulos de demostración y de datos ficticios
 | test_W20_heuristic_interface_corrections | passed | W20 | Evaluación heurística H-01, H-02 y H-04 | aviso por vista, unidad correcta e inactivos distinguibles |
 | test_W21_narrow_screen_cards_show_actions | passed | W21 | Evaluación heurística H-05 | a 700 px o menos cada calificación es una tarjeta con sus acciones visibles |
 | test_W22_empty_form_and_own_validation | passed | W22 | Evaluación heurística H-06 y H-07 | formulario sin valores de ejemplo y aviso en español con todos los campos pendientes |
-| test_W23_professional_interface_without_demo_labels | passed | W23 | Versión 1.3 | la interfaz no muestra rótulos de demostración ni de datos ficticios y nombra orígenes y reglas |
+| test_W23_professional_interface_without_demo_labels | passed | W23 | Versión 1.3 | textos de pantalla de los cuatro perfiles, códigos INS y CORR, orígenes y regla CONV-1 |
 
 ## Límites de la evidencia
 

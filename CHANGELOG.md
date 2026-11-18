@@ -16,7 +16,7 @@ Cambiado
 
 Agregado
 
-- Caso W23, que revisa las pantallas de los cuatro perfiles y `app.js`. El total pasa de 90 a 91: 91 de 91 en Linux (`evidencias/ejecucion_completa_20261118_192802_227666`) y dentro de la imagen Docker 1.3 (`evidencias/ejecucion_completa_20261118_192203_455155`).
+- Caso W23, que revisa las pantallas de los cuatro perfiles y `app.js`. El total pasa de 90 a 91: 91 de 91 en Linux (`evidencias/ejecucion_completa_20261118_194433_000954`) y dentro de la imagen Docker 1.3 (`evidencias/ejecucion_completa_20261118_194527_662626`).
 - Recorrido en Chrome con los cuatro usuarios (`evidencias/chrome_v13_20261118`) y prueba de humo del contenedor (`evidencias/docker_20261113/v1_3`).
 
 ## 1.2.4 — 14 de noviembre de 2026

@@ -415,7 +415,7 @@ class Version12Cases(unittest.TestCase):
         self.details = dict(valores_de_ejemplo=0, validacion="propia, todos los campos a la vez")
 
     def test_W23_professional_interface_without_demo_labels(self):
-        """W23 | Versión 1.3 | la interfaz no muestra rótulos de demostración ni de datos ficticios y nombra orígenes y reglas"""
+        """W23 | Versión 1.3 | textos de pantalla de los cuatro perfiles, códigos INS y CORR, orígenes y regla CONV-1"""
         pages = {"inicio": self.application.test_client().get("/").get_data(as_text=True)}
         for login in ("operador_a", "supervisor", "admin"):
             pages[login] = self.client(login).get("/").get_data(as_text=True)

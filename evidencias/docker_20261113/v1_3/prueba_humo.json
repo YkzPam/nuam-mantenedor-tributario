@@ -17,7 +17,7 @@
   {
     "prueba": "Alta de instrumento por supervisor",
     "ok": true,
-    "detalle": "HTTP 201, código INS-DOCKER-162100"
+    "detalle": "HTTP 201, código INS-DOCKER-164536"
   },
   {
     "prueba": "Operador no puede modificar el catálogo",

@@ -5,7 +5,7 @@
 #1 DONE 0.0s
 
 #2 [internal] load metadata for docker.io/library/python:3.12-slim
-#2 DONE 0.5s
+#2 DONE 0.9s
 
 #3 [internal] load .dockerignore
 #3 transferring context: 90B done
@@ -16,30 +16,30 @@
 #4 DONE 0.0s
 
 #5 [internal] load build context
-#5 transferring context: 2.27kB done
+#5 transferring context: 1.30MB 0.0s done
 #5 DONE 0.0s
 
-#6 [stage-0 3/6] COPY requirements-lock.txt requirements-servidor.txt ./
+#6 [stage-0 2/6] WORKDIR /app
 #6 CACHED
 
-#7 [stage-0 4/6] RUN --mount=type=secret,id=ca,target=/tmp/ca.crt PIP_CERT=/tmp/ca.crt pip install --no-cache-dir -r requirements-lock.txt -r requirements-servidor.txt
+#7 [stage-0 3/6] COPY requirements-lock.txt requirements-servidor.txt ./
 #7 CACHED
 
-#8 [stage-0 2/6] WORKDIR /app
+#8 [stage-0 4/6] RUN --mount=type=secret,id=ca,target=/tmp/ca.crt PIP_CERT=/tmp/ca.crt pip install --no-cache-dir -r requirements-lock.txt -r requirements-servidor.txt
 #8 CACHED
 
 #9 [stage-0 5/6] COPY . .
-#9 CACHED
+#9 DONE 0.3s
 
 #10 [stage-0 6/6] RUN useradd --create-home --uid 10001 nuam     && mkdir -p /datos     && chown nuam:nuam /datos
-#10 CACHED
+#10 DONE 2.2s
 
 #11 exporting to image
-#11 exporting layers done
-#11 exporting manifest sha256:6b25f874f647158484e1ad89ea1cc07943662028d497e9263d1cffd11bc94433 done
-#11 exporting config sha256:9fa8b36e88bf96243de6814a5ffb44c28482bb48762f50d45795a84f5c048aa2 done
-#11 exporting attestation manifest sha256:5cf815397a6d7c575796c3d87ecb08d4311b899cb77186623edc182bf1944f59 done
-#11 exporting manifest list sha256:2e8c157d0c660f2a73d7f848919ae396508ca1b3015a5a68539248da1af2fe02 done
+#11 exporting layers 0.1s done
+#11 exporting manifest sha256:9b1fb17ecfb85a8b1a91186c8cdf5d4d09f3a1a76ff3a1499d122313d5c20426 done
+#11 exporting config sha256:9c41f76d8fd7abf5bed8230de40d09b709b5ea82ed2098ded67ad8c88b4ea979 done
+#11 exporting attestation manifest sha256:bb894558d83ea6b7663972d48a2b10c67c55d814d92f3e0156d73d57a191c0f8 done
+#11 exporting manifest list sha256:af8ea66363ee71e93d1f946256d9fcc27ee62da76f7a600066a4644602266e46 done
 #11 naming to docker.io/library/nuam-mantenedor:1.3 done
-#11 unpacking to docker.io/library/nuam-mantenedor:1.3 done
-#11 DONE 0.1s
+#11 unpacking to docker.io/library/nuam-mantenedor:1.3 0.0s done
+#11 DONE 0.2s
