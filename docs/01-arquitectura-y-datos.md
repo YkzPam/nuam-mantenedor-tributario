@@ -5,7 +5,7 @@
 | Archivo | Responsabilidad |
 | --- | --- |
 | `app.py` | Aplicación Flask creada con `create_app`: rutas, sesiones, token CSRF, permisos por rol y corredor, cargas, catálogo de instrumentos (DEMO-2), prioridad de la Bolsa (DEMO-3), bitácora y registro operativo |
-| `domain.py` | Validación de campos, llave provisional, columnas de los CSV y regla ilustrativa DEMO-1 con `Decimal` y redondeo `HALF_UP` a seis decimales |
+| `domain.py` | Validación de campos, llave provisional, columnas de los CSV y regla de conversión DEMO-1 (CONV-1 en la interfaz) con `Decimal` y redondeo `HALF_UP` a seis decimales |
 | `documentrepo.py` | Reportes de carga en TinyDB, con verificación de corredor y huella SHA-256 |
 | `schema.sql` | Esquema SQLite 2: once tablas, índices, restricciones y disparadores |
 | `templates/`, `static/` | Interfaz web de una sola página con cinco módulos: consulta y registros, cargas masivas, catálogo de instrumentos, conversión ilustrativa y bitácora |
@@ -18,12 +18,12 @@ SQLite es la fuente de verdad. TinyDB guarda el reporte completo de cada carga y
 | Tabla | Contenido |
 | --- | --- |
 | `rol` | Perfiles operador, supervisor y administrador |
-| `corredor` | Corredores ficticios DEMO-A y DEMO-B |
+| `corredor` | Corredores de prueba CORR-A y CORR-B (DEMO-A y DEMO-B hasta la versión 1.2.4) |
 | `usuario` | Cuentas con hash de contraseña, perfil, estado y versión |
 | `usuario_corredor` | Asignación de corredores a cada cuenta |
 | `regla_factor` | Versión de la regla de cálculo; la columna `aprobada_nuam` solo admite 0 |
 | `instrumento` | Catálogo por mercado: código, inscripción, estado habilitado y versión (DEMO-2, desde la versión 1.2) |
-| `calificacion` | Mercado, período, instrumento, calificación, monto, base, factor, origen (`manual`, `DJ1948-DEMO`, `factores-DEMO` o `bolsa-DEMO`), estado y versión |
+| `calificacion` | Mercado, período, instrumento, calificación, monto, base, factor, origen (`manual`, `montos`, `factores` o `bolsa`; hasta la versión 1.2.4, `DJ1948-DEMO`, `factores-DEMO` y `bolsa-DEMO`), estado y versión |
 | `carga` | Lote de carga con tipo, estado, totales y token de confirmación |
 | `archivo` | Original y reporte de cada carga con nombre interno aleatorio y huella SHA-256 |
 | `carga_fila` | Datos y errores de cada fila prevalidada |
@@ -61,12 +61,12 @@ SQLite es la fuente de verdad. TinyDB guarda el reporte completo de cada carga y
 | `/api/audit` | Bitácora del ámbito del usuario con verificación de la cadena |
 | `/api/users`, `/api/users/<id>` | Gestión de perfiles y corredores (solo administrador) |
 
-## 1.5 Reglas de negocio de demostración
+## 1.5 Reglas de negocio provisionales
 
 | Regla | Contenido | Origen |
 | --- | --- | --- |
 | DEMO-1 | Factor = monto / base, seis decimales, redondeo `HALF_UP`, entre 0 y 1 | Equipo, desde la versión 1.0 |
 | DEMO-2 | Un inscrito debe figurar habilitado en el catálogo del mercado; un no inscrito fuera del catálogo se admite y, si figura, debe coincidir y estar habilitado | Equipo, versión 1.2 |
-| DEMO-3 | El archivo `bolsa-DEMO`, cargado solo por el supervisor, reemplaza el registro del corredor con la misma llave; la bitácora guarda los valores anteriores y el operador no puede cambiar ni desactivar ese registro | Equipo, versión 1.2 |
+| DEMO-3 | El archivo de Bolsa (origen `bolsa`), cargado solo por el supervisor, reemplaza el registro del corredor con la misma llave; la bitácora guarda los valores anteriores y el operador no puede cambiar ni desactivar ese registro | Equipo, versión 1.2 |
 
-Las tres reglas son de demostración y quedan pendientes de validación de NUAM. Las dos nuevas cierran la discrepancia D7 de la versión 1.1, que dejaba ambas definiciones abiertas.
+Las tres reglas son provisionales y quedan pendientes de validación de NUAM. Desde la versión 1.3 la interfaz las presenta como regla de conversión (CONV-1), regla de catálogo y prioridad Bolsa, sin el prefijo DEMO, y los instrumentos de prueba usan códigos `INS-*`. Las dos nuevas cierran la discrepancia D7 de la versión 1.1, que dejaba ambas definiciones abiertas.

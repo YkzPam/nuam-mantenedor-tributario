@@ -67,7 +67,7 @@ class Version11Cases(unittest.TestCase):
         # Con la bandera v de los navegadores actuales, un guion sin escapar en la clase invalida la expresión.
         second_class = re.search(r"\]\[([^\]]+)\]", pattern).group(1)
         self.assertNotRegex(second_class.replace("\\-", ""), "-(?!Z|z|9)")
-        samples = ["DEMO-ALFA", "demo.beta_1", "A", "A" * 40, "A" * 41, "-DEMO", "DEMO@1", "DEMO 1", "DEMO/1", "Ñandú"]
+        samples = ["INS-ALFA", "demo.beta_1", "A", "A" * 40, "A" * 41, "-DEMO", "DEMO@1", "DEMO 1", "DEMO/1", "Ñandú"]
         compiled = re.compile(pattern)
         mismatches = []
         for value in samples:
@@ -161,19 +161,19 @@ class Version11Cases(unittest.TestCase):
         self.assertEqual(self.post(operator, "/api/ratings", dict(PAYLOAD, instrument="V11-MONTO")).status_code, 201)
         page = operator.get("/").data.decode("utf-8")
         self.assertIn('<option value="factor" disabled>', page)
-        self.assertIn('<option value="factores-DEMO" disabled>', page)
+        self.assertIn('<option value="factores" disabled>', page)
         supervisor = self.client("supervisor")
         allowed = self.post(supervisor, "/api/ratings", dict(PAYLOAD, instrument="V11-FACTOR", mode="factor", factor="0.25"))
         self.assertEqual(allowed.status_code, 201)
         self.assertIn('<option value="factor">', supervisor.get("/").data.decode("utf-8"))
 
     def test_V07_factor_batch_denied_for_restricted_profile(self):
-        """V07 | permisos | carga factores-DEMO rechazada antes de crear lote o archivos"""
+        """V07 | permisos | carga factores rechazada antes de crear lote o archivos"""
         self.application.config["ROLES_FACTOR_MANUAL"] = ("supervisor",)
         operator = self.client("operador_a")
         content = (",".join(CSV_COLUMNS) + "\nSCL,2026-10,V11-LOTE,Demo,factor,,,0.25,0\n").encode()
         response = operator.post("/api/batches/preview",
-                                 data={"broker": "1", "kind": "factores-DEMO", "file": (io.BytesIO(content), "f.csv")},
+                                 data={"broker": "1", "kind": "factores", "file": (io.BytesIO(content), "f.csv")},
                                  headers={"X-CSRF-Token": self.token(operator)})
         self.assertEqual(response.status_code, 403)
         self.assertEqual(self.sql("SELECT count(*) FROM carga")[0][0], 0)

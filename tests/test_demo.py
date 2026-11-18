@@ -18,7 +18,7 @@ import app as demo
 from domain import ValidationError, factor_demo, validate_rating, parse_csv, CSV_COLUMNS, business_key
 
 METRICS={}
-VALID=dict(broker=1,market='SCL',period='2026-10',instrument='TEST-NEW',rating='Tributaria demo',registered='0',mode='monto',amount='250',base='1000')
+VALID=dict(broker=1,market='SCL',period='2026-10',instrument='TEST-NEW',rating='Tributaria general',registered='0',mode='monto',amount='250',base='1000')
 
 class UnitCases(unittest.TestCase):
     def test_U01_decimal_conversion(self):
@@ -43,8 +43,8 @@ class UnitCases(unittest.TestCase):
             with self.subTest(payload=payload),self.assertRaises(ValidationError): validate_rating(payload)
     def test_U06_provisional_key(self):
         """U06 | unitario | llave provisional compuesta y normalización de instrumento"""
-        row=validate_rating(dict(VALID,instrument='demo-x'))
-        self.assertEqual(business_key(row),('SCL','2026-10','DEMO-X','Tributaria demo'))
+        row=validate_rating(dict(VALID,instrument='ins-x'))
+        self.assertEqual(business_key(row),('SCL','2026-10','INS-X','Tributaria general'))
     def test_U07_csv_header(self):
         """U07 | unitario | encabezado exacto CSV"""
         with self.assertRaises(ValidationError): parse_csv(b'a,b\n1,2')
@@ -87,7 +87,7 @@ class IntegrationCases(unittest.TestCase):
     def create(self,**changes):
         response=self.request('/api/ratings',payload=dict(VALID,**changes));self.assertEqual(response.status_code,201);return response.json['id']
     def csv(self,rows): return (','.join(CSV_COLUMNS)+'\n'+'\n'.join(rows)+'\n').encode()
-    def preview(self,content,kind='DJ1948-DEMO',filename='demo.csv',client=None,broker='1'):
+    def preview(self,content,kind='montos',filename='demo.csv',client=None,broker='1'):
         client=client or self.client
         return client.post('/api/batches/preview',data={'broker':broker,'kind':kind,'file':(io.BytesIO(content),filename)},headers={'X-CSRF-Token':self.token(client)})
     def test_I01_create_query_details(self):
@@ -136,7 +136,7 @@ class IntegrationCases(unittest.TestCase):
         self.assertEqual(self.client.get('/api/ratings?q=BULK-FIRST').json['total'],0)
     def test_I09_factor_bulk(self):
         """I09 | integración | CSV de factores sin inventar montos"""
-        bid=self.preview(self.csv(['LIM,2026-10,FACTOR-DEMO,Demo,factor,,,0.5,0']),kind='factores-DEMO').json['id']
+        bid=self.preview(self.csv(['LIM,2026-10,FACTOR-DEMO,Demo,factor,,,0.5,0']),kind='factores').json['id']
         self.assertEqual(self.request(f'/api/batches/{bid}/confirm').status_code,200)
         row=self.client.get('/api/ratings?q=FACTOR-DEMO').json['items'][0];self.assertEqual(row['factor'],'0.500000');self.assertIsNone(row['monto'])
     def test_I10_private_persistence_hash_json(self):

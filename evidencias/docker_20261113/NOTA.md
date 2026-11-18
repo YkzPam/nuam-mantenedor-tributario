@@ -37,3 +37,7 @@ La imagen se reconstruyó el mismo día con el código de la versión 1.2.2 (`v1
 ## Versión 1.2.4
 
 Reconstrucción del 14 de noviembre con el código de la versión 1.2.4 (`v1_2_4/`). `run_all_tests.py` aprobó 90 de 90 dentro de esa imagen (`evidencias/ejecucion_completa_20261114_153652_447706`) y la prueba de humo aprobó sus seis comprobaciones.
+
+## Versión 1.3
+
+Reconstrucción del 18 de noviembre con el código de la versión 1.3 (`v1_3/`), con el mismo procedimiento. `run_all_tests.py` aprobó 91 de 91 dentro de esa imagen (`evidencias/ejecucion_completa_20261118_192203_455155`). La prueba de humo se ajustó a la contraseña y a los códigos nuevos (`v1_3/prueba_humo_docker.py`) y aprobó sus seis comprobaciones.

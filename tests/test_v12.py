@@ -20,7 +20,7 @@ import app as demo
 HEADER = "market,period,instrument,rating,mode,amount,base,factor,registered\n"
 PAYLOAD = dict(broker=1, market="SCL", period="2026-10", instrument="W12-NUEVO",
                rating="Tributaria v12", registered="0", mode="monto", amount="250", base="1000")
-BOLSA_ALFA = "SCL,2026-10,DEMO-ALFA,Tributaria demo,factor,,,0.300000,1"
+BOLSA_ALFA = "SCL,2026-10,INS-ALFA,Tributaria general,factor,,,0.300000,1"
 
 
 class Version12Cases(unittest.TestCase):
@@ -48,7 +48,7 @@ class Version12Cases(unittest.TestCase):
         return getattr(client, method)(path, json=payload if payload is not None else {},
                                        headers={"X-CSRF-Token": self.token(client)})
 
-    def preview(self, client, rows, kind="DJ1948-DEMO", broker=1):
+    def preview(self, client, rows, kind="montos", broker=1):
         content = (HEADER + "".join(row + "\n" for row in rows)).encode()
         return client.post("/api/batches/preview", data=dict(broker=str(broker), kind=kind,
                            file=(io.BytesIO(content), "w12.csv", "text/csv")),
@@ -61,7 +61,7 @@ class Version12Cases(unittest.TestCase):
 
     def alfa(self):
         return self.sql("SELECT id,origen,factor,monto,version,activo FROM calificacion "
-                        "WHERE corredor_id=1 AND instrumento='DEMO-ALFA' AND activo=1")
+                        "WHERE corredor_id=1 AND instrumento='INS-ALFA' AND activo=1")
 
     def test_W01_seeded_catalog_and_access(self):
         """W01 | DEMO-2 | catálogo sembrado visible para operador y supervisor, no para administrador"""
@@ -69,11 +69,11 @@ class Version12Cases(unittest.TestCase):
         response = operator.get("/api/instruments")
         self.assertEqual(response.status_code, 200)
         items = {(row["mercado"], row["codigo"]): row for row in response.json["items"]}
-        self.assertEqual(items[("SCL", "DEMO-ALFA")]["inscrito"], 1)
-        self.assertEqual(items[("SCL", "DEMO-SUSPENDIDO")]["habilitado"], 0)
-        self.assertEqual(items[("SCL", "DEMO-NO-INSCRITO")]["inscrito"], 0)
+        self.assertEqual(items[("SCL", "INS-ALFA")]["inscrito"], 1)
+        self.assertEqual(items[("SCL", "INS-SUSPENDIDO")]["habilitado"], 0)
+        self.assertEqual(items[("SCL", "INS-NO-INSCRITO")]["inscrito"], 0)
         self.assertFalse(response.json["approved"])
-        self.assertIn("DEMO-2", response.json["rule"])
+        self.assertIn("Regla de catálogo", response.json["rule"])
         self.assertEqual(self.client("supervisor").get("/api/instruments?market=SCL&q=alfa").json["total"], 1)
         self.assertEqual(self.client("admin").get("/api/instruments").status_code, 403)
         self.details = dict(seeded=len(items), disabled=[code for (market, code), row in items.items() if not row["habilitado"]])
@@ -84,7 +84,7 @@ class Version12Cases(unittest.TestCase):
         before = self.sql("SELECT count(*) FROM evento_auditoria")[0][0]
         response = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, registered="1"))
         self.assertEqual(response.status_code, 422)
-        self.assertIn("DEMO-2", response.json["error"])
+        self.assertIn("regla de catálogo", response.json["error"])
         self.assertEqual(self.sql("SELECT count(*) FROM calificacion WHERE instrumento='W12-NUEVO'")[0][0], 0)
         self.assertEqual(self.sql("SELECT count(*) FROM instrumento WHERE codigo='W12-NUEVO'")[0][0], 0)
         self.assertEqual(self.sql("SELECT count(*) FROM evento_auditoria")[0][0], before)
@@ -110,44 +110,44 @@ class Version12Cases(unittest.TestCase):
     def test_W04_registration_flag_must_match_catalog(self):
         """W04 | DEMO-2 | la inscripción informada debe coincidir con la del catálogo"""
         operator = self.client()
-        wrong_registered = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-ALFA", rating="Nueva", registered="0"))
-        wrong_unregistered = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-NO-INSCRITO", rating="Nueva", registered="1"))
+        wrong_registered = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-ALFA", rating="Nueva", registered="0"))
+        wrong_unregistered = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-NO-INSCRITO", rating="Nueva", registered="1"))
         self.assertEqual((wrong_registered.status_code, wrong_unregistered.status_code), (422, 422))
         self.assertIn("inscrito", wrong_registered.json["error"])
         self.assertIn("no inscrito", wrong_unregistered.json["error"])
-        valid = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-ALFA", rating="Nueva", registered="1"))
+        valid = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-ALFA", rating="Nueva", registered="1"))
         self.assertEqual(valid.status_code, 201)
         self.details = dict(messages=[wrong_registered.json["error"], wrong_unregistered.json["error"]])
 
     def test_W05_disabled_instrument_and_supervisor_toggle(self):
         """W05 | DEMO-2 | instrumento deshabilitado se rechaza; solo el supervisor cambia el catálogo"""
         operator, supervisor = self.client(), self.client("supervisor")
-        suspended = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-SUSPENDIDO", registered="1"))
+        suspended = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-SUSPENDIDO", registered="1"))
         self.assertEqual(suspended.status_code, 422)
         self.assertIn("deshabilitado", suspended.json["error"])
-        alfa = self.sql("SELECT id,version FROM instrumento WHERE codigo='DEMO-ALFA'")[0]
+        alfa = self.sql("SELECT id,version FROM instrumento WHERE codigo='INS-ALFA'")[0]
         denied = self.send(operator, "put", f"/api/instruments/{alfa[0]}", dict(enabled=False, version=alfa[1]))
         self.assertEqual(denied.status_code, 403)
         self.assertEqual(self.sql("SELECT habilitado FROM instrumento WHERE id=?", (alfa[0],)), [(1,)])
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled="no", version=alfa[1])).status_code, 422)
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled=False, version=alfa[1])).status_code, 200)
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled=True, version=alfa[1])).status_code, 409)
-        blocked = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-ALFA", rating="Nueva", registered="1"))
+        blocked = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-ALFA", rating="Nueva", registered="1"))
         self.assertEqual(blocked.status_code, 422)
         self.assertEqual(len(self.alfa()), 1, "Deshabilitar no altera la calificación ya guardada")
         self.assertIn("deshabilitar_instrumento", [row["accion"] for row in supervisor.get("/api/audit").json["items"]])
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled=True, version=alfa[1] + 1)).status_code, 200)
-        self.assertEqual(self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-ALFA", rating="Nueva", registered="1")).status_code, 201)
+        self.assertEqual(self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-ALFA", rating="Nueva", registered="1")).status_code, 201)
         self.details = dict(suspended=suspended.json["error"], operator_toggle=denied.status_code)
 
     def test_W06_catalog_change_after_preview_rolls_back(self):
         """W06 | DEMO-2 | si el catálogo cambia entre previsualizar y confirmar, la carga completa se revierte"""
         operator, supervisor = self.client(), self.client("supervisor")
-        rows = ["SCL,2026-10,W12-LOTE,Demo,monto,1,2,,0", "SCL,2026-10,DEMO-ALFA,Lote nuevo,monto,1,2,,1"]
+        rows = ["SCL,2026-10,W12-LOTE,Demo,monto,1,2,,0", "SCL,2026-10,INS-ALFA,Lote nuevo,monto,1,2,,1"]
         result = self.preview(operator, rows)
         self.assertEqual(result.status_code, 200)
         self.assertTrue(result.json["can_confirm"])
-        alfa = self.sql("SELECT id,version FROM instrumento WHERE codigo='DEMO-ALFA'")[0]
+        alfa = self.sql("SELECT id,version FROM instrumento WHERE codigo='INS-ALFA'")[0]
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled=False, version=alfa[1])).status_code, 200)
         confirmation = self.send(operator, "post", f"/api/batches/{result.json['id']}/confirm")
         self.assertEqual(confirmation.status_code, 409)
@@ -160,14 +160,14 @@ class Version12Cases(unittest.TestCase):
         """W07 | DEMO-3 | solo el supervisor previsualiza archivos de Bolsa y descarga su plantilla"""
         operator, supervisor = self.client(), self.client("supervisor")
         batches = self.sql("SELECT count(*) FROM carga")[0][0]
-        denied = self.preview(operator, [BOLSA_ALFA], kind="bolsa-DEMO")
+        denied = self.preview(operator, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(denied.status_code, 403)
         self.assertEqual(self.sql("SELECT count(*) FROM carga")[0][0], batches)
         self.assertEqual(self.sql("SELECT count(*) FROM evento_auditoria WHERE accion='carga_bolsa_denegada'")[0][0], 1)
         self.assertEqual(operator.get("/api/template/bolsa").status_code, 403)
         template = supervisor.get("/api/template/bolsa")
         self.assertEqual(template.status_code, 200)
-        self.assertIn(b"DEMO-ALFA", template.data)
+        self.assertIn(b"INS-ALFA", template.data)
         self.details = dict(operator_preview=denied.status_code, supervisor_template=template.status_code)
 
     def test_W08_bolsa_replaces_broker_record_with_audit(self):
@@ -175,29 +175,29 @@ class Version12Cases(unittest.TestCase):
         supervisor = self.client("supervisor")
         original = self.alfa()
         self.assertEqual(original[0][1:3], ("manual", "0.250000"))
-        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa-DEMO")
+        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(result.status_code, 200)
         self.assertEqual((result.json["invalid"], result.json["replacements"]), (0, 1))
         self.assertIn(f"registro {original[0][0]}", result.json["rows"][0]["notice"])
         confirmation = self.send(supervisor, "post", f"/api/batches/{result.json['id']}/confirm")
         self.assertEqual(confirmation.status_code, 200)
         self.assertEqual((confirmation.json["inserted"], confirmation.json["replaced"]), (1, 1))
-        self.assertEqual(self.alfa(), [(original[0][0], "bolsa-DEMO", "0.300000", None, 2, 1)])
+        self.assertEqual(self.alfa(), [(original[0][0], "bolsa", "0.300000", None, 2, 1)])
         event = self.sql("SELECT antes_json,despues_json FROM evento_auditoria WHERE accion='prioridad_bolsa' AND registro_id=?", (original[0][0],))
         self.assertEqual(len(event), 1)
         self.assertEqual((json.loads(event[0][0])["origen"], json.loads(event[0][0])["factor"]), ("manual", "0.250000"))
-        self.assertEqual((json.loads(event[0][1])["origen"], json.loads(event[0][1])["factor"]), ("bolsa-DEMO", "0.300000"))
+        self.assertEqual((json.loads(event[0][1])["origen"], json.loads(event[0][1])["factor"]), ("bolsa", "0.300000"))
         self.assertTrue(supervisor.get("/api/audit").json["integrity"])
-        filtered = self.client().get("/api/ratings?origin=bolsa-DEMO").json
+        filtered = self.client().get("/api/ratings?origin=bolsa").json
         self.assertEqual(filtered["total"], 1)
         self.details = dict(before=original[0][1:3], after=self.alfa()[0][1:3], notice=result.json["rows"][0]["notice"])
 
     def test_W09_bolsa_over_bolsa_is_duplicate(self):
         """W09 | DEMO-3 | un segundo archivo de Bolsa con la misma llave se rechaza como duplicado"""
         supervisor = self.client("supervisor")
-        first = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa-DEMO")
+        first = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(self.send(supervisor, "post", f"/api/batches/{first.json['id']}/confirm").status_code, 200)
-        second = self.preview(supervisor, ["SCL,2026-10,DEMO-ALFA,Tributaria demo,factor,,,0.400000,1"], kind="bolsa-DEMO")
+        second = self.preview(supervisor, ["SCL,2026-10,INS-ALFA,Tributaria general,factor,,,0.400000,1"], kind="bolsa")
         self.assertEqual(second.json["invalid"], 1)
         self.assertFalse(second.json["can_confirm"])
         self.assertIn("ya existe un registro informado por Bolsa", second.json["rows"][0]["errors"][0])
@@ -208,61 +208,61 @@ class Version12Cases(unittest.TestCase):
     def test_W10_broker_data_cannot_override_bolsa(self):
         """W10 | DEMO-3 | registro manual o carga del corredor no reemplaza un registro informado por Bolsa"""
         supervisor, operator = self.client("supervisor"), self.client()
-        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa-DEMO")
+        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(self.send(supervisor, "post", f"/api/batches/{result.json['id']}/confirm").status_code, 200)
-        manual = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-ALFA", rating="Tributaria demo", registered="1"))
+        manual = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-ALFA", rating="Tributaria general", registered="1"))
         self.assertEqual(manual.status_code, 409)
-        self.assertIn("DEMO-3", manual.json["error"])
-        batch = self.preview(operator, ["SCL,2026-10,DEMO-ALFA,Tributaria demo,monto,1,2,,1"])
+        self.assertIn("prioridad Bolsa", manual.json["error"])
+        batch = self.preview(operator, ["SCL,2026-10,INS-ALFA,Tributaria general,monto,1,2,,1"])
         self.assertEqual(batch.json["invalid"], 1)
-        self.assertIn("DEMO-3", batch.json["rows"][0]["errors"][0])
-        self.assertEqual(self.alfa()[0][1:3], ("bolsa-DEMO", "0.300000"))
+        self.assertIn("prioridad Bolsa", batch.json["rows"][0]["errors"][0])
+        self.assertEqual(self.alfa()[0][1:3], ("bolsa", "0.300000"))
         self.details = dict(manual=manual.json["error"], batch=batch.json["rows"][0]["errors"][0])
 
     def test_W11_operator_cannot_change_bolsa_record(self):
         """W11 | DEMO-3 | el operador no modifica ni desactiva un registro de Bolsa; el supervisor sí"""
         supervisor, operator = self.client("supervisor"), self.client()
-        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa-DEMO")
+        result = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(self.send(supervisor, "post", f"/api/batches/{result.json['id']}/confirm").status_code, 200)
         rid = self.alfa()[0][0]
-        change = dict(PAYLOAD, instrument="DEMO-ALFA", rating="Tributaria demo", registered="1", mode="factor", factor="0.5", version=2)
+        change = dict(PAYLOAD, instrument="INS-ALFA", rating="Tributaria general", registered="1", mode="factor", factor="0.5", version=2)
         self.assertEqual(self.send(operator, "put", f"/api/ratings/{rid}", change).status_code, 403)
         self.assertEqual(self.send(operator, "delete", f"/api/ratings/{rid}", dict(version=2)).status_code, 403)
         self.assertEqual(self.sql("SELECT count(*) FROM evento_auditoria WHERE accion='prioridad_bolsa_denegada'")[0][0], 2)
         self.assertEqual(self.alfa()[0][2:6], ("0.300000", None, 2, 1))
         self.assertEqual(self.send(supervisor, "put", f"/api/ratings/{rid}", change).status_code, 200)
-        self.assertEqual(self.alfa()[0][1:3], ("bolsa-DEMO", "0.500000"))
+        self.assertEqual(self.alfa()[0][1:3], ("bolsa", "0.500000"))
         self.assertEqual(self.send(supervisor, "delete", f"/api/ratings/{rid}", dict(version=3)).status_code, 200)
         self.assertEqual(self.alfa(), [])
         self.details = dict(operator_put=403, operator_delete=403, supervisor="modifica y desactiva")
 
     def test_W12_bolsa_new_key_and_factor_mode(self):
-        """W12 | DEMO-3 | una llave nueva de Bolsa se inserta con origen bolsa-DEMO y exige mode=factor"""
+        """W12 | DEMO-3 | una llave nueva de Bolsa se inserta con origen bolsa y exige mode=factor"""
         supervisor = self.client("supervisor")
-        rows = ["SCL,2026-10,DEMO-BETA,Tributaria demo,factor,,,0.200000,1", "SCL,2026-10,W12-BOLSA,Demo,monto,1,2,,0"]
-        mixed = self.preview(supervisor, rows, kind="bolsa-DEMO")
+        rows = ["SCL,2026-10,INS-BETA,Tributaria general,factor,,,0.200000,1", "SCL,2026-10,W12-BOLSA,Demo,monto,1,2,,0"]
+        mixed = self.preview(supervisor, rows, kind="bolsa")
         self.assertEqual(mixed.json["invalid"], 1)
         self.assertIn("requiere mode=factor", mixed.json["rows"][1]["errors"][0])
-        result = self.preview(supervisor, rows[:1], kind="bolsa-DEMO")
+        result = self.preview(supervisor, rows[:1], kind="bolsa")
         self.assertEqual(result.json["replacements"], 0)
         confirmation = self.send(supervisor, "post", f"/api/batches/{result.json['id']}/confirm")
         self.assertEqual((confirmation.json["inserted"], confirmation.json["replaced"]), (1, 0))
-        self.assertEqual(self.sql("SELECT origen,factor FROM calificacion WHERE corredor_id=1 AND instrumento='DEMO-BETA' AND activo=1"),
-                         [("bolsa-DEMO", "0.200000")])
+        self.assertEqual(self.sql("SELECT origen,factor FROM calificacion WHERE corredor_id=1 AND instrumento='INS-BETA' AND activo=1"),
+                         [("bolsa", "0.200000")])
         self.details = dict(mode_error=mixed.json["rows"][1]["errors"][0])
 
     def test_W13_bolsa_prevails_over_record_created_after_preview(self):
         """W13 | DEMO-3 | si el corredor crea la misma llave después de la previsualización, Bolsa igual prevalece"""
         supervisor, operator = self.client("supervisor"), self.client()
-        result = self.preview(supervisor, ["SCL,2026-10,DEMO-BETA,Tributaria demo,factor,,,0.200000,1"], kind="bolsa-DEMO")
+        result = self.preview(supervisor, ["SCL,2026-10,INS-BETA,Tributaria general,factor,,,0.200000,1"], kind="bolsa")
         self.assertEqual(result.json["replacements"], 0)
-        created = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="DEMO-BETA", rating="Tributaria demo", registered="1"))
+        created = self.send(operator, "post", "/api/ratings", dict(PAYLOAD, instrument="INS-BETA", rating="Tributaria general", registered="1"))
         self.assertEqual(created.status_code, 201)
         confirmation = self.send(supervisor, "post", f"/api/batches/{result.json['id']}/confirm")
         self.assertEqual(confirmation.status_code, 200)
         self.assertEqual(confirmation.json["replaced"], 1)
-        self.assertEqual(self.sql("SELECT id,origen,factor FROM calificacion WHERE corredor_id=1 AND instrumento='DEMO-BETA' AND activo=1"),
-                         [(created.json["id"], "bolsa-DEMO", "0.200000")])
+        self.assertEqual(self.sql("SELECT id,origen,factor FROM calificacion WHERE corredor_id=1 AND instrumento='INS-BETA' AND activo=1"),
+                         [(created.json["id"], "bolsa", "0.200000")])
         self.details = dict(replaced_id=created.json["id"])
 
     def test_W14_previous_schema_is_backed_up(self):
@@ -280,7 +280,7 @@ class Version12Cases(unittest.TestCase):
         self.assertTrue((backups[0] / "private" / "reporte.json").is_file())
         self.assertEqual(upgraded.config["SCHEMA_BACKUP"], str(backups[0]))
         with closing(sqlite3.connect(old / "demo.sqlite3")) as conn:
-            self.assertEqual(conn.execute("PRAGMA user_version").fetchone()[0], 2)
+            self.assertEqual(conn.execute("PRAGMA user_version").fetchone()[0], demo.SCHEMA_VERSION)
             self.assertEqual(conn.execute("SELECT count(*) FROM instrumento").fetchone()[0], len(demo.CATALOG_SEED))
         again = demo.create_app(old, testing=True)
         self.assertIsNone(again.config["SCHEMA_BACKUP"])
@@ -290,7 +290,7 @@ class Version12Cases(unittest.TestCase):
     def test_W15_supplied_examples_06_07(self):
         """W15 | ejemplos | 06 reemplaza por prioridad Bolsa y 07 se rechaza completo por catálogo"""
         supervisor = self.client("supervisor")
-        replace = self.preview(supervisor, (ROOT / "ejemplos" / "06_bolsa_prioridad.csv").read_text(encoding="utf-8").splitlines()[1:], kind="bolsa-DEMO")
+        replace = self.preview(supervisor, (ROOT / "ejemplos" / "06_bolsa_prioridad.csv").read_text(encoding="utf-8").splitlines()[1:], kind="bolsa")
         self.assertEqual((replace.json["invalid"], replace.json["replacements"]), (0, 1))
         rejected = self.preview(supervisor, (ROOT / "ejemplos" / "07_catalogo_rechazos.csv").read_text(encoding="utf-8").splitlines()[1:])
         self.assertEqual(rejected.json["invalid"], 2)
@@ -306,29 +306,29 @@ class Version12Cases(unittest.TestCase):
         supervisor_html = self.client("supervisor").get("/").get_data(as_text=True)
         for html in (operator_html, supervisor_html):
             self.assertIn('data-view="catalogo"', html)
-            self.assertIn('<option>bolsa-DEMO</option>', html)
+            self.assertIn('<option value="bolsa">Bolsa</option>', html)
             self.assertIn('list="instrument-options"', html)
             self.assertNotIn("inactivar", html.lower())
-        self.assertNotIn('value="bolsa-DEMO"', operator_html)
+        self.assertNotIn('<option value="bolsa">Archivo informado por Bolsa</option>', operator_html)
         self.assertNotIn("/api/template/bolsa", operator_html)
         self.assertNotIn('id="instrument-form"', operator_html)
-        self.assertIn('value="bolsa-DEMO"', supervisor_html)
+        self.assertIn('<option value="bolsa">Archivo informado por Bolsa</option>', supervisor_html)
         self.assertIn("/api/template/bolsa", supervisor_html)
         self.assertIn('id="instrument-form"', supervisor_html)
         javascript = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
-        self.assertIn("Regla DEMO-3: solo el supervisor cambia registros informados por Bolsa.", javascript)
+        self.assertIn("Prioridad Bolsa: solo el supervisor cambia registros informados por Bolsa.", javascript)
         self.assertNotIn("innerHTML", javascript)
         self.details = dict(operator_bolsa_option=False, supervisor_bolsa_option=True)
 
     def test_W17_catalog_changes_apply_forward(self):
         """W17 | DEMO-2 | un cambio del catálogo rige hacia adelante: no altera registros guardados y revierte confirmaciones pendientes"""
         supervisor, operator = self.client("supervisor"), self.client()
-        pending = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa-DEMO")
+        pending = self.preview(supervisor, [BOLSA_ALFA], kind="bolsa")
         self.assertEqual(pending.json["replacements"], 1)
-        rid, alfa = self.alfa()[0][0], self.sql("SELECT id,version FROM instrumento WHERE codigo='DEMO-ALFA'")[0]
+        rid, alfa = self.alfa()[0][0], self.sql("SELECT id,version FROM instrumento WHERE codigo='INS-ALFA'")[0]
         self.assertEqual(self.send(supervisor, "put", f"/api/instruments/{alfa[0]}", dict(enabled=False, version=alfa[1])).status_code, 200)
         self.assertEqual(self.alfa(), [(rid, "manual", "0.250000", "250", 1, 1)])
-        change = dict(PAYLOAD, instrument="DEMO-ALFA", rating="Tributaria demo", registered="1", amount="300", version=1)
+        change = dict(PAYLOAD, instrument="INS-ALFA", rating="Tributaria general", registered="1", amount="300", version=1)
         modified = self.send(operator, "put", f"/api/ratings/{rid}", change)
         self.assertEqual(modified.status_code, 422)
         self.assertIn("deshabilitado", modified.json["error"])
@@ -347,7 +347,7 @@ class Version12Cases(unittest.TestCase):
         for payload in [dict(market="OTRO", code="W12-X", registered="1"), dict(market="SCL", code="<script>", registered="1"),
                         dict(market="SCL", code="W12-X", registered="2")]:
             self.assertEqual(self.send(supervisor, "post", "/api/instruments", payload).status_code, 422)
-        duplicate = self.send(supervisor, "post", "/api/instruments", dict(market="SCL", code="DEMO-ALFA", registered="1"))
+        duplicate = self.send(supervisor, "post", "/api/instruments", dict(market="SCL", code="INS-ALFA", registered="1"))
         self.assertEqual(duplicate.status_code, 409)
         self.assertNotIn("UNIQUE", duplicate.json["error"])
         self.assertEqual(self.sql("SELECT count(*) FROM instrumento WHERE codigo='W12-X'")[0][0], 0)
@@ -362,7 +362,7 @@ class Version12Cases(unittest.TestCase):
         own = [item for item in audit["items"] if item["entidad"] == "calificacion"]
         self.assertTrue(own)
         self.assertEqual(own[0]["usuario_login"], "operador_a")
-        self.assertEqual(own[0]["corredor_codigo"], "DEMO-A")
+        self.assertEqual(own[0]["corredor_codigo"], "CORR-A")
         self.assertTrue(audit["integrity"])
         self.assertNotIn("password_hash", json.dumps(audit))
         script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
@@ -377,11 +377,11 @@ class Version12Cases(unittest.TestCase):
         view = view[:view.index("\n}")]
         self.assertIn("notice.hidden=true", view)
         login_page = self.application.test_client().get("/").get_data(as_text=True)
-        self.assertIn("UNIDAD 3", login_page)
-        self.assertNotIn("UNIDAD 2", login_page)
+        self.assertNotIn("UNIDAD 2", login_page)  # v1.3: la portada ya no muestra la unidad del curso
+        self.assertIn("Mantenedor de calificaciones tributarias", login_page)
         style = (ROOT / "static" / "style.css").read_text(encoding="utf-8")
         self.assertRegex(style, r"input:disabled,select:disabled\{[^}]*border-style:dashed")
-        self.details = dict(aviso_por_vista=True, unidad="UNIDAD 3", inactivos="borde discontinuo")
+        self.details = dict(aviso_por_vista=True, unidad="sin rótulo de unidad desde la v1.3", inactivos="borde discontinuo")
 
     def test_W21_narrow_screen_cards_show_actions(self):
         """W21 | Evaluación heurística H-05 | a 700 px o menos cada calificación es una tarjeta con sus acciones visibles"""
@@ -405,7 +405,7 @@ class Version12Cases(unittest.TestCase):
             tag = form[form.index('id="' + field + '"'):]
             tag = tag[:tag.index(">")]
             self.assertNotIn("value=", tag, field)
-        self.assertIn('placeholder="Ej.: Tributaria demo"', form)
+        self.assertIn('placeholder="Ej.: Tributaria general"', form)
         script = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
         save = script[script.index("async function saveRating(event){"):]
         save = save[:save.index("\n}")]
@@ -414,6 +414,24 @@ class Version12Cases(unittest.TestCase):
         self.assertIn("control.validity.valueMissing?'falta completar':'formato no válido'", script)
         self.details = dict(valores_de_ejemplo=0, validacion="propia, todos los campos a la vez")
 
+    def test_W23_professional_interface_without_demo_labels(self):
+        """W23 | Versión 1.3 | la interfaz no muestra rótulos de demostración ni de datos ficticios y nombra orígenes y reglas"""
+        pages = {"inicio": self.application.test_client().get("/").get_data(as_text=True)}
+        for login in ("operador_a", "supervisor", "admin"):
+            pages[login] = self.client(login).get("/").get_data(as_text=True)
+        pages["app.js"] = (ROOT / "static" / "app.js").read_text(encoding="utf-8")
+        for name, text in pages.items():
+            lower = text.lower()
+            for word in ("ficti", "demostraci", "ilustrativ", "demo-", "-demo", "académic"):
+                self.assertNotIn(word, lower, name + ": " + word)
+        self.assertIn("ORIGIN_LABELS={manual:'Manual',montos:'Carga de montos',factores:'Carga de factores',bolsa:'Bolsa'}", pages["app.js"])
+        codes = [item["codigo"] for item in self.client("supervisor").get("/api/instruments").json["items"]]
+        self.assertTrue(codes and all(code.startswith("INS-") for code in codes), codes)
+        brokers = self.client("supervisor").get("/api/me").json["brokers"]
+        self.assertEqual(sorted(b["codigo"] for b in brokers), ["CORR-A", "CORR-B"])
+        factor = self.send(self.client(), "post", "/api/factor/preview", dict(amount="250", base="1000")).json
+        self.assertEqual((factor["factor"], factor["rule"]), ("0.250000", "CONV-1"))
+        self.details = dict(paginas_revisadas=len(pages), instrumentos=len(codes), corredores=["CORR-A", "CORR-B"], regla="CONV-1")
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)

@@ -1,4 +1,4 @@
-"""Prototipo académico local: únicamente datos ficticios, sin integración NUAM."""
+"""Mantenedor de calificaciones tributarias: prototipo local sin integración con NUAM."""
 from pathlib import Path
 import sys
 ROOT = Path(__file__).resolve().parent
@@ -23,15 +23,16 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from domain import ValidationError, validate_rating, business_key, parse_csv, CSV_COLUMNS, MAX_FILE_BYTES, factor_demo
 import documentrepo
 
-DEMO_PASSWORD = 'Demo2026!'
+DEMO_PASSWORD = 'Clave2026!'
 RATE_FAILURES = {}
-SCHEMA_VERSION = 2
-BOLSA = 'bolsa-DEMO'
-CORREDOR_KINDS = ('DJ1948-DEMO', 'factores-DEMO')
+SCHEMA_VERSION = 3
+BOLSA = 'bolsa'
+CORREDOR_KINDS = ('montos', 'factores')
 BATCH_KINDS = CORREDOR_KINDS + (BOLSA,)
-# Reglas DEMO-2 y DEMO-3 (v1.2): definidas por el equipo para la demostración, pendientes de validación de NUAM.
-CATALOG_RULE = ('DEMO-2: un instrumento inscrito debe existir habilitado en el catálogo del mercado; '
-                'un no inscrito fuera del catálogo se admite y, si figura en él, debe estar habilitado. No aprobada por NUAM.')
+# Reglas DEMO-2 (catálogo) y DEMO-3 (prioridad Bolsa), v1.2: definidas por el equipo, pendientes de validación de NUAM.
+# Desde la v1.3 la interfaz las nombra 'regla de catálogo' y 'prioridad Bolsa'.
+CATALOG_RULE = ('Regla de catálogo: un instrumento inscrito debe existir habilitado en el catálogo del mercado; '
+                'un no inscrito fuera del catálogo se admite y, si figura en él, debe estar habilitado. Pendiente de validación del cliente.')
 # Condición DEMO-2 evaluada dentro de la misma sentencia de escritura: sin consultas extra en el guardado normal.
 CATALOG_GUARD = ("NOT EXISTS (SELECT 1 FROM instrumento i WHERE i.mercado=? AND i.codigo=? AND (i.habilitado=0 OR i.inscrito<>?)) "
                  "AND (?=0 OR EXISTS (SELECT 1 FROM instrumento i WHERE i.mercado=? AND i.codigo=?))")
@@ -42,17 +43,17 @@ def catalog_guard_params(data):
 class CatalogConflict(Exception):
     """La escritura no se hizo porque el instrumento no cumple la regla DEMO-2."""
 
-CATALOG_WRITE_MESSAGE = ('El catálogo de instrumentos cambió durante la operación (regla DEMO-2). '
+CATALOG_WRITE_MESSAGE = ('El catálogo de instrumentos cambió durante la operación (regla de catálogo). '
                          'No se guardaron cambios; volver a intentar.')
-CATALOG_CHANGED_MESSAGE = ('El catálogo de instrumentos cambió después de la previsualización (regla DEMO-2). '
+CATALOG_CHANGED_MESSAGE = ('El catálogo de instrumentos cambió después de la previsualización (regla de catálogo). '
                            'La carga no se guardó; volver a validar.')
-BOLSA_RULE = ('DEMO-3: la información informada por Bolsa prevalece sobre la del corredor; '
-              'el registro anterior queda en la bitácora. No aprobada por NUAM.')
+BOLSA_RULE = ('Prioridad Bolsa: la información informada por Bolsa prevalece sobre la del corredor; '
+              'el registro anterior queda en la bitácora. Pendiente de validación del cliente.')
 BOLSA_PRIORITY_MESSAGE = ('Existe un registro informado por Bolsa con la misma llave provisional; '
-                          'prevalece sobre la información del corredor (regla DEMO-3).')
-CATALOG_SEED = [('SCL','DEMO-ALFA',1,1),('SCL','DEMO-BETA',1,1),('SCL','DEMO-NO-INSCRITO',0,1),
-                ('SCL','DEMO-SUSPENDIDO',1,0),('SCL','DEMO-DUPLICADO',1,1),('SCL','DEMO-INCOMPLETO',1,1),
-                ('COL','DEMO-FILE-2',1,1),('LIM','DEMO-FACTOR-1',0,1)]
+                          'prevalece sobre la información del corredor (prioridad Bolsa).')
+CATALOG_SEED = [('SCL','INS-ALFA',1,1),('SCL','INS-BETA',1,1),('SCL','INS-NO-INSCRITO',0,1),
+                ('SCL','INS-SUSPENDIDO',1,0),('SCL','INS-DUPLICADO',1,1),('SCL','INS-INCOMPLETO',1,1),
+                ('COL','INS-FILE-2',1,1),('LIM','INS-FACTOR-1',0,1)]
 
 def stamp():
     return datetime.now(timezone.utc).isoformat(timespec='milliseconds')
@@ -106,8 +107,8 @@ def factor_roles_from_env():
 def backup_previous_schema(data_dir):
     """Respalda una base anterior a la v1.2 antes de crear el esquema nuevo.
 
-    SQLite no permite cambiar restricciones CHECK con ALTER TABLE. Como la demostración
-    solo contiene datos ficticios, la base y los archivos privados anteriores se mueven
+    SQLite no permite cambiar restricciones CHECK con ALTER TABLE. Como el prototipo
+    solo contiene datos de prueba, la base y los archivos privados anteriores se mueven
     completos a data/respaldo_v1_<fecha>/ y la aplicación crea una base nueva.
     """
     database=data_dir/'demo.sqlite3'
@@ -146,7 +147,7 @@ def create_app(data_dir=None, testing=False):
     app.oplog=oplog
     if schema_backup:
         oplog.warning(canonical(dict(fecha=stamp(),evento='respaldo_esquema_anterior',carpeta=schema_backup.name)))
-        if not testing: print(f'Base anterior a la v1.2 respaldada en {schema_backup}; se creó una base nueva con datos ficticios.')
+        if not testing: print(f'Base de una versión anterior respaldada en {schema_backup}; se creó una base nueva con los datos iniciales.')
 
     def db():
         if 'db' not in g:
@@ -305,7 +306,7 @@ def create_app(data_dir=None, testing=False):
         if g.user:
             ids=allowed_brokers()
             if ids: brokers=[dict(x) for x in db().execute('SELECT * FROM corredor WHERE id IN ('+','.join('?'*len(ids))+')',ids)]
-        return jsonify(user=g.user,brokers=brokers,csrf=session['csrf'],demo=True,rule='DEMO-1: monto/base; 6 decimales; HALF_UP; no aprobada por NUAM',
+        return jsonify(user=g.user,brokers=brokers,csrf=session['csrf'],rule='CONV-1: monto/base; 6 decimales; HALF_UP; pendiente de validación del cliente',
                        rules=dict(catalog=CATALOG_RULE,bolsa=BOLSA_RULE))
 
     @app.post('/api/login')
@@ -375,10 +376,10 @@ def create_app(data_dir=None, testing=False):
         registros ya guardados.
         """
         if entry is None:
-            return 'Instrumento: un instrumento inscrito debe existir en el catálogo del mercado (regla DEMO-2).' if data['inscrito'] else None
-        if not entry['habilitado']: return 'Instrumento: está deshabilitado en el catálogo (regla DEMO-2).'
+            return 'Instrumento: un instrumento inscrito debe existir en el catálogo del mercado (regla de catálogo).' if data['inscrito'] else None
+        if not entry['habilitado']: return 'Instrumento: está deshabilitado en el catálogo (regla de catálogo).'
         if entry['inscrito']!=data['inscrito']:
-            return 'Inscripción: el catálogo registra el instrumento como '+('inscrito' if entry['inscrito'] else 'no inscrito')+' (regla DEMO-2).'
+            return 'Inscripción: el catálogo registra el instrumento como '+('inscrito' if entry['inscrito'] else 'no inscrito')+' (regla de catálogo).'
         return None
 
     def check_catalog(conn,data):
@@ -397,7 +398,7 @@ def create_app(data_dir=None, testing=False):
         """DEMO-3: un registro informado por Bolsa solo lo modifica o desactiva el supervisor."""
         if record['origen']==BOLSA and g.user['rol']!='supervisor':
             security('prioridad_bolsa_denegada')
-            abort(403,description='Registro informado por Bolsa: solo el supervisor puede modificarlo o desactivarlo (regla DEMO-3).')
+            abort(403,description='Registro informado por Bolsa: solo el supervisor puede modificarlo o desactivarlo (prioridad Bolsa).')
 
     def replace_with_bolsa(conn,current,clean,broker):
         """DEMO-3: reemplaza los valores del corredor; los anteriores quedan en la bitácora."""
@@ -438,7 +439,7 @@ def create_app(data_dir=None, testing=False):
     @need_user(('operador','supervisor'))
     def preview_factor():
         payload=json_payload()
-        return jsonify(factor=factor_demo(payload.get('amount'),payload.get('base')),rule='DEMO-1',approved=False)
+        return jsonify(factor=factor_demo(payload.get('amount'),payload.get('base')),rule='CONV-1',approved=False)
 
     @app.put('/api/ratings/<int:rid>')
     @need_user(('operador','supervisor'))
@@ -497,26 +498,26 @@ def create_app(data_dir=None, testing=False):
             # DEMO-3: el archivo de Bolsa no es ingreso manual del corredor; lo carga solo el supervisor.
             if g.user['rol']!='supervisor':
                 security('carga_bolsa_denegada')
-                abort(403,description='Solo el supervisor puede cargar archivos informados por Bolsa (regla DEMO-3).')
-        else: require_factor_permission('factor' if kind=='factores-DEMO' else 'monto')
+                abort(403,description='Solo el supervisor puede cargar archivos informados por Bolsa (prioridad Bolsa).')
+        else: require_factor_permission('factor' if kind=='factores' else 'monto')
         upload=request.files.get('file')
-        if not upload or not upload.filename.lower().endswith('.csv'): raise ValidationError('Solo se admiten archivos .csv académicos.')
+        if not upload or not upload.filename.lower().endswith('.csv'): raise ValidationError('Solo se admiten archivos .csv.')
         if upload.mimetype not in ('text/csv','application/vnd.ms-excel','text/plain','application/octet-stream'): raise ValidationError('Tipo de archivo no permitido.')
         content=upload.read(MAX_FILE_BYTES+1); raw_rows=parse_csv(content); processed=[]; seen=set()
         for number,raw in raw_rows:
             errors=[]; clean=None; notice=None
             try:
                 clean=validate_rating(raw)
-                if kind=='DJ1948-DEMO' and raw['mode']!='monto': raise ValidationError('DJ1948-DEMO requiere mode=monto.')
-                if kind in ('factores-DEMO',BOLSA) and raw['mode']!='factor': raise ValidationError(kind+' requiere mode=factor.')
+                if kind=='montos' and raw['mode']!='monto': raise ValidationError('montos requiere mode=monto.')
+                if kind in ('factores',BOLSA) and raw['mode']!='factor': raise ValidationError(kind+' requiere mode=factor.')
                 key=business_key(clean)
                 if key in seen: raise ValidationError('Duplicado dentro del archivo según llave provisional.')
                 check_catalog(db(),clean)
                 current=existing_record(db(),broker,clean)
                 if current and current['origen']==BOLSA:
-                    raise ValidationError('Duplicado: ya existe un registro informado por Bolsa con la misma llave provisional (regla DEMO-3).' if kind==BOLSA else BOLSA_PRIORITY_MESSAGE)
+                    raise ValidationError('Duplicado: ya existe un registro informado por Bolsa con la misma llave provisional (prioridad Bolsa).' if kind==BOLSA else BOLSA_PRIORITY_MESSAGE)
                 if current and kind!=BOLSA: raise ValidationError('Duplicado ya registrado según llave provisional.')
-                if current: notice=f'Reemplazará el registro {current["id"]} (origen {current["origen"]}) por prioridad Bolsa (regla DEMO-3).'
+                if current: notice=f'Reemplazará el registro {current["id"]} (origen {current["origen"]}) por prioridad Bolsa.'
                 seen.add(key)
             except ValidationError as error: errors.append(str(error))
             processed.append(dict(number=number,raw=raw,clean=clean,errors=errors,notice=notice))
@@ -531,7 +532,7 @@ def create_app(data_dir=None, testing=False):
                     db().execute('INSERT INTO carga_fila (carga_id,numero,datos_json,errores_json) VALUES (?,?,?,?)',
                         (batch,row['number'],canonical(row['raw']),canonical(row['errors'])))
                 file_record(db(),batch,content,upload.filename,'original','.csv',created_paths)
-                report=dict(demo=True,policy='Rechazo total si alguna fila tiene errores',batch=batch,rows=processed,total=len(processed),invalid=invalid,
+                report=dict(policy='Rechazo total si alguna fila tiene errores',batch=batch,rows=processed,total=len(processed),invalid=invalid,
                             rules=[CATALOG_RULE]+([BOLSA_RULE] if kind==BOLSA else []),replacements=replacements)
                 file_record(db(),batch,canonical(report).encode(),f'reporte-{batch}.json','reporte','.json',created_paths)
                 batch_data=dict(db().execute('SELECT * FROM carga WHERE id=?',(batch,)).fetchone())
@@ -631,7 +632,7 @@ def create_app(data_dir=None, testing=False):
         if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest()!=row['sha256']:
             security('integridad_archivo_fallida'); abort(409,description='El archivo no supera la verificación de integridad.')
         with db(): event(db(),'descargar','archivo',fid,db().execute('SELECT corredor_id FROM carga WHERE id=?',(row['carga_id'],)).fetchone()[0])
-        return send_file(path,mimetype=row['tipo'],as_attachment=True,download_name='reporte-demo.json' if row['clase']=='reporte' else 'original-demo.csv')
+        return send_file(path,mimetype=row['tipo'],as_attachment=True,download_name=f'reporte-{row["carga_id"]}.json' if row['clase']=='reporte' else f'original-{row["carga_id"]}.csv')
 
     @app.get('/api/audit')
     @need_user()
@@ -666,7 +667,7 @@ def create_app(data_dir=None, testing=False):
     @app.put('/api/users/<int:uid>')
     @need_user(('administrador',))
     def update_user(uid):
-        if uid==g.user['id']: abort(409,description='No se permite modificar el propio perfil administrador en esta demostración.')
+        if uid==g.user['id']: abort(409,description='El administrador no puede modificar su propio perfil.')
         payload=json_payload(); role=payload.get('role'); brokers=payload.get('brokers',[])
         if role not in ('operador','supervisor','administrador') or not isinstance(brokers,list) or len(brokers)>10: raise ValidationError('Perfil o corredores inválidos.')
         if role=='administrador' and brokers: raise ValidationError('El administrador no recibe acceso tributario por defecto.')
@@ -737,9 +738,9 @@ def create_app(data_dir=None, testing=False):
         if kind=='bolsa' and g.user['rol']!='supervisor':
             security('permiso_denegado'); abort(403,description='El perfil no tiene permiso para esta operación.')
         buffer=io.StringIO(); writer=csv.writer(buffer,lineterminator='\n'); writer.writerow(CSV_COLUMNS)
-        if kind=='bolsa': writer.writerow(['SCL','2026-10','DEMO-ALFA','Tributaria demo','factor','','','0.300000','1'])
-        else: writer.writerow(['SCL','2026-10','DEMO-ARCHIVO','Tributaria demo','monto' if kind=='montos' else 'factor','250' if kind=='montos' else '', '1000' if kind=='montos' else '', '' if kind=='montos' else '0.25','0'])
-        return send_file(io.BytesIO(buffer.getvalue().encode()),mimetype='text/csv',as_attachment=True,download_name=f'plantilla-{kind}-DEMO.csv')
+        if kind=='bolsa': writer.writerow(['SCL','2026-10','INS-ALFA','Tributaria general','factor','','','0.300000','1'])
+        else: writer.writerow(['SCL','2026-10','INS-ARCHIVO','Tributaria general','monto' if kind=='montos' else 'factor','250' if kind=='montos' else '', '1000' if kind=='montos' else '', '' if kind=='montos' else '0.25','0'])
+        return send_file(io.BytesIO(buffer.getvalue().encode()),mimetype='text/csv',as_attachment=True,download_name=f'plantilla-{kind}.csv')
 
     with app.app_context():
         conn=db()
@@ -751,16 +752,16 @@ def create_app(data_dir=None, testing=False):
         if not conn.execute('SELECT count(*) FROM usuario').fetchone()[0]:
             with conn:
                 conn.executemany('INSERT INTO rol (id,nombre) VALUES (?,?)',[(1,'operador'),(2,'supervisor'),(3,'administrador')])
-                conn.executemany('INSERT INTO corredor (id,codigo,nombre) VALUES (?,?,?)',[(1,'DEMO-A','Corredor ficticio A'),(2,'DEMO-B','Corredor ficticio B')])
-                for uid,name,login,rid in [(1,'Operador ficticio A','operador_a',1),(2,'Operador ficticio B','operador_b',1),(3,'Supervisor ficticio','supervisor',2),(4,'Administrador ficticio','admin',3)]:
+                conn.executemany('INSERT INTO corredor (id,codigo,nombre) VALUES (?,?,?)',[(1,'CORR-A','Corredor A'),(2,'CORR-B','Corredor B')])
+                for uid,name,login,rid in [(1,'Operador A','operador_a',1),(2,'Operador B','operador_b',1),(3,'Supervisor general','supervisor',2),(4,'Administrador del sistema','admin',3)]:
                     conn.execute('INSERT INTO usuario (id,nombre,login,password_hash,rol_id) VALUES (?,?,?,?,?)',(uid,name,login,generate_password_hash(DEMO_PASSWORD,method='pbkdf2:sha256:600000'),rid))
                 conn.executemany('INSERT INTO usuario_corredor VALUES (?,?)',[(1,1),(2,2),(3,1),(3,2)])
-                conn.execute('INSERT INTO regla_factor VALUES (1,?,?,?,0)',('DEMO-1','Regla exclusivamente ilustrativa: monto/base; HALF_UP; 6 decimales',canonical(dict(precision=6,rounding='HALF_UP',min=0,max=1))))
+                conn.execute('INSERT INTO regla_factor VALUES (1,?,?,?,0)',('CONV-1','Regla de conversión provisional: monto/base; HALF_UP; 6 decimales',canonical(dict(precision=6,rounding='HALF_UP',min=0,max=1))))
                 now=stamp()
                 conn.executemany('INSERT INTO instrumento (mercado,codigo,inscrito,habilitado,creado,actualizado) VALUES (?,?,?,?,?,?)',
                                  [(market,code,registered,enabled,now,now) for market,code,registered,enabled in CATALOG_SEED])
-                for broker,inst,amount in [(1,'DEMO-ALFA','250'),(1,'DEMO-NO-INSCRITO','120'),(2,'DEMO-BETA','400')]:
-                    clean=validate_rating(dict(market='SCL',period='2026-10',instrument=inst,rating='Tributaria demo',mode='monto',amount=amount,base='1000',registered='0' if 'NO-' in inst else '1'))
+                for broker,inst,amount in [(1,'INS-ALFA','250'),(1,'INS-NO-INSCRITO','120'),(2,'INS-BETA','400')]:
+                    clean=validate_rating(dict(market='SCL',period='2026-10',instrument=inst,rating='Tributaria general',mode='monto',amount=amount,base='1000',registered='0' if 'NO-' in inst else '1'))
                     insert_rating(conn,clean,broker,'manual')
         # Upgrade the user's earlier fictitious demo reports without overwriting SQL.
         for row in conn.execute("SELECT a.*,c.corredor_id,c.usuario_id,c.tipo carga_tipo,c.estado,c.creado carga_creado FROM archivo a JOIN carga c ON c.id=a.carga_id WHERE a.clase='reporte'").fetchall():

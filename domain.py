@@ -1,4 +1,4 @@
-"""Reglas de DEMOSTRACIÓN. Ninguna fórmula o llave tiene aprobación de NUAM."""
+"""Reglas de validación y conversión. La fórmula (CONV-1, regla DEMO-1 del diseño) y la llave de negocio están pendientes de aprobación de NUAM."""
 import csv
 import io
 import re

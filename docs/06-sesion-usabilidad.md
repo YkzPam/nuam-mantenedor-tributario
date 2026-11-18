@@ -12,12 +12,12 @@ El plan de pruebas de la Unidad 2 definió tres elementos de usabilidad (P-UX01,
 
 ## 6.2 Tareas
 
-Se leen en este orden. Contraseña de todas las cuentas: `Demo2026!`.
+Se leen en este orden. Contraseña de todas las cuentas: `Clave2026!` (desde la versión 1.3).
 
 | Tarea | Elemento del plan | Instrucción para el participante | Se considera completada sin ayuda si |
 |---|---|---|---|
-| T1 | P-UX01 | Inicia sesión como `operador_a` y busca las calificaciones del instrumento DEMO-ALFA. | Llega al resultado de la búsqueda |
-| T2 | P-UX01 | Crea una calificación: mercado SCL, período 2026-10, instrumento DEMO-BETA, inscrito, calificación "Tributaria demo", modo monto, monto 300 y base 1000. | La calificación aparece guardada |
+| T1 | P-UX01 | Inicia sesión como `operador_a` y busca las calificaciones del instrumento INS-ALFA. | Llega al resultado de la búsqueda |
+| T2 | P-UX01 | Crea una calificación: mercado SCL, período 2026-10, instrumento INS-BETA, inscrito, calificación "Tributaria general", modo monto, monto 300 y base 1000. | La calificación aparece guardada |
 | T3 | P-UX01 | Modifica la calificación que acabas de crear (monto 350) y después desactívala. | Ambos cambios quedan guardados |
 | T4 | P-UX02 | En Cargas masivas, prevalida `ejemplos/03_campos_incompletos.csv` y explica con tus palabras qué fila falla y por qué. | Identifica la fila y el motivo correctos |
 | T5 | P-UX01 | Prevalida y confirma `ejemplos/01_montos_valido.csv`. | El lote queda confirmado |

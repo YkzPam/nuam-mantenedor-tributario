@@ -1,5 +1,24 @@
 # Historial de versiones
 
+## 1.3 — 18 de noviembre de 2026
+
+Origen: preparación de la presentación del prototipo. La interfaz deja de mostrar rótulos de demostración y de datos ficticios; la documentación conserva el alcance del prototipo.
+
+Cambiado
+
+- Textos de pantalla sin "demostración", "ficticio", "ilustrativo" ni "académico". Se quitan el aviso superior y la sección de credenciales de la pantalla de ingreso; las credenciales quedan en `README.md` e `INICIO_UNIDAD3.md`.
+- Códigos de prueba: instrumentos `INS-*` (antes `DEMO-*`), corredores `CORR-A` y `CORR-B` (antes `DEMO-A` y `DEMO-B`), usuarios "Operador A", "Operador B", "Supervisor general" y "Administrador del sistema".
+- Orígenes y tipos de carga `montos`, `factores` y `bolsa` (antes `DJ1948-DEMO`, `factores-DEMO` y `bolsa-DEMO`); la consulta los muestra como "Carga de montos", "Carga de factores" y "Bolsa".
+- La regla DEMO-1 aparece como regla de conversión CONV-1; DEMO-2 y DEMO-3, como "regla de catálogo" y "prioridad Bolsa". Siguen pendientes de validación de NUAM.
+- Contraseña de prueba `Clave2026!` (antes `Demo2026!`).
+- Esquema SQLite 3. Una base de una versión anterior se respalda en `data/respaldo_v1_<fecha>/` antes de crear la nueva.
+- Presentación más sobria: fondo de la pantalla de ingreso, barra superior fija, filas alternadas en las tablas.
+
+Agregado
+
+- Caso W23, que revisa las pantallas de los cuatro perfiles y `app.js`. El total pasa de 90 a 91: 91 de 91 en Linux (`evidencias/ejecucion_completa_20261118_192802_227666`) y dentro de la imagen Docker 1.3 (`evidencias/ejecucion_completa_20261118_192203_455155`).
+- Recorrido en Chrome con los cuatro usuarios (`evidencias/chrome_v13_20261118`) y prueba de humo del contenedor (`evidencias/docker_20261113/v1_3`).
+
 ## 1.2.4 — 14 de noviembre de 2026
 
 Origen: hallazgos H-05 a H-07 de la evaluación heurística (`docs/07-evaluacion-heuristica.md`).

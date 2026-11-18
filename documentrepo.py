@@ -25,7 +25,7 @@ def open_documents(private):
 def upsert_report(private,batch,report,sha256):
     document=dict(batch_id=batch['id'],broker_id=batch['corredor_id'],owner_id=batch['usuario_id'],
         kind=batch['tipo'],state=batch['estado'],created_utc=batch['creado'],source_sha256=sha256,
-        classification='Documento académico derivado; datos ficticios',report=report)
+        classification='Reporte de carga; uso interno',report=report)
     with open_documents(private) as table:
         table.upsert(document,Query().batch_id==batch['id'])
 

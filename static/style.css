@@ -12,3 +12,20 @@
 [aria-invalid=true]{border-color:var(--danger);box-shadow:0 0 0 2px #9f282826}
 /* H-05: en pantallas angostas, cada calificación se muestra como tarjeta con sus acciones visibles */
 @media(max-width:700px){.card-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.card-table,.card-table tbody,.card-table tr,.card-table td{display:block;width:100%}.card-table tr{border-bottom:1px solid var(--line);padding:10px 12px}.card-table td{border:0;padding:4px 0;display:grid;grid-template-columns:40% 1fr;gap:8px}.card-table td::before{content:attr(data-label);font-weight:650;color:var(--muted)}.card-table td[data-label=Acciones]{display:flex;flex-wrap:wrap;gap:6px;padding-top:8px}.card-table td[data-label=Acciones]::before{width:100%}.card-table td[data-label=Acciones] button{flex:1 1 90px;min-height:40px}.card-table td br{display:none}.card-table td .badge{grid-column:2;justify-self:start}.card-table td[colspan]{display:block}.card-table td[colspan]::before{content:none}}
+
+/* v1.3: presentación más sobria y profesional */
+:root{--ink:#14302a;--bg:#f3f6f5}
+body{font-family:"Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif}
+body:has(.login-card){min-height:100vh;background:linear-gradient(160deg,#0f4a33 0%,#176646 45%,#e9f2ec 45.1%,#f3f6f5 100%)}
+.login-card{margin-top:9vh;box-shadow:0 18px 50px #0b2a1d33;border:0}
+.topbar{position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #12352012}
+.sidenav{background:#fff}
+.nav-button{border-radius:8px;border-left:3px solid transparent}
+.nav-button.active{border-left-color:#0c3b27}
+.section-heading h1,.view>h1{color:#10291f}
+.filter-grid,.panel,.table-wrap,.audit-card,.user-card{box-shadow:0 1px 3px #1235200d}
+tbody tr:nth-child(even){background:#f8fbf9}
+tbody tr:hover{background:#eef6f1}
+.badge{font-weight:600;border:1px solid var(--line)}
+.message{box-shadow:0 1px 3px #1235200d}
+footer{background:#fff}

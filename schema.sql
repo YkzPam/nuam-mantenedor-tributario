@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS instrumento (
 CREATE TABLE IF NOT EXISTS calificacion (
  id INTEGER PRIMARY KEY, corredor_id INTEGER NOT NULL REFERENCES corredor(id), mercado TEXT NOT NULL CHECK(mercado IN ('SCL','COL','LIM')),
  periodo TEXT NOT NULL, instrumento TEXT NOT NULL, calificacion TEXT NOT NULL, inscrito INTEGER NOT NULL CHECK(inscrito IN (0,1)),
- monto TEXT, base TEXT, factor TEXT NOT NULL, origen TEXT NOT NULL CHECK(origen IN ('manual','DJ1948-DEMO','factores-DEMO','bolsa-DEMO')),
+ monto TEXT, base TEXT, factor TEXT NOT NULL, origen TEXT NOT NULL CHECK(origen IN ('manual','montos','factores','bolsa')),
  regla_id INTEGER REFERENCES regla_factor(id), activo INTEGER NOT NULL DEFAULT 1 CHECK(activo IN (0,1)),
  version INTEGER NOT NULL DEFAULT 1, creado TEXT NOT NULL, actualizado TEXT NOT NULL
 );
@@ -34,7 +34,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS uq_calificacion_provisional ON calificacion(co
 CREATE INDEX IF NOT EXISTS ix_calificacion_busqueda ON calificacion(corredor_id, activo, periodo, mercado);
 CREATE TABLE IF NOT EXISTS carga (
  id INTEGER PRIMARY KEY, corredor_id INTEGER NOT NULL REFERENCES corredor(id), usuario_id INTEGER NOT NULL REFERENCES usuario(id),
- tipo TEXT NOT NULL CHECK(tipo IN ('DJ1948-DEMO','factores-DEMO','bolsa-DEMO')), estado TEXT NOT NULL CHECK(estado IN ('lista','rechazada','confirmada','conflicto')),
+ tipo TEXT NOT NULL CHECK(tipo IN ('montos','factores','bolsa')), estado TEXT NOT NULL CHECK(estado IN ('lista','rechazada','confirmada','conflicto')),
  total INTEGER NOT NULL, validas INTEGER NOT NULL, invalidas INTEGER NOT NULL, creado TEXT NOT NULL,
  confirmado TEXT, token TEXT NOT NULL UNIQUE
 );
@@ -57,5 +57,5 @@ CREATE TABLE IF NOT EXISTS evento_auditoria (
 CREATE TRIGGER IF NOT EXISTS auditoria_no_update BEFORE UPDATE ON evento_auditoria BEGIN SELECT RAISE(ABORT,'La bitácora es de solo adición'); END;
 CREATE TRIGGER IF NOT EXISTS auditoria_no_delete BEFORE DELETE ON evento_auditoria BEGIN SELECT RAISE(ABORT,'La bitácora es de solo adición'); END;
 CREATE INDEX IF NOT EXISTS ix_logout_session_hash ON evento_auditoria(usuario_id,json_extract(despues_json,'$.session_hash')) WHERE accion='logout';
--- Versión del esquema: 2 desde la v1.2 (tabla instrumento y origen bolsa-DEMO).
-PRAGMA user_version = 2;
+-- Versión del esquema: 2 desde la v1.2 (tabla instrumento y origen de Bolsa); 3 desde la v1.3 (orígenes montos, factores y bolsa).
+PRAGMA user_version = 3;

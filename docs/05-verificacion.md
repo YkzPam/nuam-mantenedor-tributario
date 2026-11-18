@@ -16,7 +16,7 @@ El ZIP contiene los mismos archivos del repositorio, salvo los dos documentos `.
 verificar.cmd
 ```
 
-El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 90, "passed": 90, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
+El acceso prepara el entorno si falta y ejecuta `run_all_tests.py`. El resultado esperado es `"tests": 91, "passed": 91, "failed": 0, "errors": 0`, con un informe nuevo en `evidencias/`.
 
 ## 5.3 Estrés y servidor WSGI
 
@@ -36,4 +36,4 @@ En el equipo donde se construyó, la red pasa por un proxy con certificado propi
 
 ## 5.5 Uso de IA
 
-Las versiones 1.1 a 1.2.4 se prepararon con apoyo de un asistente de inteligencia artificial generativa: corrección de D3, registro operativo, permiso configurable de factores, modo WAL, prueba de estrés, reglas DEMO-2 y DEMO-3, verificación del contenedor, guías de colaboración y de la sesión de usabilidad, documentación y ejecución de las pruebas. Las reglas DEMO-2 y DEMO-3 las definió el equipo para la demostración, con autorización del docente para completar las definiciones que faltaban. Los resultados registrados provienen de ejecuciones reales en el entorno indicado en cada informe. El equipo debe revisar el código y poder explicar sus decisiones; la validación docente se confirma por separado.
+Las versiones 1.1 a 1.3 se prepararon con apoyo de un asistente de inteligencia artificial generativa: corrección de D3, registro operativo, permiso configurable de factores, modo WAL, prueba de estrés, reglas DEMO-2 y DEMO-3, verificación del contenedor, la revisión de los textos de la interfaz de la versión 1.3, guías de colaboración y de la sesión de usabilidad, documentación y ejecución de las pruebas. Las reglas DEMO-2 y DEMO-3 las definió el equipo para la demostración, con autorización del docente para completar las definiciones que faltaban. Los resultados registrados provienen de ejecuciones reales en el entorno indicado en cada informe. El equipo debe revisar el código y poder explicar sus decisiones; la validación docente se confirma por separado.

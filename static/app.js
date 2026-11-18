@@ -1,4 +1,5 @@
 'use strict';
+const ORIGIN_LABELS={manual:'Manual',montos:'Carga de montos',factores:'Carga de factores',bolsa:'Bolsa'};
 const $ = id => document.getElementById(id);
 let csrf=document.body.dataset.csrf, me=null, currentPage=1, lastBatch=null, deleteRecord=null, catalog=[];
 const element=(tag,attributes={},...children)=>{
@@ -39,9 +40,9 @@ async function loadRatings(){
   for(const row of data.items){
     const inst=element('td',{'data-label':'Instrumento'},row.instrumento,element('br'),element('span',{class:'badge',text:row.inscrito?'Inscrito':'No inscrito'}));
     const buttons=element('td',{'data-label':'Acciones'},action('Detalle',()=>showDetail(row.id)),action('Modificar',()=>editRating(row.id)),action('Desactivar',()=>openDelete(row)));
-    const bolsa=row.origen==='bolsa-DEMO', origin=element('td',{'data-label':'Origen'},row.origen);
+    const bolsa=row.origen==='bolsa', origin=element('td',{'data-label':'Origen'},ORIGIN_LABELS[row.origen]||row.origen);
     if(bolsa)origin.append(element('br'),element('span',{class:'badge',text:'Prioridad Bolsa'}));
-    if(bolsa&&me.user.rol!=='supervisor')for(const button of [...buttons.children].slice(1)){button.disabled=true;button.title='Regla DEMO-3: solo el supervisor cambia registros informados por Bolsa.';}
+    if(bolsa&&me.user.rol!=='supervisor')for(const button of [...buttons.children].slice(1)){button.disabled=true;button.title='Prioridad Bolsa: solo el supervisor cambia registros informados por Bolsa.';}
     $('rating-rows').append(element('tr',{},inst,element('td',{'data-label':'Corredor / mercado'},row.corredor+' / '+row.mercado),element('td',{'data-label':'Período'},row.periodo),element('td',{'data-label':'Calificación'},row.calificacion),element('td',{'data-label':'Factor'},row.factor),origin,buttons));
   }
   if(!data.items.length)$('rating-rows').append(element('tr',{},element('td',{colspan:7,text:'Sin registros que coincidan con los filtros.'})));
@@ -52,9 +53,9 @@ function catalogMatch(){
   const code=$('rating-instrument').value.trim().toUpperCase(), market=$('rating-market').value;
   const entry=catalog.find(item=>item.codigo===code&&item.mercado===market);
   if(!code){$('catalog-hint').textContent='';return;}
-  if(!entry){$('catalog-hint').textContent='No figura en el catálogo: solo se admite como no inscrito (DEMO-2).';$('rating-registered').value='0';return;}
+  if(!entry){$('catalog-hint').textContent='No figura en el catálogo: solo se admite como no inscrito (regla de catálogo).';$('rating-registered').value='0';return;}
   $('rating-registered').value=String(entry.inscrito);
-  $('catalog-hint').textContent='Catálogo: '+(entry.inscrito?'inscrito':'no inscrito')+' · '+(entry.habilitado?'habilitado':'deshabilitado, no admite registros (DEMO-2)');
+  $('catalog-hint').textContent='Catálogo: '+(entry.inscrito?'inscrito':'no inscrito')+' · '+(entry.habilitado?'habilitado':'deshabilitado, no admite registros (regla de catálogo)');
 }
 async function loadCatalog(){
   const params=new URLSearchParams();
@@ -87,7 +88,7 @@ async function editRating(id){
 }
 async function showDetail(id){
   const {item}=await api('ratings/'+id);$('detail-fields').replaceChildren();
-  for(const [label,key] of [['ID','id'],['Corredor','corredor_id'],['Mercado','mercado'],['Período','periodo'],['Instrumento','instrumento'],['Calificación','calificacion'],['Inscrito (1/0)','inscrito'],['Monto ficticio','monto'],['Base ficticia','base'],['Factor','factor'],['Origen','origen'],['Versión registro','version'],['Regla ilustrativa','regla_id'],['Actualizado (UTC)','actualizado']])$('detail-fields').append(element('dt',{text:label}),element('dd',{text:item[key]??'No aplica'}));
+  for(const [label,key] of [['ID','id'],['Corredor','corredor_id'],['Mercado','mercado'],['Período','periodo'],['Instrumento','instrumento'],['Calificación','calificacion'],['Inscrito (1/0)','inscrito'],['Monto','monto'],['Base','base'],['Factor','factor'],['Origen','origen'],['Versión registro','version'],['Regla de conversión','regla_id'],['Actualizado (UTC)','actualizado']])$('detail-fields').append(element('dt',{text:label}),element('dd',{text:key==='origen'?(ORIGIN_LABELS[item[key]]||item[key]):(item[key]??'No aplica')}));
   $('detail-dialog').showModal();
 }
 function openDelete(row){
@@ -119,10 +120,10 @@ async function saveRating(event){
   catch(error){$('form-error').textContent=error.message;}
 }
 async function uploadExample(invalid){
-  const mode=$('batch-kind').value==='DJ1948-DEMO'?'monto':'factor', instrument=($('batch-kind').value==='bolsa-DEMO'?'DEMO-BOLSA-':'DEMO-CARGA-')+Date.now();
-  const row=['SCL','2026-10',instrument,'Tributaria demo',mode,mode==='monto'?'250':'',mode==='monto'?'1000':'',mode==='factor'?'0.25':'','0'].join(',');
+  const mode=$('batch-kind').value==='montos'?'monto':'factor', instrument=($('batch-kind').value==='bolsa'?'INS-BOLSA-':'INS-CARGA-')+Date.now();
+  const row=['SCL','2026-10',instrument,'Tributaria general',mode,mode==='monto'?'250':'',mode==='monto'?'1000':'',mode==='factor'?'0.25':'','0'].join(',');
   let content='market,period,instrument,rating,mode,amount,base,factor,registered\n'+row+'\n';
-  if(invalid){content+=row+'\n';content+='SCL,2026-99,DEMO-ERROR,Tributaria demo,'+mode+',-1,0,2,0\n';}
+  if(invalid){content+=row+'\n';content+='SCL,2026-99,INS-ERROR,Tributaria general,'+mode+',-1,0,2,0\n';}
   const body=new FormData();body.append('broker',$('batch-broker').value);body.append('kind',$('batch-kind').value);body.append('file',new Blob([content],{type:'text/csv'}),invalid?'ejemplo-errores.csv':'ejemplo-valido.csv');
   await preview(body);
 }
@@ -188,18 +189,18 @@ async function start(){
   document.querySelectorAll('.close-dialog').forEach(b=>b.addEventListener('click',()=>$('edit-dialog').close()));document.querySelectorAll('.close-detail').forEach(b=>b.addEventListener('click',()=>$('detail-dialog').close()));
   document.querySelectorAll('.close-document').forEach(b=>b.addEventListener('click',()=>$('document-dialog').close()));
   $('cancel-delete').addEventListener('click',()=>$('delete-dialog').close());$('accept-delete').addEventListener('click',run(async()=>{await api('ratings/'+deleteRecord.id,'DELETE',{version:deleteRecord.version});$('delete-dialog').close();notify('Calificación desactivada. Sus datos y su historial se conservan.');await loadRatings();}));
-  $('upload-form').addEventListener('submit',run(async()=>{if(!$('batch-file').files.length)throw Error('Seleccionar un archivo o usar un ejemplo académico.');const body=new FormData();body.append('broker',$('batch-broker').value);body.append('kind',$('batch-kind').value);body.append('file',$('batch-file').files[0]);await preview(body);}));
+  $('upload-form').addEventListener('submit',run(async()=>{if(!$('batch-file').files.length)throw Error('Seleccionar un archivo o usar un ejemplo.');const body=new FormData();body.append('broker',$('batch-broker').value);body.append('kind',$('batch-kind').value);body.append('file',$('batch-file').files[0]);await preview(body);}));
   $('example-valid').addEventListener('click',run(()=>uploadExample(false)));$('example-invalid').addEventListener('click',run(()=>uploadExample(true)));
   $('confirm-batch').addEventListener('click',run(async()=>{
     const batchId=lastBatch;
     const data=await api('batches/'+batchId+'/confirm','POST',{});
     if(lastBatch===batchId){
-      $('preview-count').textContent='Carga '+batchId+' confirmada: '+data.inserted+' registro(s) incorporado(s). No hay una nueva confirmación pendiente.'+(data.replaced?' '+data.replaced+' reemplazo(s) por prioridad Bolsa (DEMO-3).':'');
+      $('preview-count').textContent='Carga '+batchId+' confirmada: '+data.inserted+' registro(s) incorporado(s). No hay una nueva confirmación pendiente.'+(data.replaced?' '+data.replaced+' reemplazo(s) por prioridad Bolsa.':'');
       $('confirm-batch').disabled=true;
     }
     notify(data.inserted+' registro(s) incorporado(s). Reintentos no duplican la carga.');await loadBatches();await loadCatalog();
   }));
-  $('factor-form').addEventListener('submit',run(async()=>{const data=await api('factor/preview','POST',{amount:$('factor-amount').value,base:$('factor-base').value});$('factor-result').textContent='Factor de prueba: '+data.factor+' · '+data.rule;}));
+  $('factor-form').addEventListener('submit',run(async()=>{const data=await api('factor/preview','POST',{amount:$('factor-amount').value,base:$('factor-base').value});$('factor-result').textContent='Factor calculado: '+data.factor+' · regla '+data.rule;}));
   await loadCatalog();await loadRatings();
 }
 start().catch(error=>notify(error.message,true));

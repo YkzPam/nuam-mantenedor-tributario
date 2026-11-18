@@ -53,7 +53,7 @@ Como estas revisiones no pasan por un pull request, el historial de GitHub no la
 - Mutaciones con token CSRF. Mensajes de error sin rutas internas, SQL ni nombres de tablas.
 - El registro operativo (`data/logs/operacion.log`) guarda método, ruta declarada, estado, duración y perfil. No se agregan cuerpos de solicitud, parámetros de búsqueda, cookies, tokens ni contraseñas.
 - Dependencias con versión exacta en `requirements-lock.txt` y `requirements-servidor.txt`.
-- Solo datos ficticios. Ningún archivo de `data/` ni de `evidencias/` se sube al repositorio (`.gitignore`).
+- Solo datos de prueba. Ningún archivo de `data/` ni de `evidencias/` se sube al repositorio (`.gitignore`).
 
 ## 4. Definición de terminado
 

@@ -105,7 +105,7 @@ class ComplementaryCases(unittest.TestCase):
                 "".join(f"SCL,2026-10,{instrument},Complementaria,monto,250,1000,,0\n"
                         for instrument in instruments)).encode()
 
-    def preview(self, content=None, client=None, csrf=None, filename="complementaria.csv", kind="DJ1948-DEMO"):
+    def preview(self, content=None, client=None, csrf=None, filename="complementaria.csv", kind="montos"):
         client = client or self.client
         return client.post("/api/batches/preview", data={"broker": "1", "kind": kind,
                            "file": (io.BytesIO(content or self.csv()), filename)},
@@ -266,7 +266,7 @@ class ComplementaryCases(unittest.TestCase):
         rid = self.create("COMP-RULE-VERSION")
         stored = self.query("SELECT c.monto,c.factor,c.regla_id,r.version FROM calificacion c JOIN regla_factor r ON r.id=c.regla_id WHERE c.id=?", (rid,))[0]
         event_after = json.loads(self.query("SELECT despues_json FROM evento_auditoria WHERE entidad='calificacion' AND accion='crear' AND registro_id=?", (rid,))[0][0])
-        self.assertEqual(stored, ("250", "0.250000", 1, "DEMO-1"))
+        self.assertEqual(stored, ("250", "0.250000", 1, "CONV-1"))
         self.assertEqual((event_after["monto"], event_after["factor"], event_after["regla_id"]), stored[:3])
         self.details = dict(cases=records, valid_write=dict(amount=stored[0], factor=stored[1], rule_id=stored[2], rule_version=stored[3], audit_matches=True))
 
@@ -291,7 +291,7 @@ class ComplementaryCases(unittest.TestCase):
             rejected = []
             for bad in (None, "token-invalido-complementario"):
                 if path == "/api/batches/preview":
-                    response = client.post(path, data={"broker": "1", "kind": "DJ1948-DEMO", "file": (io.BytesIO(self.csv(("COMP-CSRF-PREVIEW",))), "qa.csv")},
+                    response = client.post(path, data={"broker": "1", "kind": "montos", "file": (io.BytesIO(self.csv(("COMP-CSRF-PREVIEW",))), "qa.csv")},
                                            headers={} if bad is None else {"X-CSRF-Token": bad})
                 else:
                     response = client.open(path, method=method, json=payload or {}, headers={} if bad is None else {"X-CSRF-Token": bad})
@@ -359,7 +359,7 @@ class ComplementaryCases(unittest.TestCase):
         for filename in ["01_montos_valido.csv", "02_encabezado_invalido.csv", "03_campos_incompletos.csv", "04_duplicados.csv", "05_factores_valido.csv"]:
             before_count = self.query("SELECT count(*) FROM calificacion")[0][0]
             response = self.preview((PROTOTYPE / "ejemplos" / filename).read_bytes(), filename=filename,
-                                    kind="factores-DEMO" if filename.startswith("05") else "DJ1948-DEMO")
+                                    kind="factores" if filename.startswith("05") else "montos")
             result = dict(file=filename, preview_status=response.status_code)
             if filename.startswith("02"):
                 self.assertEqual(response.status_code, 422)

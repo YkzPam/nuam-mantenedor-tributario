@@ -39,7 +39,7 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT))
 from domain import CSV_COLUMNS  # noqa: E402
 
-PASSWORD = "Demo2026!"
+PASSWORD = "Clave2026!"
 USERS = [("operador_a", 1), ("operador_b", 2), ("supervisor", 1), ("supervisor", 2)]
 LIMIT_SECONDS = 3.0
 
@@ -170,7 +170,7 @@ def sustained_level(sessions, level, seconds, run_tag):
                 counter += 1
                 payload = dict(broker=broker, market="SCL", period="2026-10",
                                instrument=f"ESTRES-{run_tag}-{level}-{index}-{counter}"[:40],
-                               rating="Estres demo", registered="0", mode="monto", amount="250", base="1000")
+                               rating="Estrés general", registered="0", mode="monto", amount="250", base="1000")
                 started = time.perf_counter()
                 status, _ = client.post_json("/api/ratings", payload)
                 records.append(("guardado", time.perf_counter() - started, status))
@@ -206,7 +206,7 @@ def successive_batches(client, broker, batches, run_tag, measure_memory):
         rows = [f"SCL,2026-10,L{run_tag}-{number}-{n},Lote estres,monto,1,2,,0" for n in range(1000)]
         content = (",".join(CSV_COLUMNS) + "\n" + "\n".join(rows) + "\n").encode()
         started = time.perf_counter()
-        status_preview, preview = client.post_file("/api/batches/preview", {"broker": str(broker), "kind": "DJ1948-DEMO"},
+        status_preview, preview = client.post_file("/api/batches/preview", {"broker": str(broker), "kind": "montos"},
                                                    f"lote_{number}.csv", content)
         preview_seconds = time.perf_counter() - started
         status_confirm, confirm = (None, None)

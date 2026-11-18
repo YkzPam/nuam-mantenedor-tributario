@@ -1,0 +1,45 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile.sandbox
+#1 transferring dockerfile: 1.02kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 90B done
+#3 DONE 0.0s
+
+#4 [stage-0 1/6] FROM docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b
+#4 resolve docker.io/library/python:3.12-slim@sha256:5e2bdb1b0d542d5039cffb8181c65930093949194a65c365dfb1b0fe13a4fa5b 0.0s done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 2.27kB done
+#5 DONE 0.0s
+
+#6 [stage-0 3/6] COPY requirements-lock.txt requirements-servidor.txt ./
+#6 CACHED
+
+#7 [stage-0 4/6] RUN --mount=type=secret,id=ca,target=/tmp/ca.crt PIP_CERT=/tmp/ca.crt pip install --no-cache-dir -r requirements-lock.txt -r requirements-servidor.txt
+#7 CACHED
+
+#8 [stage-0 2/6] WORKDIR /app
+#8 CACHED
+
+#9 [stage-0 5/6] COPY . .
+#9 CACHED
+
+#10 [stage-0 6/6] RUN useradd --create-home --uid 10001 nuam     && mkdir -p /datos     && chown nuam:nuam /datos
+#10 CACHED
+
+#11 exporting to image
+#11 exporting layers done
+#11 exporting manifest sha256:6b25f874f647158484e1ad89ea1cc07943662028d497e9263d1cffd11bc94433 done
+#11 exporting config sha256:9fa8b36e88bf96243de6814a5ffb44c28482bb48762f50d45795a84f5c048aa2 done
+#11 exporting attestation manifest sha256:5cf815397a6d7c575796c3d87ecb08d4311b899cb77186623edc182bf1944f59 done
+#11 exporting manifest list sha256:2e8c157d0c660f2a73d7f848919ae396508ca1b3015a5a68539248da1af2fe02 done
+#11 naming to docker.io/library/nuam-mantenedor:1.3 done
+#11 unpacking to docker.io/library/nuam-mantenedor:1.3 done
+#11 DONE 0.1s
