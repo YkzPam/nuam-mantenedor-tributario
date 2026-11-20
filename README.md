@@ -72,4 +72,4 @@ Los documentos de la entrega están en `docs/`: la propuesta de asesoría (`Prop
 
 ## 7. Alcance y pendientes
 
-El catálogo de instrumentos (DEMO-2) y la prioridad de la Bolsa (DEMO-3) son reglas que el equipo definió para el prototipo, descritas en [INICIO_UNIDAD3.md](INICIO_UNIDAD3.md#8-reglas-demo-2-y-demo-3); NUAM debe validarlas o reemplazarlas. La usabilidad se evaluó con perfiles simulados y falta repetirla con usuarios reales. Los resultados locales no certifican la infraestructura de NUAM, y la validación del docente se confirma por separado.
+El catálogo de instrumentos (DEMO-2, "regla de catálogo" en pantalla) y la prioridad de la Bolsa (DEMO-3, "prioridad Bolsa" en pantalla) son reglas que el equipo definió para el prototipo, descritas en [INICIO_UNIDAD3.md](INICIO_UNIDAD3.md#8-reglas-demo-2-y-demo-3); NUAM debe validarlas o reemplazarlas. La usabilidad se evaluó con perfiles simulados y falta repetirla con usuarios reales. Los resultados locales no certifican la infraestructura de NUAM, y la validación del docente se confirma por separado.

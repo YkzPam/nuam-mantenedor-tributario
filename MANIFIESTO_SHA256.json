@@ -40,8 +40,8 @@
       "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
     },
     "CHANGELOG.md": {
-      "bytes": 13792,
-      "sha256": "8a5d709ed4eb05003a5a4c364b0c87e028e11671cf53efb88307580b9474e342",
+      "bytes": 14232,
+      "sha256": "76b6795d56a9b5f4d4ddde6566ab1c10f15700175200fa322cc8eb33825d3a8b",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
       "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
@@ -51,8 +51,8 @@
       "sha256_v1_2_4": "375ad38d670a7c75c026e91fc94f8c4e9b017885011e8c7bb6b22885bd5b0f47"
     },
     "CONTRIBUTING.md": {
-      "bytes": 6197,
-      "sha256": "3fc65ddc7e54935d1c6102724f5a4884dfffbabc16ba3ec9cce3fe1b438a5c89",
+      "bytes": 6237,
+      "sha256": "a0cd28b68251f3a2515d81d3a5f6de85a190195f0da68a1273436f3a7899a4cb",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
       "sha256_v1_2_2": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383",
@@ -76,8 +76,8 @@
       "sha256_v1_2_4": "79d11c23dc3cdf0def1c72172f771e507cc50ea1b42e8e21dc4e7bc5d36f0daf"
     },
     "README.md": {
-      "bytes": 6032,
-      "sha256": "3cc2891a0bfeba8beecd8aff896e22f4b22ef091b3f88955d55d554f3bcbba5f",
+      "bytes": 6097,
+      "sha256": "c8cef1d08c84690596a487c6f65ecbd2dc94603de5bdeb41098b9abc990062d8",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "a294ff62b83de35b87a61e5a26a021ff87d976fafdb290c8d27b6bd34e5bc4c6",
       "sha256_v1_2": "183358236ba6bfd32668e5b824196366d6c3a9768484c7d12d30a35a914b2a8c",
@@ -130,8 +130,8 @@
       "sha256_v1_2_4": "22d6d1dfb4f30901cf06ecea3d549109f552fe843d002f67914d202c7d2f3f25"
     },
     "docs/05-verificacion.md": {
-      "bytes": 3253,
-      "sha256": "acbb5b598483dade68bcafce268380d426ec7232636a65ff65c500ba7f88bcf9",
+      "bytes": 3746,
+      "sha256": "a92ad2a2e0de02359e6f0c58b0356a35fee95decc85cacb37cea1a15ab26a581",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "99d9a9796bed2de137cf4d1eec981285f9372da2c357e8eb798df4bd53e6785a",
       "sha256_v1_2": "c468198cbe5a1d1b9f9d20b11e4f6e1b7a46a39444eb919b5df22f031e9d3c6a",

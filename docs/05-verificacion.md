@@ -32,7 +32,9 @@ Para medir por HTTP, iniciar Waitress con `NUAM_DATA_DIR` apuntando a una carpet
 
 La imagen del `Dockerfile` se construyó el 13 de noviembre de 2026 con Docker 29.9.3 (Python 3.12.16 dentro de la imagen, Flask 3.1.3, Waitress 3.0.2 y TinyDB 4.9.0). Dentro del contenedor, `python -m unittest discover -s tests` aprobó 86 de 86 casos. Con el contenedor publicado en `127.0.0.1:8765` y el volumen `nuam-datos`, `prueba_humo_docker.py` comprobó seis puntos: el ingreso sin token CSRF se rechaza, el supervisor ingresa con token, el catálogo inicial es visible, el supervisor agrega un instrumento, el operador no puede hacerlo y el instrumento agregado sigue en la base después de `docker restart`. La aplicación corre con el usuario sin privilegios `nuam`. Los registros están en `evidencias/docker_20261113`.
 
-En el equipo donde se construyó, la red pasa por un proxy con certificado propio. Para descargar las dependencias, la construcción entregó ese certificado a pip como secreto de construcción (`--secret`), que no queda en la imagen, y usó `--network host`. En un equipo con acceso directo a internet basta `docker build -t nuam-mantenedor:1.2 .`.
+La imagen de la versión 1.3 se construyó el 18 de noviembre de 2026 con el mismo Docker 29.9.3 y las mismas versiones dentro de la imagen, con la etiqueta `nuam-mantenedor:1.3`. Dentro del contenedor, `run_all_tests.py` aprobó 91 de 91 casos (`evidencias/ejecucion_completa_20261118_194527_662626`) y la prueba de humo repitió los seis puntos con resultado correcto. La construcción, la ficha de la imagen y el resultado de la prueba de humo están en `evidencias/docker_20261113/v1_3`.
+
+En el equipo donde se construyó, la red pasa por un proxy con certificado propio. Para descargar las dependencias, la construcción entregó ese certificado a pip como secreto de construcción (`--secret`), que no queda en la imagen, y usó `--network host`. En un equipo con acceso directo a internet basta `docker build -t nuam-mantenedor:1.3 .`.
 
 ## 5.5 Uso de IA
 

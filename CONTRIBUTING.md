@@ -8,7 +8,7 @@ La distribución proviene de la planificación y el diseño de la Unidad 2. Cada
 
 | Integrante | Rol en Scrum | Componentes del paquete |
 |---|---|---|
-| Benjamín Concha | Orden del backlog y decisiones de producto | `domain.py` (regla DEMO-1), tabla `evento_auditoria` y cadena HMAC, recorrido de demostración |
+| Benjamín Concha | Orden del backlog y decisiones de producto | `domain.py` (regla DEMO-1, CONV-1 en pantalla), tabla `evento_auditoria` y cadena HMAC, recorrido de demostración |
 | María Jesús Erices | Facilitación de Scrum y revisión de calidad | `templates/`, `static/`, validaciones de `domain.py`, carpeta `tests/` |
 | Pablo Doussang | Desarrollo e integración de datos | `schema.sql`, rutas de `app.py`, `documentrepo.py`, permisos por rol y corredor |
 
@@ -18,7 +18,7 @@ Según lo informado por el equipo el 14 de noviembre de 2026:
 
 | Integrante | Aporte en la Unidad 3 |
 |---|---|
-| Benjamín Concha | Orden del backlog, regla DEMO-1 (conversión de montos a factores) y bitácora de auditoría |
+| Benjamín Concha | Orden del backlog, regla DEMO-1 (conversión de montos a factores, CONV-1 en pantalla) y bitácora de auditoría |
 | Pablo Doussang | Diagramas del proyecto y pruebas |
 | María Jesús Erices | Redacción de los documentos de la entrega y presentación |
 
