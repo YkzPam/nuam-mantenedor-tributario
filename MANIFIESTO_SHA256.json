@@ -34,14 +34,15 @@
       "sha256_v1_1_1": "e89d645a9e8af5c82deef2a404afd734b6110addb20e11cf9d8b79a0c1ec7643"
     },
     ".gitignore": {
-      "bytes": 266,
-      "sha256": "703e92dc8bd707654615ac18557857a0541a08f3cee2d489a4c0b4adaa7978fa",
+      "bytes": 299,
+      "sha256": "944b99c648b86b9c7352638e8ef1c4c166fb5d8f732c441d56fe2a5acb80e6f8",
       "nuevo_despues_de_v1_0": true,
-      "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f"
+      "sha256_v1_2": "7b38cdca7911a0883f3518114fe624cf39c2c084809d674a43d20433a6646a6f",
+      "sha256_v1_2_4": "703e92dc8bd707654615ac18557857a0541a08f3cee2d489a4c0b4adaa7978fa"
     },
     "CHANGELOG.md": {
-      "bytes": 14232,
-      "sha256": "76b6795d56a9b5f4d4ddde6566ab1c10f15700175200fa322cc8eb33825d3a8b",
+      "bytes": 14380,
+      "sha256": "92113b0825de9dc11ca19d22df3d8ad9e73e9c5b71b105ce54dda7978af6eb3c",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_1_1": "adf928a3360cf9a8b00893d28130596259ba811edc5a9f242c0e85c276544569",
       "sha256_v1_2": "7bc76104f9b777b1d1179e77c909876f11f33bfd947bcc021cafa08ab9198572",
@@ -51,8 +52,8 @@
       "sha256_v1_2_4": "375ad38d670a7c75c026e91fc94f8c4e9b017885011e8c7bb6b22885bd5b0f47"
     },
     "CONTRIBUTING.md": {
-      "bytes": 6237,
-      "sha256": "a0cd28b68251f3a2515d81d3a5f6de85a190195f0da68a1273436f3a7899a4cb",
+      "bytes": 6471,
+      "sha256": "c24b6dca84e49d28baac293690bd493c37df78d2de7474297a8320ffc7493693",
       "nuevo_despues_de_v1_0": true,
       "sha256_v1_2": "5f5e06f5f415ca3f001d4c9c71ede908df4421c61808b8ac1a7c19e815e5dd70",
       "sha256_v1_2_2": "412979e0b2f2db7344a249abffc4a47fe1b7fa389b7aea5152947c61aacd6383",

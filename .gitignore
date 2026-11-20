@@ -8,5 +8,5 @@ __pycache__/
 data/
 data_sesion_*/
 
-# Resultados de cada ejecución de pruebas (se adjuntan aparte cuando corresponde)
+# Resultados de cada ejecución de pruebas (las carpetas que cita la documentación se agregan de forma explícita)
 evidencias/

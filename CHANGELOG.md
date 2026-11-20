@@ -23,6 +23,7 @@ Documentación posterior (18 al 20 de noviembre de 2026, sin cambios en el códi
 
 - `docs/04-rubrica.md` incorpora el video de usabilidad del prototipo, presentado por Pablo Doussang y publicado en YouTube como no listado, con su enlace en la etapa Pruebas de DreamShaper.
 - `docs/05-verificacion.md` agrega la prueba de la imagen Docker 1.3; `README.md` y `CONTRIBUTING.md` indican el nombre en pantalla de las reglas DEMO-1 a DEMO-3.
+- `CONTRIBUTING.md` precisa que Pablo y María Jesús no tenían permisos de escritura en el repositorio y qué carpetas de `evidencias/` se suben.
 
 ## 1.2.4 — 14 de noviembre de 2026
 

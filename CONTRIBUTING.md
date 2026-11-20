@@ -26,7 +26,7 @@ Los aportes de Pablo y María Jesús se hicieron fuera del repositorio. Por indi
 
 ### 1.2 Revisión cruzada sin cuentas propias
 
-Mientras Pablo y María Jesús no dispongan de computador para trabajar en GitHub, el paso 6 de la sección 2 se aplica fuera del repositorio con el siguiente procedimiento acordado:
+Mientras Pablo y María Jesús no tengan permisos de escritura en el repositorio, cuyo acceso quedó solo en la cuenta del integrador, el paso 6 de la sección 2 se aplica fuera del repositorio con el siguiente procedimiento acordado:
 
 1. El integrador prepara el cambio, ejecuta `python run_all_tests.py` y comparte con el equipo el material que se debe revisar: documento, diagrama o reporte de pruebas.
 2. Pablo revisa lo relacionado con diagramas y casos de prueba. María Jesús revisa la redacción de los documentos y el material de la presentación. Ambos envían sus observaciones al integrador por el canal del equipo.
@@ -53,7 +53,7 @@ Como estas revisiones no pasan por un pull request, el historial de GitHub no la
 - Mutaciones con token CSRF. Mensajes de error sin rutas internas, SQL ni nombres de tablas.
 - El registro operativo (`data/logs/operacion.log`) guarda método, ruta declarada, estado, duración y perfil. No se agregan cuerpos de solicitud, parámetros de búsqueda, cookies, tokens ni contraseñas.
 - Dependencias con versión exacta en `requirements-lock.txt` y `requirements-servidor.txt`.
-- Solo datos de prueba. Ningún archivo de `data/` ni de `evidencias/` se sube al repositorio (`.gitignore`).
+- Solo datos de prueba. Los archivos de `data/` nunca se suben al repositorio. `.gitignore` también excluye `evidencias/`, para que una ejecución nueva no se suba por accidente; las carpetas de evidencia que cita la documentación se agregaron de forma explícita al preparar cada entrega.
 
 ## 4. Definición de terminado
 
